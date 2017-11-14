@@ -1,0 +1,28 @@
+@(regForm: Form[forms.User])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
+<script type="text/javascript" src="@routes.Assets.versioned("javascripts/jquery.1.12.4.js")"></script>
+<script type="text/javascript" src="@routes.Assets.versioned("javascripts/sweetalert.min.js")"></script>
+<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/sweetalert.css")" media="screen" />
+
+@content.register(regForm)
+
+@main("") {
+    <script>
+            var message = "Thank you! Your submissions has been accepted.";
+            var success = "Congratulations";
+            if (swal == 'undefined') {
+                alert(message);
+                window.location.replace("/");
+            } else {
+                swal({
+                    title: success,
+                    text: message,
+                    type: "success",
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                    allowOutsideClick: false
+                }).then(function () {
+                    window.location.replace("/");
+                });
+            }
+    </script>
+}

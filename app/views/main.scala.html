@@ -1,0 +1,4 @@
+@(title: String, footerScripts: Html = Html(""), headerScripts: Html = Html(""))(content: Html)
+    @common.header(title, headerScripts)
+    @content
+    @common.footer(title, footerScripts)

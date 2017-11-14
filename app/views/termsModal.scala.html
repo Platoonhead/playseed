@@ -1,0 +1,81 @@
+@import utilities.Constants
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body>
+<div class="img-full">
+    <img src="@routes.Assets.versioned("images/quform/owl.png")" alt="Zab Alexander Wine" width="50%" height="50%" />
+</div>
+<div class="img-full">
+    <img src="@routes.Assets.versioned("images/quform/logo.png")" alt="Zab Alexander Wine" width="40%" height="40%" />
+</div>
+<br>
+
+<!-- <h3 class="modal-wel">Welcome</h3> -->
+<p class="text-center reqFont">
+    Please select your state for applicable Terms and Conditions.
+</p>
+<div class="text-center">
+    <label class="h4" for="states">States <span class="quform-required">*</span></label>
+    <select id="states" name="states">
+    @for(state <- Constants.GEN_PROVINCE) {
+        <option value="@state._1">@state._2</option>
+    }
+    </select>
+</div>
+<div class="modal-footer">
+    <div class="text-center">
+        <button id="okbtn" type="button" class="btn-main small" data-dismiss="modal" onclick="openTermpdf()">OK</button>
+        <button type="button" class="btn-main small" data-dismiss="modal" onclick="scrollEnable()">Cancel</button>
+    </div>
+</div>
+<script>
+
+    const STATES_REGISTER_WITHOUT_PURCHASE = ["AL", "CA", "HI", "IL", "IN", "ME", "MO", "NC", "TX", "HIH", "HIM", "HIK"];
+    const STATES_NOT_PERMITTED = ["MN", "NJ", "OR", "PA", "SD", "UT"];
+    var withPurchase = false;
+    var notPermitted = false;
+    $("#states").on('change', function() {
+        withPurchase = false;
+        notPermitted = false;
+        var selState = $(this).find(":selected").val();
+        if (STATES_REGISTER_WITHOUT_PURCHASE.includes(selState)) {
+            withPurchase = false;
+        } else if(STATES_NOT_PERMITTED.includes(selState)) {
+            notPermitted = true;
+        }else{
+            withPurchase = true
+        }
+
+    });
+
+    function openTermpdf() {
+        $html.css('overflow', '');
+        var url, win;
+        if (withPurchase == true) {
+            $("#okbtn").attr("data-dismiss","modal");
+            url = "https://s3-us-west-2.amazonaws.com/p3-custom-client/zab/legal/ZAB_Music_Download_With_Purchase_Full_Details.pdf";
+            win = window.open(url, '_blank');
+            win.focus();
+        }else if(notPermitted == true) {
+            $("#okbtn").removeAttr('data-dismiss');
+          const customMessage = "Unfortunately, this program is not available in your state. " +
+                    "Thank you for your purchase and please visit zalexanderbrown.com to learn more about our wines.";
+            $("#notPermitted").remove();
+            $("#states").after('<span id="notPermitted" class="help-block align-error custom-error-locator">'+customMessage+'</span>');
+        }else {
+            $("#okbtn").attr("data-dismiss","modal");
+            url = "https://s3-us-west-2.amazonaws.com/p3-custom-client/zab/legal/ZAB_Music_Download_No_Purchase_Full_Details.pdf";
+            win = window.open(url, '_blank');
+            win.focus();
+        }
+    }
+</script>
+</body>
+
+</html>

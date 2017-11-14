@@ -1,0 +1,22 @@
+# Routes
+GET         /                          controllers.Application.index
+
+GET         /register                  controllers.Application.register
+POST        /savecontestent            controllers.Registration.saveContestant
+
+GET         /upload                    controllers.Application.upload
+GET         /faq1                      controllers.Application.faq1
+GET         /faq2                      controllers.Application.faq2
+GET         /faq3                      controllers.Application.faq3
+GET         /faq4                      controllers.Application.faq4
+GET         /modal                     controllers.Application.termsModal
+
+POST        /receiveReceipt            controllers.Receipts.receiveReceipt
+POST        /callback/receive          controllers.Callbacks.receive
+
+POST        /customersupport           controllers.Support.userSupport
+
+GET         /jsRoutes                  controllers.JavascriptRoutes.jsRoutes
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file              controllers.Assets.versioned(path="/public", file: Asset)

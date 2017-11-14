@@ -1,0 +1,34 @@
+#Validation Messages
+validation.email.matchError = Confirm email must be the same as email.
+validation.invalid.email = Please enter a valid email address.
+validation.firstName.empty =  Please enter your first name.
+validation.lastName.empty =  Please enter your last name.
+validation.captcha.error = Please check the captcha checkbox.
+validation.birthYear.empty = Please select your birth year.
+validation.birthDay.empty = Please select your birth date.
+validation.birthMonth.empty = Please select your birth month.
+validation.address1.empty = Please enter your address.
+validation.province.empty = Please enter your province.
+validation.city.empty = Please enter your city.
+validation.home.empty = Please enter a valid phone number.
+validation.dateOfBirth.invalid = You have entered an invalid date.
+validation.invalid.postal =  Please enter a valid zip code.
+validation.isAgree.empty = Please agree with the offer details and rules.
+validation.isAgreeArea.empty = Please agree.
+
+validation.state.notPermitted = Unfortunately, this program is not available in your state. Thank you for your purchase and please visit zalexanderbrown.com to learn more about our wines.
+validation.state.empty = Please select your state.
+validation.state.invalid = Please select a valid state.
+
+validation.support.name = Please enter your name.
+validation.support.message = The message is required.
+
+flashing.error = Error!
+flashing.success = Success!
+
+registration.success = Thank you for registering into the program.
+common.error.message = Something went wrong, please try again.
+registration.ineligible = You are ineligible to participate on this program.
+registration.suspicious = Your actions have been deemed suspicious.
+error.event.ingest = Event could not ingest
+error.access.token = Access token not found

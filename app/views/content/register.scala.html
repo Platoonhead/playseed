@@ -1,0 +1,366 @@
+@(regForm: Form[forms.User])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
+    @import helper._
+    @import utilities.Constants
+
+    @moreScripts = {
+        <script src='https://www.google.com/recaptcha/api.js?explicit&hl=en-CA'></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/register.js")"></script>
+    }
+
+    @main("Z Alexander Brown Uncaged Wines", headerScripts = moreScripts) {
+
+        <div id="wrapper" class="content-wrapper pages">
+
+            <div class="container space-y-t-h space-y-b">
+                <div class="row">
+
+
+                    <div class="container space-y-t" id="registerform">
+                        <div class="row">
+                            @flash.get("error").map { message =>
+                                <div class="alert alert-danger fade in center-text">
+                                    <button id="flashBtn" type="button" class="close btn-danger" data-dismiss="alert">&times;</button>
+                                    <strong>Error! </strong>@message
+                                </div>
+                            }
+                            <div class="col-md-12 text-center">
+                                <h1 class="section-header" >
+                                    Registration Form<span class="underline animated" data-animation="fullWidth"></span></h1>
+                            </div>
+                                <!-- / col-md-12 -->
+                        </div>
+                            <!-- / row -->
+                    </div>
+                        <!-- / container -->
+
+                    <div class="container padding-y">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="quform-outer">
+                                    @helper.form(action = routes.Registration.saveContestant(), args = 'name -> "email-reg-submit-form", 'id -> "my-form", 'class -> "registration-form") {
+                                        @CSRF.formField
+                                        <div class="quform-inner">
+                                            <div class="quform-elements">
+                                                <div class="row">
+                                                        <div class="row">
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
+                                                            <label for="firstName">First Name <span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-input">
+                                                                <input id="firstName" type="text" name="firstName" value="@regForm("firstName").value"/>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("firstName").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                            <!-- End Text input element -->
+
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
+                                                            <label for="lastName"> Last Name<span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-input">
+                                                                <input id="lastName" type="text" name="lastName" value="@regForm("lastName").value"/>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("lastName").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                            <!-- End Text input element -->
+                                                    </div>
+                                                    <div class="row">
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
+                                                            <label for="emailGroup_email">
+                                                                Email address <span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-input">
+                                                                <input id="emailGroup_email" type="text" name="emailGroup.email" value="@regForm("emailGroup.email").value"/>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("emailGroup.email").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("emailGroup").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                            <!-- End Text input element -->
+
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
+                                                            <label for="emailGroup_confirmedEmail">
+                                                                Confirm your email address<span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-input">
+                                                                <input id="emailGroup_confirmedEmail" type="text" name="emailGroup.confirmedEmail" value="@regForm("emailGroup.confirmedEmail").value"/>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("emailGroup.confirmedEmail").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("emailGroup").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                            <!-- End Text input element -->
+                                                    </div>
+
+                                                    <div class="row">
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-4">
+                                                            <label for="dob_birthDay">
+                                                                Select your birth date <span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-select">
+                                                                <select id="dob_birthDay" name="dob.birthDay" class="dob-select">
+                                                                    <option value="">Select your birth date</option>
+                                                                    @for(day <- Constants.GEN_DATE) {
+                                                                        <option value="@day._1">@day._2</option>
+                                                                    }
+                                                                </select>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("dob.birthDay").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-4">
+                                                            <label for="dob_birthMonth">
+                                                                Select your birth month<span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-select">
+                                                                <select id="dob_birthMonth" name="dob.birthMonth" class="dob-select">
+                                                                    <option value="">Select your birth month</option>
+                                                                    @for(month <- Constants.genMonth(messages.messages.lang)) {
+                                                                        <option value="@month._1">@month._2</option>
+                                                                    }
+                                                                </select>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("dob.birthMonth").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-4">
+                                                            <label for="dob_birthYear">
+                                                                Select your birth year<span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-select">
+                                                                <select id="dob_birthYear" name="dob.birthYear" class="dob-select">
+                                                                    <option value="">Select your birth year</option>
+                                                                    @for(year <- Constants.GEN_YEAR) {
+                                                                        <option value="@year._1">@year._2</option>
+                                                                    }
+                                                                </select>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("dob.birthYear").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("dob").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                        <!-- End Text input element -->
+                                                    <div class="row">
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-12">
+                                                            <label for="address1"> Address <span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-input">
+                                                                <input id="address1" type="text" name="address1" value="@regForm("address1").value"/>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("address1").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+
+                                                        </div>
+                                                            <!-- End Text input element -->
+                                                    </div>
+
+                                                    <div class="row">
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-4">
+                                                            <label for="email">City</label>
+                                                            <div class="quform-input">
+                                                                <input id="city" type="text" name="city" value="@regForm("city").value"/>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("city").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                            <!-- End Text input element -->
+
+                                                        <!-- Begin Text input element --
+                                                        <!-- End Text input element -->
+
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-4">
+                                                            <label for="email">ZIP CODE<span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-input">
+                                                                <input id="postalCode" type="number" name="postalCode" value="@regForm("postalCode").value"/>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("postalCode").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+
+                                                        </div>
+                                                            <!-- End Text input element -->
+
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-4">
+                                                            <label for="province">STATES<span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-select province-div">
+                                                                <select id="province" name="province">
+                                                                    <option value="">Select your State</option>
+                                                                    @for(state <- Constants.GEN_PROVINCE) {
+                                                                        <option value="@state._1">@state._2</option>
+                                                                    }
+                                                                </select>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("province").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                            <!-- End Text input element -->
+                                                    </div>
+                                                        <!-- Begin Text input element -->
+                                                    <div class="row">
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
+                                                            <label for="phone">
+                                                                Phone number (numbers only) <span class="quform-required">
+                                                                *</span></label>
+                                                            <div class="quform-input">
+                                                                <input id="phone" type="number" name="phoneNumber" value="@regForm("phoneNumber").value" />
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("phoneNumber").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                            <!-- End Text input element -->
+                                                    </div>
+
+                                                    <div class="row">
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-12">
+                                                            <div class="quform-input">
+                                                                <input id="isAgree" type="checkbox" name="isAgree" value="true" />
+                                                                <span class="quform-required checkbox-required"> *</span>
+                                                                <span id="checkbox-error">I confirm that I have read and agree to the terms and conditions set out in this promotional offer.</span>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("isAgree").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                            <!-- End Text input element -->
+                                                    </div>
+
+                                                    <div class="row">
+                                                            <!-- Begin Text input element -->
+                                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-12">
+                                                            <div class="quform-input">
+                                                                <div id="captcha" class="g-recaptcha" data-sitekey="6Lfa6Q0TAAAAACcH--9Vp8VZ2159EbHJAtc8ld4q" data-callback="correctCaptcha"></div>
+                                                                <span class="help-block align-error">@{
+                                                                    regForm("g-recaptcha-response").error.map { error => messages.messages(error.message) }
+                                                                }</span>
+                                                            </div>
+                                                        </div>
+                                                            <!-- End Text input element -->
+                                                    </div>
+                                                        <!-- Begin Submit button -->
+                                                    <div class="quform-submit-overlay col-md-12 clearfix">
+                                                        <div class="quform-submit-inner">
+                                                            <button id ="submitForm" type="submit" value="" class="btn-main small"><span>
+                                                                submit form</span></button>
+                                                        </div>
+                                                        <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
+                                                    </div>
+                                                        <!-- End Submit button -->
+
+                                                        <!-- / quform-inner" -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                        <!-- end quform -->
+                                </div>
+                                    <!-- end quform-outer -->
+                            </div>
+                                <!-- end col-md-12 -->
+                        </div>
+                            <!-- end row -->
+                    </div>
+                        <!-- end container -->
+                </div>
+                    <!-- end parallax-base -->
+
+            </div>
+                <!-- end row -->
+
+    }
+    <script type="text/javascript">
+        var correctCaptcha = function (response) {
+            if (response) {
+                $("#captcha").parent().find('span').remove();
+            }
+        };
+        var revapi7,
+                tpj = jQuery;
+        tpj(document).ready(function () {
+            if (tpj("#rev_slider_7_1").revolution == undefined) {
+                revslider_showDoubleJqueryError("#rev_slider_7_1");
+            } else {
+                revapi7 = tpj("#rev_slider_7_1").show().revolution({
+                    sliderType: "hero",
+                    sliderLayout: "fullwidth",
+                    dottedOverlay: "none",
+                    delay: 18000,
+                    navigation: {},
+                    responsiveLevels: [1240, 1024, 778, 480],
+                    visibilityLevels: [1240, 1024, 778, 480],
+                    gridwidth: [1920, 1440, 778, 480],
+                    gridheight: [1080, 900, 900, 900],
+                    lazyType: "none",
+                    parallax: {
+                        type: "scroll",
+                        origo: "enterpoint",
+                        speed: 400,
+                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 47, 48, 49, 50, 51, 55],
+                    },
+                    shadow: 0,
+                    spinner: "spinner1",
+                    autoHeight: "on",
+                    disableProgressBar: "on",
+                    hideThumbsOnMobile: "off",
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    debugMode: false,
+                    fallbacks: {
+                        simplifyAll: "off",
+                        disableFocusListener: false,
+                    }
+                });
+            }
+        });
+        /*ready*/
+</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".scrollTo").off('click').removeClass('scrollTo').addClass('redirectBack');
+            $('.redirectBack').on('click', startIt);
+
+            function startIt(e) {
+                window.location = "/" + $(this).attr("href")
+            }
+        });
+
+        var correctCaptcha = function (response) {
+            if (response) {
+                $("#captcha").parent().find('span').remove();
+            }
+        };
+</script>
+

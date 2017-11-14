@@ -1,0 +1,385 @@
+@(str: String, supportForm: Form[forms.SupportForm])(implicit request: RequestHeader, messages: MessagesProvider)
+@import helper._
+
+@moreScripts = {
+    <script type="text/javascript" src="@routes.Assets.versioned("javascripts/support.js")"></script>
+}
+
+@main(str, headerScripts = moreScripts) {
+
+    <div id="wrapper" class="content-wrapper">
+    <div id="home" class="pages space-nav">
+        <!-- START REVOLUTION SLIDER 5.4.3.1 auto mode -->
+
+        <div id="rev_slider_27_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="deli" data-source="gallery" style="margin:0px auto;background:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+            <!-- START REVOLUTION SLIDER 5.4.3.1 fullwidth mode -->
+            <div id="rev_slider_27_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.3.1">
+                <ul>
+                    <!-- SLIDE  -->
+                    <li data-index="rs-49" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="assets/100x50_bae13-zac_guitar_Hero.jpg" data-rotate="0"
+                        data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img src="@routes.Assets.versioned("images/bae13-zac_guitar_Hero.jpg")" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-index="rs-50" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="assets/100x50_64b7c-bottle_guitar_Hero.jpg" data-rotate="0"
+                        data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img src="@routes.Assets.versioned("images/64b7c-bottle_guitar_Hero.jpg")" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-index="rs-51" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="assets/100x50_f38c3-zac_guitar_Hero-2.jpg" data-rotate="0"
+                        data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img  src="@routes.Assets.versioned("images/f38c3-zac_guitar_Hero-2.jpg")" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-index="rs-52" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="assets/100x50_1b4d1-guitar_bottle_glass_hero.jpg"
+                        data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img src="@routes.Assets.versioned("images/1b4d1-guitar_bottle_glass_hero.jpg")" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                    </li>
+                </ul>
+
+                <div style="" class="tp-static-layers">
+                <!-- LAYER NR. 1 -->
+                <div class="tp-caption Photography-Display   tp-resizeme tp-static-layer" id="slider-27-layer-9" data-x="center" data-hoffset="" data-y="center" data-voffset="-5" data-width="['auto']" data-height="['auto']" data-type="text" data-responsive_offset="on"
+                data-startslide="0" data-endslide="3" data-frames='[{"delay":10,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5; white-space: nowrap; font-size: 98px; line-height: 100px; font-weight: 800; color: #ffffff; letter-spacing: 0px;font-family:IM Fell English;text-shadow:2px 2px #000000;">
+                Enter to Download</div>
+
+
+                <div class="tp-caption Photography-Display   tp-resizeme tp-static-layer" id="slider-27-layer-12" data-x="center" data-hoffset="" data-y="center" data-voffset="140" data-width="['auto']" data-height="['auto']" data-type="text" data-responsive_offset="on"
+                data-startslide="0" data-endslide="3" data-frames='[{"delay":10,"split":"chars","splitdelay":0.05,"speed":2000,"split_direction":"forward","frame":"0","from":"y:[-100%];z:0;rZ:35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;tO:0% 0%;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                data-textAlign="['center','center','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; min-width: 1198px; max-width: 1198px; max-width: 86px; max-width: 86px; white-space: nowrap; font-size: 80px; line-height: 82px; font-weight: 600; color: #ffffff; letter-spacing: 3px;font-family:IM Fell English;  font-style: italic;">Zac Brown Band’s Song “Family Table”
+                <div class='backcornertop'></div>
+                </div>
+
+                <!-- LAYER NR. 2 -->
+                <div class="tp-caption rev-btn tp-static-layer" id="slider-27-layer-11" data-x="center" data-hoffset="26" data-y="center" data-voffset="305" data-width="['auto']" data-height="['auto']" data-type="button" data-actions='[{"event":"click","action":"simplelink","target":"_self","url":"/register","delay":""}]'
+                data-responsive_offset="on" data-startslide="0" data-endslide="3" data-frames='[{"delay":2930,"speed":400,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0,0,0,1);bg:rgb(239,239,239);bc:rgba(0,0,0,1);bs:solid;bw:0 0 0 0;"}]'
+                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[25,25,25,25]" data-paddingright="[50,50,50,50]" data-paddingbottom="[25,25,25,25]" data-paddingleft="[50,50,50,50]" style="z-index: 7; white-space: nowrap; font-size: 30px; line-height: 20px; font-weight: 500; color: black; letter-spacing: px;font-family:IM Fell English;background-color:rgba(255,255,255,1);border-color:rgb(0,0,0);border-radius:3px 3px 3px 3px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">ENTER NOW </div>
+            </div>
+
+        <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+            </div>
+        </div>
+        <!-- END REVOLUTION SLIDER -->
+
+    </div>
+</div>
+<!-- END Home -->
+
+
+<!-- START Participate -->
+<div id="participate" class="pages">
+    <div class="container-fluid space-y">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="section-header">
+                    How To Participate<span class="underline animated fullWidth visible" data-animation="fullWidth"></span></h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7 col-sm-12 text-justify">
+                <h4>SHOP</h4>
+                <p>Purchase any two (2) Z. Alexander Brown wines.(Please see the Terms and Conditions for more information about whether a qualifying purchase is required for your state)</p>
+                <p>&nbsp;</p>
+                <h4>TAKE A PICTURE</h4>
+                <p>Take a clear photo of your entire receipt with your mobile phone. Receipt must show the store name and date of purchase.</p>
+                <p>&nbsp;</p>
+                <h4>REGISTER</h4>
+                <p>Complete the registration form and upload a unique receipt. Your upload will be validated and a confirmation email will be sent to the email address provided within 24-48 hours. If you do not see an email confirmation or offer
+                    code after 48 hours and you have checked your inbox, spam or junk folders, please email <a class="emailPop support-link">support@@receiptprocessor.com</a>. Registration form must be completed before a sweepstakes
+                    entry confirmation can be emailed.
+                </p>
+                <p>&nbsp;</p>
+                <h4>UPLOAD</h4>
+                <p>To upload a photo of your receipt, you must first complete the registration form. Once you click “submit form” at the bottom of the registration form, you will then be prompted to upload a photo of your receipt.
+                </p>
+                <p>
+                    This offer is valid on purchases from November 1, 2017 to December 31, 2017, and last day for receipt submission is January 31, 2017. As a reminder: all qualifying products must be purchased on the same receipt.
+                </p>
+            </div>
+
+            <div class="col-md-5 hidden-xs hidden-sm">
+                <div class="img-full animated fadeInRight visible" data-animation="fadeInRight"><img src="/assets/images/participate.png" height="900px" width="480px" alt="participate" data-no-retina=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Participate -->
+
+
+<!-- ****** PRIZES SLider Start ********* -->
+<div id="prize" class="pages">
+    <div class="container-fluid space-y">
+        <div class="row">
+            <div class="img-full animated" data-animation="fadeInRight">
+                <img class="zac-image" src="@routes.Assets.versioned("images/products.png")" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- /END PRIZES-->
+
+    <!-- START Faq-->
+    <div id="faq" class="pages">
+        <div class="container-fluid space-y">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="section-header">Frequently Asked Questions<span class="underline animated" data-animation="fullWidth"></span></h1>
+
+                    <div class="grid-container cbp cbp-news fadeAnim" data-animate-type="quicksand" data-layoutmode="mosaic" data-grid-adjusment="responsive" data-gap-horizontal="30" data-gap-vertical="30" data-col-num-1600="3">
+                        <article class="cbp-item element photography" data-category="photography">
+                            <a href="@routes.Application.faq1()" class="cbp-singlePage">
+                                <div class="cbp-news__content">
+                                    <img src="@routes.Assets.versioned("images/faq/faq1.jpg")" alt="What are the participating products ?" />
+                                    <h3>What are the participating products ?</h3>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="cbp-item element photography" data-category="photography">
+                            <a href="@routes.Application.faq2()" class="cbp-singlePage">
+                                <div class="cbp-news__content">
+                                    <img src="@routes.Assets.versioned("images/faq/faq2.jpg")" alt="How many times can I enter ?" />
+                                    <h3>How many times can I enter ?</h3>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="cbp-item element photography" data-category="photography">
+                            <a href="@routes.Application.faq3()" class="cbp-singlePage">
+                                <div class="cbp-news__content">
+                                    <img src="@routes.Assets.versioned("images/faq/faq3.jpg")" alt="What do I do if I am having trouble participating in the program?" />
+                                    <h3>What do I do if I am having trouble participating in the Program ?</h3>
+                                </div>
+                            </a>
+                        </article>
+
+                        <article class="cbp-item element photography" data-category="photography">
+                            <a href="@routes.Application.faq4()" class="cbp-singlePage">
+                                <div class="cbp-news__content">
+                                    <img src="@routes.Assets.versioned("images/faq/faq4.jpg")" alt="When does the promotion close ?" />
+                                    <h3>When does the promotion close ?</h3>
+                                </div>
+                            </a>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- / END FAQ -->
+
+    <div id="support" class="pages">
+        <div class="container space-y-t">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="section-header">
+                        SUPPORT<span class="underline animated" data-animation="fullWidth"></span></h1>
+                </div>
+                <!-- / col-md-12 -->
+            </div>
+            <!-- / row -->
+        </div>
+
+        <div class="space-y pattern-bg">
+            <div class="container padding-y">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="quform-outer">
+                            @helper.form(action = routes.Support.userSupport(), args = 'name -> "email-reg-submit-form", 'id -> "my-form", 'class -> "") {
+                            @CSRF.formField
+                            <div class="quform-inner">
+                                <div class="quform-elements">
+                                    <div class="row">
+
+                                        <!-- Begin Text input element -->
+                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
+                                            <label for="name">Name<span class="quform-required">
+                                                        *</span></label>
+                                            <div class="quform-input">
+                                                <input id="name" type="text" name="name" />
+                                                <span class="help-block align-error">@{
+                                                            supportForm("name").error.map { error => messages.messages(error.message) }
+                                                        }</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Text input element -->
+
+                                        <!-- Begin Text input element -->
+                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
+                                            <label for="email">Email address<span class="quform-required">
+                                                        *</span></label>
+                                            <div class="quform-input">
+                                                <input id="email" type="text" name="email" />
+                                                <span class="help-block align-error">@{
+                                                            supportForm("email").error.map { error => messages.messages(error.message) }
+                                                        }</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Text input element -->
+
+                                        <!-- Begin Textarea element -->
+                                        <div class="quform-overlay quform-element clearfix quform-element-textarea quform-huge col-md-12">
+                                            <label for="message">Message<span class="quform-required">
+                                                        *</span></label>
+                                            <div class="quform-input">
+                                                <textarea id="message" name="message" style="height: 130px ;"></textarea>
+                                                <span class="help-block align-error">@{
+                                                            supportForm("message").error.map { error => messages.messages(error.message) }
+                                                        }</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Textarea element -->
+
+                                        <!-- Begin Submit button -->
+                                        <div class="quform-submit-overlay col-md-12 clearfix">
+                                            <div class="quform-submit-inner">
+                                                <button type="submit" id ="supportForm" value="Send" class="btn-main small"><span>
+                                                            submit form</span></button>
+                                            </div>
+                                            <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
+                                        </div>
+                                        <!-- End Submit button -->
+                                    </div>
+                                    <!-- / row -->
+
+                                </div>
+                                <!-- / quform-elements -->
+                            </div>
+                            <!-- / quform-inner" -->
+                            }
+                            <!-- end quform -->
+                        </div>
+                        <!-- end quform-outer -->
+                    </div>
+                    <!-- end col-md-12 -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end parallax-base -->
+    </div>
+
+    <!-- Agegate Modal -->
+    <div class="modal" id="ageModal" role="dialog" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="img-full">
+                        <img src="@routes.Assets.versioned("images/quform/owl.png")" alt="Zab Alexander Wine" width="50%" height="50%" />
+                    </div>
+                    <div class="img-full">
+                        <img src="@routes.Assets.versioned("images/quform/logo.png")" alt="Zab Alexander Wine" width="40%" height="40%" />
+                    </div>
+                    <br>
+                    <p class="text-center reqFont">
+                        By entering you acknowledge that you are of legal drinking age in the country where this site is accessed.
+                    </p>
+
+                    <div class="modal-footer">
+                        <div class="text-center">
+                            <button type="button" class="btn-main small" data-dismiss="modal" onclick="Enablescroll()">ENTER</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end contact -->
+    }
+</div>
+
+<!-- Script for AgeGate Modal  -->
+<script>
+    $(document).ready(function() {
+        jQuery.noConflict();
+        $('#ageModal').modal('show');
+        $('html').css('overflow', 'hidden');
+    });
+
+    function Enablescroll() {
+        $('html').css('overflow', '');
+    }
+</script>
+
+<script type="text/javascript">
+    var revapi27,
+        tpj = jQuery;
+    tpj(document).ready(function() {
+        if (tpj("#rev_slider_27_1").revolution == undefined) {
+            revslider_showDoubleJqueryError("#rev_slider_27_1");
+        } else {
+            revapi27 = tpj("#rev_slider_27_1").show().revolution({
+                sliderType: "standard",
+                jsFileLocation: "//products.3tierlogic.com/slidereditor/revslider/public/assets/js/",
+                sliderLayout: "fullwidth",
+                dottedOverlay: "none",
+                delay: 5000,
+                navigation: {
+                    keyboardNavigation: "off",
+                    keyboard_direction: "horizontal",
+                    mouseScrollNavigation: "off",
+                    mouseScrollReverse: "default",
+                    onHoverStop: "off",
+                    arrows: {
+                        style: "hesperiden",
+                        enable: false,
+                        hide_onmobile: false,
+                        hide_onleave: false,
+                        tmp: '',
+                        left: {
+                            h_align: "left",
+                            v_align: "center",
+                            h_offset: 20,
+                            v_offset: 0
+                        },
+                        right: {
+                            h_align: "right",
+                            v_align: "center",
+                            h_offset: 20,
+                            v_offset: 0
+                        }
+                    }
+                },
+                visibilityLevels: [1240, 1024, 778, 480],
+                gridwidth: 1980,
+                gridheight: 1080,
+                lazyType: "none",
+                shadow: 0,
+                spinner: "spinner0",
+                stopLoop: "off",
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
+                shuffle: "on",
+                autoHeight: "off",
+                disableProgressBar: "on",
+                hideThumbsOnMobile: "off",
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                debugMode: false,
+                fallbacks: {
+                    simplifyAll: "off",
+                    nextSlideOnWindowFocus: "off",
+                    disableFocusListener: false,
+                }
+            });
+        }
+    }); /*ready*/
+
+</script>
+

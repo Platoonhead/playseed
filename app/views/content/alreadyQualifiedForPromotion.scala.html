@@ -1,0 +1,26 @@
+@(regForm: Form[forms.User])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
+<script type="text/javascript" src="@routes.Assets.versioned("javascripts/jquery.1.12.4.js")"></script>
+<script type="text/javascript" src="@routes.Assets.versioned("javascripts/sweetalert.min.js")"></script>
+<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/sweetalert.css")" media="screen" />
+
+@content.register(regForm)
+
+@main("") {
+    <script>
+            var message = "You have reached the limit for the promotion.";
+            if (swal == 'undefined') {
+                alert(message);
+                window.location.replace("/");
+            } else {
+                swal({
+                    text: message,
+                    type: "warning",
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                    allowOutsideClick: false
+                }).then(function () {
+                    window.location.replace("/");
+                });
+            }
+    </script>
+}

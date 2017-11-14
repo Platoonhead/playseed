@@ -1,0 +1,125 @@
+@(title: String, moreScripts: Html = Html(""))
+<!DOCTYPE html>
+<html lang="en" class="js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths no-mobile">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Z Alexander Brown Uncaged Wines</title>
+            <!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" href="@routes.Assets.versioned("images/favicon.ico")" type="image/x-icon">
+        <link href="@routes.Assets.versioned("stylesheets/css")" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/icon-font/font-awesome.css")">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/icon-font/pe-icon-7.css")">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/masterslider/masterslider.css")">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/mediaelementplayer.css")">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/revolution/css/settings.css")">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/revolution/css/navigation.css")" media="screen" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/custom.css")">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/style.css")" media="screen" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/revolution/css/layers.css")">
+            <!-- LOADING FONTS AND ICONS -->
+        <link href="http://fonts.googleapis.com/css?family=Raleway%3A400%2C900%2C100%2C600" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
+        <link href="http://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
+        <link href="http://fonts.googleapis.com/css?family=Raleway%3A100%2C900%2C400" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
+        <link href="http://fonts.googleapis.com/css?family=Raleway%3A400%2C900%2C100%2C600" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
+        <link href="http://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
+        <link href="http://fonts.googleapis.com/css?family=Montserrat%3A400" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
+        <link href="http://fonts.googleapis.com/css?family=Raleway%3A600" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
+
+        <!-- LOAD JQUERY LIBRARY -->
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/jquery.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
+        <script src="@routes.Assets.versioned("javascripts/modernizr.js")"></script>
+       @moreScripts
+
+        <!-- LOADING FONTS AND ICONS ****** START ******** -->
+        <link href="@routes.Assets.versioned("stylesheets/css(1)")" rel="stylesheet" property="stylesheet" type="text/css" media="all">
+        <link href="@routes.Assets.versioned("stylesheets/css(2)")" rel="stylesheet" property="stylesheet" type="text/css" media="all">
+        <link href="@routes.Assets.versioned("stylesheets/css(3)")" rel="stylesheet" property="stylesheet" type="text/css" media="all">
+        <link href="@routes.Assets.versioned("stylesheets/css(4)")" rel="stylesheet" property="stylesheet" type="text/css" media="all">
+
+       <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css")" media="screen" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("fonts/font-awesome/css/font-awesome.min.css")" media="screen" />
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/sweetalert.css")" media="screen" />
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/dnd.css")">
+
+        <style type="text/css">
+        #rev_slider_3_1_wrapper .tp-loader.spinner1 {
+            background-color: #FFFFFF !important;
+        }
+        </style>
+        <style type="text/css">
+        #rev_slider_4_1_wrapper .tp-loader.spinner1 {
+            background-color: #FFFFFF !important;
+        }
+        </style>
+        <!-- LOADING FONTS AND ICONS ****** END ******** -->
+</head>
+    <body data-smooth-scroll="true">
+        <div class="animsition-overlay" data-animsition-overlay="true" style="opacity: 1;">
+            <header>
+
+                <div class="nav-wrap is-fixed is-shrink off-canvas" data-is-fill="true">
+
+                    <div class="container-fluid">
+
+                        <div class="row">
+
+                            <div class="col-md-12 carna-menu-wrap">
+
+                                <ul class="carna-menu menu-highlight menu-smooth">
+                                    <li><a href="#home" id="home-menu" data-scroll class="scrollTo">Home</a></li>
+                                    <li><a href="#participate" id="participate-menu" data-scroll class="scrollTo">How to Participate</a></li>
+                                    <li><a class="redirectTo" id="register-menu" href="@routes.Application.register()">Enter Now</a></li>
+                                    <li><a href="#theModal" onclick='return scrollDisable()' role="button" data-toggle="modal" data-remote-target="#theModal .modal-body">Terms & Conditions</a></li>
+                                    <li><a href="#faq" id="faq-menu" data-scroll class="scrollTo">faq</a></li>
+                                    <li><a href="#support" id="support-menu" data-scroll class="scrollTo">Support</a></li>
+                                </ul>
+                                <!-- end of menu -->
+
+                            </div>
+                            <!-- / col-md-9 -->
+
+                            <div class="col-xs-3 text-right button-wrap">
+                                <button class="button-trigger"><span></span>
+                                </button>
+                            </div>
+                            <!-- / col-xs-6 -->
+
+                            <div class="col-xs-7 col-sm-7 col-md-7 brand-band">
+
+                                <div class="brand-wrap clearfix">
+                                    <a href="/" class="brand redirectTo">
+                                        <img src="@routes.Assets.versioned("images/quform/logo-white.png")" class="logo-white retina-img" alt="">
+                                        <img src="@routes.Assets.versioned("images/quform/logo.png")" class="logo-dark retina-img" alt="">
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 mobile-wrap" data-one-page="true" data-has-button="true">
+                                <ul class="carna-menu-mobile mobile-smooth" data-scroll-header>
+                                    <li><a href="#home" data-scroll class="scrollTo">Home</a></li>
+                                    <li><a href="#participate" data-scroll class="scrollTo">How to Participate</a></li>
+                                    <li><a class="redirectTo" href="@routes.Application.register()">Enter Now</a></li>
+                                    <li><a href="#theModal" onclick='return scrollDisable()' role="button" data-toggle="modal" data-remote-target="#theModal .modal-body">Terms & Conditions</a></li>
+                                    <li><a href="#faq" data-scroll class="scrollTo">faq</a></li>
+                                    <li><a href="#support" data-scroll class="scrollTo">Support</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- / col-md-12 -->
+
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <!-- end row -->
+
+                    </div>
+                    <!-- end container -->
+
+                </div>
+                <!-- end nav-wrap -->
+
+            </header>
+            <!-- end header -->
