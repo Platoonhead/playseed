@@ -1,5 +1,4 @@
 @(regForm: Form[forms.User])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
-    @import helper._
     @import utilities.Constants
 
     @moreScripts = {
@@ -15,7 +14,8 @@
                     <div id="home" class="container space-y-t">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <h1 class="section-header">Registration Form<span class="underline animated" data-animation="fullWidth"></span></h1>
+                                <h1 class="section-header">
+                                    Registration Form<span class="underline animated" data-animation="fullWidth"></span></h1>
                             </div>
                                 <!-- / col-md-12 -->
                         </div>
@@ -30,17 +30,22 @@
                                     <div class="row instruction">
                                         <div class="col-md-12 col-sm-12 text-justify mb">
                                             <h4 class="info-header">SHOP</h4>
-                                            <p class="info-text">Purchase any Hills Bros. Cappuccino product. (Please see the <a class="support-link" href="">Terms and Conditions</a> for more information)
+                                            <p class="info-text">
+                                                Purchase any Hills Bros. Cappuccino product. (Please see the <a class="support-link" href="">
+                                                Terms and Conditions</a> for more information)
                                             </p>
 
                                             <h4 class="info-header">TAKE A PICTURE</h4>
-                                            <p class="info-text">Take a clear photo of your entire receipt with your mobile phone. Receipt must show the store name and date of purchase and qualifying purchase.</p>
+                                            <p class="info-text">
+                                                Take a clear photo of your entire receipt with your mobile phone. Receipt must show the store name and date of purchase and qualifying purchase.</p>
 
                                             <h4 class="info-header">REGISTER</h4>
-                                            <p class="info-text">Complete the registration form and upload a unique receipt. Your upload will be validated and a confirmation email will be sent to the email address provided within 24-48 hours. * </p>
+                                            <p class="info-text">
+                                                Complete the registration form and upload a unique receipt. Your upload will be validated and a confirmation email will be sent to the email address provided within 24-48 hours. * </p>
 
                                             <h4 class="info-header">UPLOAD</h4>
-                                            <p class="info-text">To upload a photo of your receipt, you must first complete the registration form. Once you click “submit form” at the bottom of the registration form, you will then be prompted to upload a photo of your receipt.
+                                            <p class="info-text">
+                                                To upload a photo of your receipt, you must first complete the registration form. Once you click “submit form” at the bottom of the registration form, you will then be prompted to upload a photo of your receipt.
                                             </p>
                                         </div>
                                     </div>
@@ -76,7 +81,8 @@
 
                                             <!-- Begin Text input element -->
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
-                                            <label for="email_confirm">Confirm your email address <span class="quform-required">*</span></label>
+                                            <label for="email_confirm">
+                                                Confirm your email address <span class="quform-required">*</span></label>
                                             <div class="quform-input linewidth">
                                                 <input id="email_confirm" type="text" name="email_confirm" />
                                             </div>
@@ -85,7 +91,8 @@
                                         <div class="register">
 
                                             <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-4">
-                                                <label for="dob_birthDay">Select your birth date <span class="quform-required">*</span></label>
+                                                <label for="dob_birthDay">
+                                                    Select your birth date <span class="quform-required">*</span></label>
 
                                                 <div class="quform-select mtselect">
                                                     <select id="dob_birthDay" name="dob.birthDay" class="dob-select">
@@ -98,7 +105,8 @@
 
                                             </div>
                                             <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-4">
-                                                <label for="dob_birthMonth">Select your birth month <span class="quform-required">*</span></label>
+                                                <label for="dob_birthMonth">
+                                                    Select your birth month <span class="quform-required">*</span></label>
                                                 <div class="quform-select mtselect">
                                                     <select id="dob_birthMonth" name="dob.birthMonth" class="dob-select">
                                                         <option value="">Select your birth month</option>
@@ -112,7 +120,8 @@
                                             </div>
 
                                             <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-4">
-                                                <label for="dob_birthYear">Select your birth year <span class="quform-required">*</span></label>
+                                                <label for="dob_birthYear">
+                                                    Select your birth year <span class="quform-required">*</span></label>
                                                 <div class="quform-select mtselect">
                                                     <div class="form-group">
                                                         <select id="dob_birthYear" name="dob.birthYear" class="dob-select">
@@ -128,7 +137,9 @@
                                             <!-- Begin Text input element -->
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-12">
                                             <div class="quform-input">
-                                                <input id="terms" type="checkbox" class="reqtext" name="terms"><span class="quform-required" style="color: #FF0000;"> *</span> <span class="info-text">I confirm that I have read and agree to the terms and conditions
+                                                <input id="terms" type="checkbox" class="reqtext" name="terms"><span class="quform-required" style="color: #FF0000;">
+                                                *</span> <span class="info-text">
+                                                I confirm that I have read and agree to the terms and conditions
                                                 set out in this promotional offer.</span>
 
                                             </div>
@@ -167,7 +178,9 @@
                     </div>
                         <!-- end container -->
                 </div>
-                <p class="condition">* If you do not see an email confirmation or offer code after 48 hours and you have checked your inbox, spam or junk folders, please email <a class="support-link" href="mailto:support@@receiptprocessor.com">support@@receiptprocessor.com</a>.</p>
+                <p class="condition">
+                    * If you do not see an email confirmation or offer code after 48 hours and you have checked your inbox, spam or junk folders, please email <a class="support-link" href="mailto:support@@receiptprocessor.com">
+                    support@@receiptprocessor.com</a>.</p>
 
                     <!-- end parallax-base -->
             </div>
@@ -179,23 +192,24 @@
         </div>
 
 
-
     }
-</script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".scrollTo").off('click').removeClass('scrollTo').addClass('redirectBack');
-            $('.redirectBack').on('click', startIt);
+    </script>
+    <
+    script
+    type = "text/javascript" >
+            $(document).ready(function () {
+                $(".scrollTo").off('click').removeClass('scrollTo').addClass('redirectBack');
+                $('.redirectBack').on('click', startIt);
 
-            function startIt(e) {
-                window.location = "/" + $(this).attr("href")
-            }
-        });
+                function startIt(e) {
+                    window.location = "/" + $(this).attr("href")
+                }
+            });
 
-        var correctCaptcha = function (response) {
-            if (response) {
-                $("#captcha").parent().find('span').remove();
-            }
-        };
+    var correctCaptcha = function (response) {
+        if (response) {
+            $("#captcha").parent().find('span').remove();
+        }
+    };
 </script>
 

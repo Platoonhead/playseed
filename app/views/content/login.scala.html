@@ -7,7 +7,8 @@
                 <div id="home" class="container space-y-t">
                     <div class="row text-center">
                         <div class="col-md-12">
-                            <h1 class="section-header">Login Form<span class="underline animated" data-animation="fullWidth"></span></h1>
+                            <h1 class="section-header">
+                                Login Form<span class="underline animated" data-animation="fullWidth"></span></h1>
                         </div>
                         <p class="info-text">
                             If you have already registered, enter your email address below to log in and submit your receipt.
@@ -64,13 +65,13 @@
 }
 <script type="text/javascript">
 
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $('.scrollTo').off('click');
             $(".scrollTo").removeClass('scrollTo').addClass('redirectBack');
             $('.redirectBack').on('click', startIt);
 
             function startIt(e) {
-                window.location = "/"+ $(this).attr("href")
+                window.location = "/" + $(this).attr("href")
             }
 
         });
