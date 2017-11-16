@@ -29,7 +29,7 @@ jQuery(document).ready(function($) {
       		'assets/images/quform/images/close.png',
     		'assets/images/quform/images/success.png',
     		'assets/images/quform/images/error.png',
-			'assets/images/quform/images/default-loading.gif'
+    		'assets/images/quform/images/default-loading.gif'
     	];
 
 		// Preload images for any active themes

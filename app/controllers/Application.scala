@@ -6,11 +6,11 @@ import actors.RewardActor._
 import akka.actor.ActorRef
 import akka.pattern.ask
 import forms.UserForm
-import models.Profile
+import models._
 import play.api.Logger
-import play.api.i18n._
+import play.api.i18n.{I18nSupport, Messages, MessagesImpl}
 import play.api.libs.json._
-import play.api.mvc.{Action, _}
+import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
@@ -52,16 +52,12 @@ class Application @Inject()(controllerComponent: ControllerComponents,
     Ok(views.html.termsModal()).withNewSession
   }
 
-  def register: Action[AnyContent] = Action.async { implicit request =>
-    val futureCodesSize = (rewardActor ? GetSizeOfUnusedCodes) (30.seconds).mapTo[Int]
-    futureCodesSize map { size =>
-      if (size == 0) {
-        Logger.info("No more reward codes available for the promotion")
-        Ok(views.html.content.endofpromotion(userForm.userSupportForm))
-      } else {
-        Ok(views.html.content.register(userForm.signUpForm)).withNewSession
-      }
-    }
+  def register: Action[AnyContent] = Action { implicit request =>
+    Ok(views.html.content.register(userForm.signUpForm)).withNewSession
+  }
+
+  def login: Action[AnyContent] = Action { implicit request =>
+    Ok(views.html.content.login(userForm.loginForm)).withNewSession
   }
 
   def upload: Action[AnyContent] = Action { implicit request =>

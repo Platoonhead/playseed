@@ -1,0 +1,78 @@
+@(loginForm: Form[String])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
+@main("Capp the Night Sweepstakes – Celebrate the awards season in style.") {
+
+    <div id="wrapper" class="content-wrapper pages mt">
+        <div class="container space-y-t-h">
+            <div class="row">
+                <div id="home" class="container space-y-t">
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <h1 class="section-header">Login Form<span class="underline animated" data-animation="fullWidth"></span></h1>
+                        </div>
+                        <p class="info-text">
+                            If you have already registered, enter your email address below to log in and submit your receipt.
+                            <!-- / col-md-12 -->
+                    </div>
+                        <!-- / row -->
+                </div>
+                    <!-- / container -->
+                <div class="container padding-y mt">
+                    <div class="quform-outer">
+                        <form class="quform form-overlay" action="quform/process.php" method="post" enctype="multipart/form-data" onclick="">
+                            <div class="quform-inner">
+                                <div class="quform-elements">
+                                    <div class="row mt">
+                                            <!-- Begin Text input element -->
+                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-12 alignmiddle">
+                                            <label for="name">Email address <span class="quform-required">*</span></label>
+                                            <div class="quform-input linewidth">
+                                                <input id="email" type="text" name="email" value="" />
+                                            </div>
+                                        </div>
+                                            <!-- End Text input element -->
+                                            <!-- Begin Submit button -->
+                                        <div class="quform-submit-overlay col-md-12 clearfix alignmiddle">
+                                            <div class="quform-submit-inner">
+                                                <button type="submit" value="Send" class="btn-main redbtn">
+                                                    <span>submit </span>
+                                                </button></div>
+                                            <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
+
+                                        </div>
+                                            <!-- End Submit button -->
+
+                                            <!-- Begin Text input element -->
+                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-12">
+                                            <p>&nbsp;&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                    <!-- end container -->
+            </div>
+                <!-- end parallax-base -->
+        </div>
+            <!-- end row -->
+
+    </div>
+        <!-- end container -->
+        <!-- Agegate Modal -->
+}
+<script type="text/javascript">
+
+        $( document ).ready(function() {
+            $('.scrollTo').off('click');
+            $(".scrollTo").removeClass('scrollTo').addClass('redirectBack');
+            $('.redirectBack').on('click', startIt);
+
+            function startIt(e) {
+                window.location = "/"+ $(this).attr("href")
+            }
+
+        });
+
+</script>

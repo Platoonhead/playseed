@@ -123,9 +123,6 @@ trait ReceiptReadRepositoryImpl extends ReceiptReadRepository {
   import profile.api._
 
   def fetchByReceiptId(ocrReceiptId: String): Future[Option[Receipt]] = {
-    val asd = receiptQuery.filter(_.snap3ReceiptId === ocrReceiptId).groupBy(_.id).map{case(a, b) => (a, b.map(_.amount))}
-
-    val qwe =db.run(asd.result)
     db.run(receiptQuery.filter(_.snap3ReceiptId === ocrReceiptId).result.headOption)
   }
 

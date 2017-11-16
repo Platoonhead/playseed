@@ -34,6 +34,12 @@ class UserForm @Inject()(langs: Langs, val messagesApi: MessagesApi) {
     )(SupportForm.apply)(SupportForm.unapply)
   )
 
+  val loginForm = Form(
+    single(
+      "email" -> validEmail
+    )
+  )
+
   val signUpForm = Form(mapping(
     "emailGroup" -> mapping(
       "email" -> text.verifying(emailAddress),
