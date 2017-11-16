@@ -29,7 +29,7 @@ CARNA CSS V.1
 -------------------------------------------------------------------*/
 
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,500,700);
-@import url(https://fonts.googleapis.com/css?family=IM+Fell+French+Canon);
+
 /*-----------------------------------------------------------------------------
    1. Global
 -----------------------------------------------------------------------------*/
@@ -59,11 +59,9 @@ html.full-width {
 }
 
 body {
-    margin: 0;
-    padding: 0;
     min-height: 100%;
-    /* 3tl */
-    font: 400 18px/34px "IM Fell English", "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif;
+    font: normal 16px/24px "Ubuntu", sans-serif;
+    color: #8a909b;
     -webkit-font-smoothing: subpixel-antialiased;
     letter-spacing: 1px;
 }
@@ -92,16 +90,12 @@ h2 {
 
 h3 {
     font-size: 20px;
-    font: 400 30px/34px "IM Fell English";
-    -webkit-font-smoothing: subpixel-antialiased;
     font-weight: bold;
-    margin: 0 0 20px;
-    color: black;
 }
 
 h4 {
-    text-transform: uppercase;
-    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 h5 {
@@ -119,8 +113,6 @@ a {
 a:hover,
 a:focus {
     text-decoration: none;
-    /* background-color: #CCE2FF; */
-    color: #C2C2C2;
 }
 
 @media (max-width: 767px) {
@@ -132,7 +124,7 @@ a:focus {
 .section-header {
     text-transform: uppercase;
     position: relative;
-    font-size: 27px;
+    font-size: 30px;
     display: inline-block;
     z-index: 2;
     margin-top: 0;
@@ -142,11 +134,11 @@ a:focus {
 .underline {
     position: absolute;
     left: 0;
-    bottom: -13px;
+    bottom: -10px;
     width: 0;
     height: 10px;
     z-index: -1;
-    background-color: goldenrod;
+    background-color: #F26F70;
 }
 
 .standard-title {
@@ -154,6 +146,8 @@ a:focus {
     font-weight: bold;
     text-transform: uppercase;
 }
+
+
 /*-----------------------------------------------------------------------------
    2. Reset
 -----------------------------------------------------------------------------*/
@@ -205,9 +199,13 @@ button {
     vertical-align: middle;
     width: 99%;
 }
+
+
 /*-----------------------------------------------------------------------------
    3. Extra Classes
 -----------------------------------------------------------------------------*/
+
+
 /*********************************************
 	-	ADDIATIONAL CLASSES TO BOOTSTRAP 	-
 **********************************************/
@@ -249,6 +247,8 @@ button {
         padding-right: 84px;
     }
 }
+
+
 /*********************************************
 	-	SPACE CLASSES	-
 **********************************************/
@@ -297,6 +297,8 @@ button {
         margin-top: 82px;
     }
 }
+
+
 /*********************************************
 	-	BORDER	-
 **********************************************/
@@ -304,6 +306,8 @@ button {
 .border-b {
     border-bottom: 1px solid #d6d6d6;
 }
+
+
 /*********************************************
 	-	SEPARATOR	-
 **********************************************/
@@ -313,6 +317,8 @@ button {
     vertical-align: middle;
     font-size: 12px;
 }
+
+
 /*********************************************
 	-	IMAGE FULL	-
 **********************************************/
@@ -321,6 +327,8 @@ button {
     position: relative;
     max-width: none;
 }
+
+
 /*********************************************
 	-	HIGHLIGHT SECTION	-
 **********************************************/
@@ -332,6 +340,8 @@ button {
 .highlight-section2 {
     background-color: rgba(240, 240, 240, 0.5);
 }
+
+
 /*-----------------------------------------------------------------------------
    4. Header
 -----------------------------------------------------------------------------*/
@@ -376,10 +386,10 @@ button {
     .nav-wrap.is-fixed.white_bg {
         background-color: #FFF;
     }
-    .nav-wrap.is-fixed.white_bg .logo-dark {
+    .nav-wrap.is-fixed.white_bg .logo-white {
         display: none;
     }
-    .nav-wrap.is-fixed.white_bg .logo-white {
+    .nav-wrap.is-fixed.white_bg .logo-dark {
         display: block;
         max-height: 52px;
         opacity: 1;
@@ -387,7 +397,7 @@ button {
 }
 
 .nav-wrap[data-is-fill="true"] .logo-dark {
-    /* opacity: 0; */
+    opacity: 0;
 }
 
 @media (min-width: 993px) {
@@ -426,7 +436,7 @@ button {
         opacity: 1;
     }
     .nav-wrap.is-fill .brand .logo-white {
-        opacity: 1;
+        opacity: 0;
     }
 }
 
@@ -434,14 +444,16 @@ button {
     .nav-wrap {
         background-color: #28282E;
     }
-    .nav-wrap .logo-dark {
+    .nav-wrap .logo-white {
         position: relative;
         max-height: 52px;
     }
-    .nav-wrap .logo-white {
+    .nav-wrap .logo-dark {
         display: none;
     }
 }
+
+
 /* brand logo */
 
 .brand {
@@ -467,13 +479,9 @@ button {
         font-size: 14px;
         line-height: normal;
     }
-    h4 {
-        font-size: 24px;
-    }
-    .section-header {
-        font-size: 27px;
-    }
 }
+
+
 /* ADDING STICKY AND SMALLER */
 
 @media (min-width: 993px) {
@@ -505,9 +513,13 @@ button {
         max-width: 1200px;
     }
 }
+
+
 /*-----------------------------------------------------------------------------
    5. Main Menu
 -----------------------------------------------------------------------------*/
+
+
 /* BRAND WRAP */
 
 .brand-wrap {
@@ -519,6 +531,8 @@ button {
         display: none;
     }
 }
+
+
 /* Menu items */
 
 .carna-menu>li {
@@ -539,15 +553,9 @@ button {
     height: 82px;
     line-height: 82px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 12px;
     font-weight: bold;
-    vertical-align: middle !important;
-    /* font: 700 18px/22px "PT Sans Narrow", Arial Narrow, Arial, sans-serif; */
-    /* font: 700 18px/22px "PT Sans Narrow", Arial Narrow, Arial, sans-serif; */
-    /* 3tl main menu color */
-    /* margin-top: 20px; */
-    font-family: "PT Sans Narrow", Arial Narrow, Arial, sans-serif;
-    color: #666;
+    color: #f0f0f0;
     outline: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -560,6 +568,8 @@ button {
 .header-fill .carna-menu>li>a {
     color: #f0f0f0;
 }
+
+
 /* Active/hover state (Menu items) */
 
 .carna-menu>li>a:hover,
@@ -576,22 +586,24 @@ button {
     }
     .smaller .carna-menu>li>a:hover,
     .is-fill .carna-menu>li>a:hover {
-        color: goldenrod;
+        color: #F26F70;
     }
     .smaller .carna-menu>li>a.active,
     .is-fill .carna-menu>li>a.active {
-        color: goldenrod;
+        color: #F26F70;
     }
     .header-fill .carna-menu>li>a {
         color: #212121;
     }
     .header-fill .carna-menu>li>a:hover {
-        color: goldenrod
+        color: #F26F70;
     }
     .header-fill .carna-menu>li>a.active {
-        color: goldenrod
+        color: #F26F70;
     }
 }
+
+
 /* BUTTON WRAP */
 
 .button-wrap {
@@ -743,7 +755,7 @@ button {
 
 .carna-menu-mobile li a {
     width: 100%;
-    padding: 6px;
+    padding: 12px 5px 12px 0;
     display: block;
     border-bottom: solid 1px #2f2f36;
     color: #e6e6e6;
@@ -764,6 +776,8 @@ button {
 .white_bg .carna-menu-mobile li:first-child a {
     border-top-color: #dadce0;
 }
+
+
 /*-----------------------------------------------------------------------------
    6. Off Canvas Menu
 -----------------------------------------------------------------------------*/
@@ -873,8 +887,6 @@ button {
     .off-canvas .mm-button-band,
     .off-canvas .brand-band {
         position: absolute;
-        /* 3tl Menu Enabled */
-        width: 20%;
     }
 }
 
@@ -889,16 +901,21 @@ button {
     top: 0;
     height: 100%;
 }
-/* .off-canvas .carna-menu {
-        float: none;
-    } */
+
+.off-canvas .carna-menu {
+    float: none;
+}
 
 .off-canvas .carna-menu li {
     float: none;
 }
+
+
 /* =============================================================================
   MM - MATERIAL MENU
 ============================================================================= */
+
+
 /**
  * MM - Material Menu
  *
@@ -1030,6 +1047,8 @@ button {
         background-color: white;
     }
 }
+
+
 /**
  * The actual menu
  *
@@ -1076,6 +1095,8 @@ button {
         transform: translateX(300px);
     }
 }
+
+
 /* header */
 
 .mm-menu__title {
@@ -1083,6 +1104,8 @@ button {
     font-size: 20px;
     font-weight: bold;
 }
+
+
 /* list */
 
 .mm-menu__address {
@@ -1157,6 +1180,8 @@ button {
     position: relative;
     z-index: 2;
 }
+
+
 /* the touch effect, for when a link is touched */
 
 .mm-menu__link--touch-effect {
@@ -1188,6 +1213,8 @@ button {
     -moz-transition: -moz-transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     transition: transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
+
+
 /**
  * Menu mask
  *
@@ -1214,6 +1241,8 @@ button {
     visibility: visible;
     opacity: 1;
 }
+
+
 /*-----------------------------------------------------------------------------
    7. Animate
 -----------------------------------------------------------------------------*/
@@ -1226,6 +1255,8 @@ button {
     -moz-animation-fill-mode: both;
     animation-fill-mode: both;
 }
+
+
 /*********************************************
 	-	fadeInRight	-
 **********************************************/
@@ -1276,6 +1307,8 @@ button {
     -moz-animation-name: fadeInRight;
     animation-name: fadeInRight;
 }
+
+
 /*********************************************
 	-	fadeInUp	-
 **********************************************/
@@ -1326,6 +1359,8 @@ button {
     -moz-animation-name: fadeInUp;
     animation-name: fadeInUp;
 }
+
+
 /*********************************************
 	-	fadeIn	-
 **********************************************/
@@ -1362,6 +1397,8 @@ button {
     -moz-animation-name: fadeIn;
     animation-name: fadeIn;
 }
+
+
 /*********************************************
 	-	bouncIn	-
 **********************************************/
@@ -1419,6 +1456,8 @@ button {
     -moz-animation-duration: 0.5s;
     animation-duration: 0.5s;
 }
+
+
 /*********************************************
 	-	fullWidth	-
 **********************************************/
@@ -1552,9 +1591,13 @@ button {
     -moz-animation: 3s ease-in-out infinite scrollDown;
     animation: 3s ease-in-out infinite scrollDown;
 }
+
+
 /*-----------------------------------------------------------------------------
    8. Slider
 -----------------------------------------------------------------------------*/
+
+
 /*********************************************
 	-	SETTINGS FOR REVOLUTION SLIDER	-
 **********************************************/
@@ -1611,6 +1654,8 @@ button {
     text-transform: none;
     font-size: 60px;
 }
+
+
 /**
  * BxSlider v4.1.3 - Fully loaded, responsive content slider
  * http://bxslider.com
@@ -1622,6 +1667,8 @@ button {
  * CEO and founder of bxCreative, LTD
  * http://bxcreative.com
  */
+
+
 /** RESET AND LAYOUT
 ===================================*/
 
@@ -1646,6 +1693,8 @@ button {
     /*fix other elements on the page moving (on Chrome)*/
     -webkit-transform: translatez(0);
 }
+
+
 /** THEME
 ===================================*/
 
@@ -1655,6 +1704,8 @@ button {
     bottom: -30px;
     width: 100%;
 }
+
+
 /* LOADER */
 
 .bx-wrapper .bx-loading {
@@ -1667,6 +1718,8 @@ button {
     left: 0;
     z-index: 2000;
 }
+
+
 /* PAGER */
 
 .bx-wrapper .bx-pager {
@@ -1695,6 +1748,8 @@ button {
     outline: 0;
     border-radius: 50%;
 }
+
+
 /* DIRECTION CONTROLS (NEXT / PREV) */
 
 .bx-wrapper .bx-prev {
@@ -1729,6 +1784,8 @@ button {
 .bx-wrapper .bx-controls-direction a.disabled {
     display: none;
 }
+
+
 /* AUTO CONTROLS (START / STOP) */
 
 .bx-wrapper .bx-controls-auto {
@@ -1764,6 +1821,8 @@ button {
 .bx-wrapper .bx-controls-auto .bx-stop:focus {
     background-position: -86px -33px;
 }
+
+
 /* PAGER WITH AUTO-CONTROLS HYBRID LAYOUT */
 
 .bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager {
@@ -1775,13 +1834,15 @@ button {
     right: 0;
     width: 35px;
 }
+
+
 /* IMAGE CAPTIONS */
 
 .bx-wrapper .bx-caption {
     position: absolute;
     bottom: 0;
     left: 0;
-    background: #666;
+    background: #666\9;
     background: rgba(80, 80, 80, 0.75);
     width: 100%;
 }
@@ -1793,6 +1854,8 @@ button {
     font-size: .85em;
     padding: 10px;
 }
+
+
 /*********************************************
 	-	MASTER SLIDER	-
 **********************************************/
@@ -1859,6 +1922,8 @@ button {
     overflow: visible;
     background-color: transparent;
 }
+
+
 /*********************************************
 	-	MASTER DISPLAY SLIDER	-
 **********************************************/
@@ -1917,6 +1982,8 @@ button {
 .ms-display-template .ms-bullet-selected {
     background-position: -143px -25px;
 }
+
+
 /* SLIDER OVER BG VIDEO */
 
 .sliderBand {
@@ -1977,6 +2044,8 @@ button {
     color: #212121;
     font-weight: bold;
 }
+
+
 /* ms-partialview-template */
 
 .ms-partialview-template img {
@@ -1984,6 +2053,8 @@ button {
     width: 150px !important;
     height: 150px !important;
 }
+
+
 /*********************************************
     -   CAROUSEL TESTIMONIAL STANDARD   -
 **********************************************/
@@ -2027,6 +2098,8 @@ button {
 .test-classic .bx-pager {
     bottom: -50px;
 }
+
+
 /*-----------------------------------------------------------------------------
    9. Buttons
 -----------------------------------------------------------------------------*/
@@ -2047,18 +2120,18 @@ button {
 }
 
 .btn-main {
-    background-color: transparent;
-    border: 2px solid #191919;
-    color: black;
+    background-color: #212121;
+    border: 1px solid #191919;
+    color: #fff;
 }
 
 .btn-main:hover,
 .btn-main:active,
 .btn-main:focus {
     cursor: pointer;
-    background-color: black;
-    border-color: black;
-    color: white;
+    background-color: #F26F70;
+    border-color: #F26F70;
+    color: #fff;
 }
 
 .btn-main.xsmall {
@@ -2080,9 +2153,13 @@ button {
     padding: 1.5rem 2.25rem;
     font-size: 16px;
 }
+
+
 /*-----------------------------------------------------------------------------
    10. Infographic
 -----------------------------------------------------------------------------*/
+
+
 /*PROGRESS BAR */
 
 .progress-wrap {
@@ -2158,6 +2235,8 @@ button {
     padding-top: 10px;
     display: block;
 }
+
+
 /*BUBBLE*/
 
 .infograph-container {
@@ -2324,9 +2403,13 @@ button {
         background-color: rgba(255, 255, 255, 0.3);
     }
 }
+
+
 /*-----------------------------------------------------------------------------
    11. magnifice popup
 -----------------------------------------------------------------------------*/
+
+
 /* Magnific Popup CSS */
 
 .mfp-bg {
@@ -2398,6 +2481,8 @@ button {
 .mfp-ajax-cur {
     cursor: progress;
 }
+
+
 /*.mfp-zoom-out-cur,
 .mfp-zoom-out-cur .mfp-image-holder .mfp-close {
     cursor: -moz-zoom-out;
@@ -2631,6 +2716,8 @@ button::-moz-focus-inner {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
     background: black;
 }
+
+
 /* Main image in popup */
 
 img.mfp-img {
@@ -2645,6 +2732,8 @@ img.mfp-img {
     padding: 40px 0 40px;
     margin: 0 auto;
 }
+
+
 /* The shadow behind the image */
 
 .mfp-figure {
@@ -2800,6 +2889,8 @@ screen and (max-height: 300px) {
     right: 0;
     padding-top: 0;
 }
+
+
 /*
 for zoom animation
 */
@@ -2826,6 +2917,8 @@ for zoom animation
 .mfp-with-zoom.mfp-removing.mfp-bg {
     opacity: 0;
 }
+
+
 /* FADE X */
 
 .mfp-fade-x.mfp-bg {
@@ -2872,6 +2965,8 @@ for zoom animation
     -o-transform: translateX(-20px) perspective(600px) rotateY(10deg);
     transform: translateX(-20px) perspective(600px) rotateY(10deg);
 }
+
+
 /* SLIDE IN RIGHT */
 
 .mfp-slide-right.mfp-bg {
@@ -2918,6 +3013,8 @@ for zoom animation
     -o-transform: translateX(30px);
     transform: translateX(30px);
 }
+
+
 /* ZOOM IN */
 
 .mfp-zoom-in.mfp-bg {
@@ -2968,6 +3065,8 @@ for zoom animation
 a[data-popup] {
     outline: none;
 }
+
+
 /*-----------------------------------------------------------------------------
    12. Form
 -----------------------------------------------------------------------------*/
@@ -3005,8 +3104,7 @@ a[data-popup] {
     display: block;
     margin-bottom: .5em;
     text-align: left;
-    /* font-size: 12px; */
-    font: 400 16px/18px "PT Sans Narrow", Arial Narrow, Arial, sans-serif;
+    font-size: 12px;
     text-transform: uppercase;
     color: #212121;
 }
@@ -3018,30 +3116,19 @@ a[data-popup] {
     vertical-align: bottom;
 }
 
-.quform-required {
-    font-size: 100%;
-    color: #ee1c25;
-    line-height: 25px;
-    vertical-align: bottom;
-}
-
 .quform-element input,
 .quform-element textarea {
     padding: 12px 20px;
     width: 100%;
-    font: 400 14px/16px "PT Sans Narrow", Arial Narrow, Arial, sans-serif;
     border-bottom: 4px solid #28282E;
     background-color: transparent;
 }
 
 .quform-element select {
-    /* padding: 12px 0px; */
+    /* padding: 12px 200px; */
     width: 100%;
-    /* 3tl margin  */
-    margin-top: 1.1em;
     border-bottom: 4px solid #28282E;
     background-color: transparent;
-    font: 400 16px/16px "PT Sans Narrow", Arial Narrow, Arial, sans-serif;
 }
 
 .quform-element .quform-errors {
@@ -3083,6 +3170,8 @@ a[data-popup] {
 .quform-submit-inner {
     float: left;
 }
+
+
 /*Loading the submit*/
 
 .quform-loading-wrap {
@@ -3102,6 +3191,8 @@ a[data-popup] {
     text-indent: -9999px;
     background: transparent url("../images/ajax-loader.gif") no-repeat center center;
 }
+
+
 /*-----------------------------------------------------------------------------
    13. video player
 -----------------------------------------------------------------------------*/
@@ -3262,6 +3353,8 @@ a[data-popup] {
     color: #F26F70;
     border-radius: 100%;
 }
+
+
 /*-----------------------------------------------------------------------------
    14. Main
 -----------------------------------------------------------------------------*/
@@ -3274,12 +3367,12 @@ a[data-popup] {
 
 .pages,
 .bg-pattern {
-    background-image: url(../images/pattern/background.jpg);
+    background-image: url(../images/pattern/pattern-light.png);
 }
 
 .pages_lof,
 .bg-pattern {
-    background-image: url(../images/background.jpg);
+    background-image: url(../images/pattern-light.png);
 }
 
 .deco-parting,
@@ -3303,6 +3396,8 @@ a[data-popup] {
     display: block;
     margin-right: 5px;
 }
+
+
 /* HERO HEADER */
 
 .hero-header,
@@ -3352,6 +3447,8 @@ a[data-popup] {
 .inner-link:focus {
     color: #212121;
 }
+
+
 /*********************************************
 	-	DECO PARTING 	-
 **********************************************/
@@ -3409,6 +3506,8 @@ a[data-popup] {
         width: 50%;
     }
 }
+
+
 /*********************************************
 	-	TESTIMONIAL CLASSIC 	-
 **********************************************/
@@ -3501,6 +3600,8 @@ a[data-popup] {
 .test-classic .bx-wrapper .bx-pager.bx-default-pager a.active {
     background-color: #F26F70;
 }
+
+
 /*********************************************
 	-	LAYOUT BRAND 	-
 **********************************************/
@@ -3516,6 +3617,8 @@ a[data-popup] {
 .layout-brand.border-b {
     border-bottom: 1px solid #d6d6d6;
 }
+
+
 /*********************************************
 	-	CONTENT BOX SIDE 	-
 **********************************************/
@@ -3564,6 +3667,8 @@ a[data-popup] {
         padding-bottom: 0;
     }
 }
+
+
 /*********************************************
 	-	equal-height 	-
 **********************************************/
@@ -3575,6 +3680,8 @@ a[data-popup] {
         vertical-align: middle;
     }
 }
+
+
 /* ITEM IMG DETAILS */
 
 .item-img-details {
@@ -3591,6 +3698,8 @@ a[data-popup] {
 .item-img-details i {
     color: #F26F70;
 }
+
+
 /*********************************************
 	-	TEAM BLOCK 	-
 **********************************************/
@@ -3646,6 +3755,8 @@ a[data-popup] {
 .team-block:hover .team-block__details {
     opacity: 1;
 }
+
+
 /*********************************************
 	-	TEAM DETAILS 	-
 **********************************************/
@@ -3670,6 +3781,8 @@ a[data-popup] {
 .team-details p {
     display: block;
 }
+
+
 /* TEAM DETAILS SOCIAL ICONS */
 
 .team-details__social-icons {
@@ -3711,6 +3824,8 @@ a[data-popup] {
         font-size: 20px;
     }
 }
+
+
 /*********************************************
 	-	BACK TO TOP	-
 **********************************************/
@@ -3735,9 +3850,11 @@ a[data-popup] {
 }
 
 .back-to-top:hover {
-    background-color: goldenrod;
+    background-color: #F26F70;
     color: #fff;
 }
+
+
 /*!
  * Cube Portfolio - Responsive jQuery Grid Plugin
  *
@@ -3858,6 +3975,8 @@ a[data-popup] {
     border-top: 3px solid rgba(114, 144, 182, 0.8);
     border-radius: 100%;
 }
+
+
 /*  ---------------------------------------------------------------
     Default style for plugin. Please change them carefully!
     --------------------------------------------------------------- */
@@ -4014,6 +4133,8 @@ a[data-popup] {
     -webkit-animation: fadeOut .5s ease-in-out;
     animation: fadeOut .5s ease-in-out;
 }
+
+
 /*  END - Default style for plugin. Please change them carefully! */
 
 .cbp-panel {
@@ -4039,7 +4160,7 @@ a[data-popup] {
 }
 
 @-webkit-keyframes cbp-rotation {
-0% {
+0 {
     -webkit-transform: rotate(0deg);
 }
 100% {
@@ -4048,7 +4169,7 @@ a[data-popup] {
 }
 
 @keyframes cbp-rotation {
-0% {
+0 {
     transform: rotate(0deg);
 }
 100% {
@@ -4077,7 +4198,6 @@ a[data-popup] {
 .clearfix:after {
     content: " ";
     display: block;
-    width: 100%;
     height: 0;
     clear: both;
 }
@@ -4089,6 +4209,8 @@ a[data-popup] {
 .cbp-l-filters-right {
     float: right;
 }
+
+
 /* general caption style */
 
 .cbp-caption,
@@ -4119,6 +4241,8 @@ a[data-popup] {
     z-index: 2;
     height: 100%;
 }
+
+
 /*  ---------------------------------------------------------------
     caption miscellaneous style
     --------------------------------------------------------------- */
@@ -4156,7 +4280,11 @@ a[data-popup] {
 .cbp-l-caption-buttonRight:hover {
     opacity: 0.9;
 }
+
+
 /*  END - caption miscellaneous style */
+
+
 /*  ---------------------------------------------------------------
     none caption
     --------------------------------------------------------------- */
@@ -4164,7 +4292,11 @@ a[data-popup] {
 .cbp-caption-none .cbp-caption-activeWrap {
     display: none;
 }
+
+
 /*  END - none caption */
+
+
 /*  ---------------------------------------------------------------
     caption layout align left
     --------------------------------------------------------------- */
@@ -4186,7 +4318,11 @@ a[data-popup] {
 .cbp-caption-opacity .cbp-l-caption-alignLeft .cbp-l-caption-body {
     padding-top: 30px;
 }
+
+
 /*  END - caption layout left */
+
+
 /*  ---------------------------------------------------------------
     caption layout center vertically and horizontally
     --------------------------------------------------------------- */
@@ -4227,6 +4363,8 @@ a[data-popup] {
 .cbp-caption:hover .cbp-l-caption-alignCenter .cbp-l-caption-buttonRight {
     left: 0;
 }
+
+
 /*  END - caption layout center vertically and horizontally */
 
 .cbp-caption-fadeIn .cbp-caption-activeWrap {
@@ -5258,6 +5396,8 @@ a[data-popup] {
     -webkit-animation: quicksand-on .6s ease-out both;
     animation: quicksand-on .6s ease-out both;
 }
+
+
 /* in */
 
 @-webkit-keyframes quicksand-off {
@@ -5273,6 +5413,8 @@ a[data-popup] {
         transform: scale3d(0, 0, 0);
     }
 }
+
+
 /* out */
 
 @-webkit-keyframes quicksand-on {
@@ -5325,6 +5467,8 @@ a[data-popup] {
     -webkit-animation: fadeOut-on .6s ease-in-out both;
     animation: fadeOut-on .6s ease-in-out both;
 }
+
+
 /* in */
 
 @-webkit-keyframes fadeOut-off {
@@ -5346,6 +5490,8 @@ a[data-popup] {
         opacity: 0;
     }
 }
+
+
 /* out */
 
 @-webkit-keyframes fadeOut-on {
@@ -5396,6 +5542,8 @@ a[data-popup] {
     -webkit-animation: flipOut-in .7s ease-out both;
     animation: flipOut-in .7s ease-out both;
 }
+
+
 /* out */
 
 @-webkit-keyframes flipOut-out {
@@ -5413,6 +5561,8 @@ a[data-popup] {
         opacity: 0.2;
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes flipOut-in {
@@ -5461,6 +5611,8 @@ a[data-popup] {
     -webkit-animation: flipBottom-in .7s ease-out both;
     animation: flipBottom-in .7s ease-out both;
 }
+
+
 /* out */
 
 @-webkit-keyframes flipBottom-out {
@@ -5478,6 +5630,8 @@ a[data-popup] {
         opacity: 0.2;
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes flipBottom-in {
@@ -5526,6 +5680,8 @@ a[data-popup] {
     -webkit-animation: scaleSides-in .9s ease both;
     animation: scaleSides-in .9s ease both;
 }
+
+
 /* out */
 
 @-webkit-keyframes scaleSides-out {
@@ -5543,6 +5699,8 @@ a[data-popup] {
         opacity: 0;
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes scaleSides-in {
@@ -5591,6 +5749,8 @@ a[data-popup] {
     -webkit-animation: skew-on .6s ease-out both;
     animation: skew-on .6s ease-out both;
 }
+
+
 /* in */
 
 @-webkit-keyframes skew-off {
@@ -5606,6 +5766,8 @@ a[data-popup] {
         transform: scale3d(0, 0, 0) skew(20deg, 0);
     }
 }
+
+
 /* out */
 
 @-webkit-keyframes skew-on {
@@ -5652,6 +5814,8 @@ a[data-popup] {
     -webkit-animation: fadeOutTop-in .6s both ease-in-out;
     animation: fadeOutTop-in .6s both ease-in-out;
 }
+
+
 /* out */
 
 @-webkit-keyframes fadeOutTop-out {
@@ -5677,6 +5841,8 @@ a[data-popup] {
         opacity: 0;
     }
 }
+
+
 /* out */
 
 @-webkit-keyframes fadeOutTop-in {
@@ -5728,6 +5894,8 @@ a[data-popup] {
     -webkit-animation: slideLeft-in .8s both ease-in-out;
     animation: slideLeft-in .8s both ease-in-out;
 }
+
+
 /* out */
 
 @-webkit-keyframes slideLeft-out {
@@ -5767,6 +5935,8 @@ a[data-popup] {
         transform: scale(0.8) translateX(-200%);
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes slideLeft-in {
@@ -5949,6 +6119,8 @@ a[data-popup] {
     -webkit-animation: slideDelay-in 0.5s both ease-in-out;
     animation: slideDelay-in 0.5s both ease-in-out;
 }
+
+
 /* out */
 
 @-webkit-keyframes slideDelay-out {
@@ -6010,6 +6182,8 @@ a[data-popup] {
     transform-origin: 150% 50%;
     animation: rotateSides-in .6s both ease-out;
 }
+
+
 /* out */
 
 @-webkit-keyframes rotateSides-out {
@@ -6025,6 +6199,8 @@ a[data-popup] {
         transform: translateZ(-500px) rotateY(90deg);
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes rotateSides-in {
@@ -6076,6 +6252,8 @@ a[data-popup] {
     -webkit-animation: foldLeft-in .7s both ease;
     animation: foldLeft-in .7s ease both;
 }
+
+
 /* out */
 
 @-webkit-keyframes foldLeft-out {
@@ -6091,6 +6269,8 @@ a[data-popup] {
         transform: translateX(-100%) rotateY(-90deg);
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes foldLeft-in {
@@ -6134,6 +6314,8 @@ a[data-popup] {
     transform-origin: 0% 50%;
     animation: unfold-in .8s both ease;
 }
+
+
 /* out */
 
 @-webkit-keyframes unfold-out {
@@ -6155,6 +6337,8 @@ a[data-popup] {
         transform: translateX(-100%);
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes unfold-in {
@@ -6196,6 +6380,8 @@ a[data-popup] {
     -webkit-animation: scaleDown-in .6s ease both;
     animation: scaleDown-in .6s ease both;
 }
+
+
 /* out */
 
 @-webkit-keyframes scaleDown-out {
@@ -6211,6 +6397,8 @@ a[data-popup] {
         transform: scale(0.8);
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes scaleDown-in {
@@ -6250,6 +6438,8 @@ a[data-popup] {
     -webkit-animation: frontRow-in .6s both ease;
     animation: frontRow-in .6s both ease;
 }
+
+
 /* out */
 
 @-webkit-keyframes frontRow-out {
@@ -6265,6 +6455,8 @@ a[data-popup] {
         opacity: 0;
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes frontRow-in {
@@ -6316,6 +6508,8 @@ a[data-popup] {
     -webkit-animation: rotateRoom-in .8s both ease;
     animation: rotateRoom-in .8s both ease;
 }
+
+
 /* out */
 
 @-webkit-keyframes rotateRoom-out {
@@ -6337,6 +6531,8 @@ a[data-popup] {
         transform: translateX(-100%) rotateY(90deg);
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes rotateRoom-in {
@@ -6368,6 +6564,8 @@ a[data-popup] {
     -webkit-animation: bounceBottom-in .6s both ease-in-out;
     animation: bounceBottom-in .6s both ease-in-out;
 }
+
+
 /* out */
 
 @-webkit-keyframes bounceBottom-out {
@@ -6383,6 +6581,8 @@ a[data-popup] {
         opacity: 0;
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes bounceBottom-in {
@@ -6422,6 +6622,8 @@ a[data-popup] {
     -webkit-animation: bounceLeft-in .6s both ease-in-out;
     animation: bounceLeft-in .6s both ease-in-out;
 }
+
+
 /* out */
 
 @-webkit-keyframes bounceLeft-out {
@@ -6437,6 +6639,8 @@ a[data-popup] {
         opacity: 0;
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes bounceLeft-in {
@@ -6476,6 +6680,8 @@ a[data-popup] {
     -webkit-animation: bounceTop-in .6s both ease-in-out;
     animation: bounceTop-in .6s both ease-in-out;
 }
+
+
 /* out */
 
 @-webkit-keyframes bounceTop-out {
@@ -6491,6 +6697,8 @@ a[data-popup] {
         opacity: 0;
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes bounceTop-in {
@@ -6530,6 +6738,8 @@ a[data-popup] {
     -webkit-animation: moveLeft-in .6s both ease-in-out;
     animation: moveLeft-in .6s both ease-in-out;
 }
+
+
 /* out */
 
 @-webkit-keyframes moveLeft-out {
@@ -6545,6 +6755,8 @@ a[data-popup] {
         opacity: 0;
     }
 }
+
+
 /* in */
 
 @-webkit-keyframes moveLeft-in {
@@ -6819,6 +7031,8 @@ a[data-popup] {
 .cbp-popup-lightbox-iframe audio {
     margin-top: 27%;
 }
+
+
 /* NAVIGATION BUTTONS */
 
 .cbp-popup-singlePage .cbp-popup-navigation-wrap {
@@ -6878,6 +7092,8 @@ a[data-popup] {
 .cbp-popup-lightbox .cbp-popup-close {
     visibility: hidden;
 }
+
+
 /* NAVOGATION BUTTONS */
 
 .cbp-popup-ready.cbp-popup-lightbox .cbp-popup-next,
@@ -6885,6 +7101,8 @@ a[data-popup] {
 .cbp-popup-ready.cbp-popup-lightbox .cbp-popup-close {
     visibility: visible;
 }
+
+
 /* PREVIOUS BUTTON LIGHBOX */
 
 .cbp-popup-lightbox .cbp-popup-prev {
@@ -6900,6 +7118,8 @@ a[data-popup] {
 .cbp-popup-lightbox .cbp-popup-prev:hover {
     background-position: 0 -46px;
 }
+
+
 /* PREVIOUS BUTTON SINGLEPAGE */
 
 .cbp-popup-singlePage .cbp-popup-prev {
@@ -6916,6 +7136,8 @@ a[data-popup] {
 .cbp-popup-singlePage .cbp-popup-prev:hover {
     background-position: 0 -138px;
 }
+
+
 /* NEXT BUTTON LIGHTBOX */
 
 .cbp-popup-lightbox .cbp-popup-next {
@@ -6931,6 +7153,8 @@ a[data-popup] {
 .cbp-popup-lightbox .cbp-popup-next:hover {
     background-position: -46px -46px;
 }
+
+
 /* NEXT BUTTON SINGLEPAGE */
 
 .cbp-popup-singlePage .cbp-popup-next {
@@ -6947,6 +7171,8 @@ a[data-popup] {
 .cbp-popup-singlePage .cbp-popup-next:hover {
     background-position: -46px -138px;
 }
+
+
 /* CLOSE BUTTON LIGTHBOX */
 
 .cbp-popup-lightbox .cbp-popup-close {
@@ -6960,6 +7186,8 @@ a[data-popup] {
 .cbp-popup-lightbox .cbp-popup-close:hover {
     background-position: -92px -46px;
 }
+
+
 /* CLOSE BUTTON SINGLEPAGE */
 
 .cbp-popup-singlePage .cbp-popup-close {
@@ -7278,6 +7506,8 @@ a[data-popup] {
     margin-top: 25px;
     color: #474747;
 }
+
+
 /* SINGLE PAGE INLINE */
 
 .cbp-popup-singlePageInline-open {
@@ -7439,6 +7669,8 @@ a[data-popup] {
     margin-bottom: 15px;
     font: 13px/22px "Open Sans", sans-serif;
 }
+
+
 /* default state */
 
 .cbp-l-loadMore-defaultText,
@@ -7452,6 +7684,8 @@ a[data-popup] {
 .cbp-l-loadMore-button-noMoreLoading {
     display: none;
 }
+
+
 /* loading state */
 
 .cbp-l-loadMore-loading .cbp-l-loadMore-loadingText,
@@ -7465,6 +7699,8 @@ a[data-popup] {
 .cbp-l-loadMore-loading .cbp-l-loadMore-button-noMoreLoading {
     display: none;
 }
+
+
 /* no more loading */
 
 .cbp-l-loadMore-stop .cbp-l-loadMore-noMoreLoading,
@@ -8367,6 +8603,8 @@ a[data-popup] {
 .cbp-social-pinterest path {
     fill: #cb2027;
 }
+
+
 /*********************************************
 	-	CARNA EXTRA 	-
 **********************************************/
@@ -8391,6 +8629,8 @@ a[data-popup] {
         margin-top: 84px;
     }
 }
+
+
 /* FILTER*/
 
 .cbp-l-filters-dropdown {
@@ -8473,11 +8713,14 @@ a[data-popup] {
     color: #fff;
     opacity: 1;
 }
+
+
 /* END FILTER*/
-/* .cbp img,
-    .cbp-popup-singlePage img {
-        width: auto;
-    } */
+
+.cbp img,
+.cbp-popup-singlePage img {
+    width: auto;
+}
 
 .cbp-popup-singlePage-counter {
     color: #212121;
@@ -8512,6 +8755,8 @@ a[data-popup] {
 .cbp-fullscreen .cbp-popup-singlePageInline .cbp-popup-close {
     right: 15px;
 }
+
+
 /*.cbp-l-blog-notes{
     .cbp-item{
         width:100% !important;
@@ -8519,8 +8764,7 @@ a[data-popup] {
 }*/
 
 .cbp-popup-singlePage .cbp-popup-navigation-wrap {
-    /* 3tl faq */
-    background-color: #A8A19E;
+    background-color: #F26F70;
 }
 
 .cbp-popup-singlePage .cbp-popup-prev,
@@ -8651,9 +8895,13 @@ a[data-popup] {
 #js-grid-mosaic img {
     width: 100%;
 }
+
+
 /*********************************************
 	-	$END CUBE PORTFOLIO 	-
 **********************************************/
+
+
 /*-----------------------------------------------------------------------------
    16. Portfolio item layout
 -----------------------------------------------------------------------------*/
@@ -8772,6 +9020,8 @@ a[data-popup] {
     -o-transform: translateY(-25px);
     transform: translateY(-25px);
 }
+
+
 /*-----------------------------------------------------------------------------
    17. portfolio Item
 -----------------------------------------------------------------------------*/
@@ -8825,7 +9075,7 @@ a[data-popup] {
 .item-description {
     padding: 96px 0;
     text-align: center;
-    background-image: url(../images/pattern/background.jpg);
+    background-image: url(../images/pattern/pattern-light.png);
 }
 
 .item-description .item-description__title {
@@ -8943,6 +9193,8 @@ a[data-popup] {
 .item-nav>div:nth-child(n+1) {
     border-left: 1px solid #28282E;
 }
+
+
 /*-----------------------------------------------------------------------------
    18. Blog
 -----------------------------------------------------------------------------*/
@@ -8989,7 +9241,7 @@ a[data-popup] {
 
 .cbp-news .cbp-item h3 {
     text-transform: capitalize;
-    font-size: 19px;
+    font-size: 22px;
     padding: 30px;
     line-height: 1.5em;
 }
@@ -9015,6 +9267,8 @@ a[data-popup] {
     -o-transform: translate3d(0, 5px, 0);
     transform: translate3d(0, 5px, 0);
 }
+
+
 /* NEWS ITEM */
 
 .news-item .news-item__content {
@@ -9056,15 +9310,16 @@ a[data-popup] {
 
 .news-item .news-item__content h3 {
     text-transform: capitalize;
-    font-size: 26px;
-    padding: 20px;
+    font-size: 30px;
+    padding: 30px;
     line-height: 1.5em;
 }
 
 .news-item .news-item__content p {
     padding-bottom: 2em;
-    text-align: center;
 }
+
+
 /*-----------------------------------------------------------------------------
    19. Blog-Pages
 -----------------------------------------------------------------------------*/
@@ -9269,6 +9524,8 @@ a[data-popup] {
     color: #fff;
     background-color: #212121;
 }
+
+
 /* blog-sidebar */
 
 .blog-sidebar #searchfom {
@@ -9335,6 +9592,8 @@ a[data-popup] {
 .blog-sidebar>section.tags a:hover {
     background-color: #F26F70;
 }
+
+
 /*BLOG SINGLE PAGE */
 
 .post-single-meta {
@@ -9376,6 +9635,8 @@ a[data-popup] {
     top: 35px;
     left: 0;
 }
+
+
 /* AUTHOR POST */
 
 .author-post {
@@ -9490,6 +9751,8 @@ a[data-popup] {
         margin-left: 1em;
     }
 }
+
+
 /*-----------------------------------------------------------------------------
    19. Map Wrap
 -----------------------------------------------------------------------------*/
@@ -9522,77 +9785,17 @@ a[data-popup] {
         height: 250px;
     }
 }
+
+
 /*-----------------------------------------------------------------------------
    20. Footer
 -----------------------------------------------------------------------------*/
 
 .main-footer {
-    background-image: url(../images/pattern/background.jpg);
+    background-image: url(../images/pattern/pattern-dark.jpg);
 }
 
 .main-footer .title-footer {
-    color: black;
+    color: #fff;
     margin: 0;
-    font-size: 14px;
-    font: 400 12px/18px "PT Sans Narrow", Arial Narrow, Arial, sans-serif;
-    color: #999;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-}
-/* 3tl */
-
-.img-full {
-    position: relative;
-    max-width: none;
-    text-align: center;
-}
-
-.footer-black {
-    height: 80px;
-    background-color: black;
-}
-
-#terms {
-    /* float: left; */
-    width: 18px;
-    text-align: left;
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.register {
-    margin-right: 2px;
-    margin-left: 2px;
-}
-
-.modal-content {
-    background-image: url(../images/pattern/background.jpg);
-}
-
-.modal-wel {
-    text-align: center;
-    margin-top: 20px;
-    font: 400 34px/42px "IM Fell French Canon", "Hoefler Text", Baskerville Old Face, Garamond, Times New Roman, serif !important;
-}
-
-.reqtext {
-    font: 400 18px/30px "IM Fell French Canon", "Hoefler Text", Baskerville Old Face, Garamond, Times New Roman, serif !important;
-}
-
-.modal-footer {
-    /* border-top: 1px solid maroon; */
-    outline: none;
-}
-
-@media (max-width: 992px) {
-    .cbp-news .cbp-item h3 {
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 767px) {
-    .row .row > .quform-overlay{
-        padding-left: 30px;
-        padding-right: 30px;
-    }
 }

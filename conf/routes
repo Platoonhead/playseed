@@ -4,6 +4,8 @@ GET         /                          controllers.Application.index
 GET         /register                  controllers.Application.register
 POST        /savecontestent            controllers.Registration.saveContestant
 
+GET         /login                     controllers.Application.login
+
 GET         /upload                    controllers.Application.upload
 GET         /faq1                      controllers.Application.faq1
 GET         /faq2                      controllers.Application.faq2

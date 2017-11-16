@@ -1,14 +1,12 @@
-(function($) {
+var clickMethod = {};
 
-    'use strict';
+(function($) {
 
     jQuery(document).ready(function() {
 
-
         /*********************************************
-         -	DEVICES DETECTING	-
+         -    DEVICES DETECTING    -
          **********************************************/
-
         var isMobile = {
             Android: function() {
                 return navigator.userAgent.match(/Android/i);
@@ -38,7 +36,7 @@
 
 
         /*********************************************
-         -	DEVICES VIEWPORT WIDTH	-
+         -    DEVICES VIEWPORT WIDTH    -
          **********************************************/
 
         var $windowWidth = {
@@ -48,7 +46,7 @@
         };
 
         /*********************************************
-         -	T R A N S I T I O N    E N D    E V E N T S	-
+         -    T R A N S I T I O N    E N D    E V E N T S    -
          **********************************************/
 
         function whichTransitionEvent() {
@@ -60,7 +58,7 @@
                 "OTransition": "oTransitionEnd",
                 "MozTransition": "transitionend",
                 "WebkitTransition": "webkitTransitionEnd"
-            }
+            };
 
             for (t in transitions) {
                 if (el.style[t] !== undefined) {
@@ -68,33 +66,107 @@
                 }
             }
         }
+
         var transitionEvent = whichTransitionEvent();
 
         /*********************************************
-         -	ADD SMOOTH SCROLL IN ONE PAGE 	-
+         -    ADD SMOOTH SCROLL IN ONE PAGE    -
          **********************************************/
 
-
-
-        function stopIt(e) {
-            var smoothLink = $(this).attr("href");
-            e.preventDefault();
-            $(smoothLink).velocity("scroll", {
-                duration: 800,
-                easing: [0.77, 0, 0.175, 1],
-                offset: -50
-            });
+        function myRules() {
+            var productLink = $(this).attr("href");
+            //productLink.attr("target", "_blank");
+            window.open(productLink);
+            return false;
+            // $('#rules').click(function () {
+            //
+            // });
         }
 
-        $('.scrollTo').on('click', stopIt);
+        function smoothWide() {
 
-        function customRedirect() {
+            var aScroll = $('#navbar li a'),
+                bScroll = $('.scrollTo'),
+                navH = $('.carna-menu').height();
 
-            $('.redirectTo').on("click", function() {
-                window.location = $(this).attr("href");
+            aScroll.on("click", function(event) {
+                $('.button-trigger').removeClass("active");
+                var smoothLink = $(this).attr("href"),
+                    hashLink = smoothLink.match("#"),
+                    hasPDF = smoothLink.match(".pdf"),
+                    pathName = location.pathname.split("/")[1];
+                $(aScroll).removeClass("active");
+                $(this).addClass("active");
+                if (hasPDF !== null) {
+                    window.open(smoothLink);
+                    return false;
+                } else {
+
+                }
+                if (hashLink === null || hashLink === undefined) {
+                    window.location.href = smoothLink;
+                    // $(aScroll).removeClass("active");
+                    // $(this).addClass("active");
+                } else if (pathName !== "") {
+                    var dir = smoothLink.replace("%23", "#");
+                    window.location.href = location.origin + dir;
+                }
+                event.preventDefault();
+                $(aScroll).removeClass("active");
+                $(this).addClass("active");
+                $(smoothLink).velocity("scroll", {
+                    duration: 800,
+                    easing: [0.77, 0, 0.175, 1],
+                    offset: 0
+                });
+                return false;
             });
+            clickMethod.method = function(scrollTo) {
+                $(scrollTo).on("click", function(event) {
+                    var smoothLink = $(this).attr("href"),
+                        hashLink = smoothLink.match("#");
+                    var dir = smoothLink.replace("%23", "#");
 
+                    if (hashLink === null || hashLink === undefined) {
+                        window.location.href = smoothLink;
+                    } else {
+                        $(dir).velocity('scroll', {
+                            duration: 800,
+                            delay: 0,
+                            easing: [0.77, 0, 0.175, 1],
+                            //                offset: - (navMHeight)
+                        });
+                    }
+                });
+            };
+            clickMethod.method('.scrollTo');
         }
+
+        function popupButton() {
+            var pathname = window.location.pathname;
+            if (pathname == "/register") {
+                $('#register').addClass("active");
+            }
+        }
+
+        function trailingSlash(str) {
+            if (str.substr(-1) == '/') {
+                return str.substr(0, str.length - 1);
+            }
+            return str;
+        }
+
+        function navActive() {
+            var activeLink = $('#navbar li a');
+            $(activeLink).removeClass('active');
+            if (window.location.pathname !== "/") {
+                $('#navbar a[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active');
+            } else {
+                $(activeLink)[0].className = "active";
+            }
+        }
+
+        //navActive();
 
         function smoothMobile() {
 
@@ -120,7 +192,7 @@
 
 
         /*********************************************
-         -	HIDE MENU WHEN CLICK ON SMALL DEVICES 	-
+         -    HIDE MENU WHEN CLICK ON SMALL DEVICES    -
          **********************************************/
 
         function hideList() {
@@ -139,7 +211,7 @@
         }
 
         /*********************************************
-         -	SHOW HID MENU ON ONE PAGE 	-
+         -    SHOW HID MENU ON ONE PAGE    -
          **********************************************/
 
         function showHideMenu() {
@@ -161,16 +233,15 @@
                         whichTransitionEvent();
                     });
                     $(this).toggleClass('active');
-                    return false;
                     event.preventDefault();
+                    return false;
                 });
             }
         }
 
 
-
         /*********************************************
-         -	SHRINK MENU	-
+         -    SHRINK MENU    -
          **********************************************/
 
 
@@ -193,7 +264,7 @@
 
 
         /*********************************************
-         -	ADD BG TO MENU ON SCROLL	-
+         -    ADD BG TO MENU ON SCROLL    -
          **********************************************/
 
         function headerFill() {
@@ -215,7 +286,7 @@
 
 
         /*********************************************
-         -	REVOLUTION SLIDER	-
+         -    REVOLUTION SLIDER    -
          **********************************************/
 
         function revSlider() {
@@ -301,7 +372,10 @@
                                 fade = 1 + proc,
                                 scale = 1 + (Math.abs(proc) / 10);
 
-                            punchgs.TweenLite.set(revapi104.find('.slotholder, .rs-background-video-layer'), { opacity: fade, scale: scale });
+                            punchgs.TweenLite.set(revapi104.find('.slotholder, .rs-background-video-layer'), {
+                                opacity: fade,
+                                scale: scale
+                            });
                         }
                         newCall.inmodule = "parallax";
                         newCall.atposition = "start";
@@ -311,7 +385,8 @@
                         });
                     }
                 }
-            }); /*ready*/
+            });
+            /*ready*/
 
 
         }
@@ -402,9 +477,9 @@
                         });
                     }
                 }
-            }); /*ready*/
+            });
+            /*ready*/
         }
-
 
 
         function revFullScreen() {
@@ -470,12 +545,13 @@
                         });
                     }
                 }
-            }); /*ready*/
+            });
+            /*ready*/
 
         }
 
         /*********************************************
-         -	BX SLIDER 	-
+         -    BX SLIDER    -
          **********************************************/
 
         function regularSlider() {
@@ -575,7 +651,7 @@
         }
 
         /*********************************************
-         -	MASTER SLIDER Ajax	-
+         -    MASTER SLIDER Ajax    -
          **********************************************/
 
         function masterSliderAjax() {
@@ -695,7 +771,6 @@
                     }
 
 
-
                     if ($this.data('ms-parallax')) {
                         MSScrollParallax.setup(slider, 50, 80, true);
                     }
@@ -707,7 +782,7 @@
 
 
         /*********************************************
-         -	CHECK FOR TOUCH	-
+         -    CHECK FOR TOUCH    -
          **********************************************/
 
         function isTouchSupported() {
@@ -726,7 +801,7 @@
 
 
         /*********************************************
-         -	NAV HIGH LIGHT	-
+         -    NAV HIGH LIGHT    -
          **********************************************/
 
         function navHighLight() {
@@ -742,38 +817,37 @@
             } // this for loop fills the aArray with attribute href values
 
 
-            $(window).scroll(function() {
-                var windowPos = $(window).scrollTop() + 84; // get the offset of the window from the top of page
-                var windowHeight = $(window).height(); // get the height of the window
-                var docHeight = $(document).height();
+            /*$(window).scroll(function () {
+             var windowPos = $(window).scrollTop() + 84; // get the offset of the window from the top of page
+             var windowHeight = $(window).height(); // get the height of the window
+             var docHeight = $(document).height();
 
-                for (var i = 0; i < aArray.length; i++) {
-                    var theID = aArray[i];
-                    if (docHeight.length) {
-                        var divPos = $(theID).offset().top; // get the offset of the div from the top of page
-                    }
-                    var divHeight = $(theID).outerHeight(); // get the height of the div in question
-                    if (windowPos >= divPos && windowPos < (divPos + divHeight)) {
-                        $("a[href='" + theID + "']").addClass("active");
-                    } else {
-                        $("a[href='" + theID + "']").removeClass("active");
-                    }
-                }
+             for (var i = 0; i < aArray.length; i++) {
+             var theID = aArray[i];
+             var divPos = $(theID).offset().top; // get the offset of the div from the top of page
+             var divHeight = $(theID).outerHeight(); // get the height of the div in question
+             if (windowPos >= divPos && windowPos < (divPos + divHeight)) {
+             $("a[href='" + theID + "']").addClass("active");
+             } else {
+             $("a[href='" + theID + "']").removeClass("active");
+             }
+             }
 
-                if (windowPos + windowHeight == docHeight) {
-                    if (!$(".menu-highlight li:last-child a").hasClass("active")) {
-                        var navActiveCurrent = $(".active").attr("href");
-                        $("a[href='" + navActiveCurrent + "']").removeClass("active");
-                        $(".menu-highlight li:last-child a").addClass("active");
-                    }
-                }
-            });
+             if (windowPos + windowHeight == docHeight) {
+             if (!$(".menu-highlight li:last-child a").hasClass("active")) {
+             var navActiveCurrent = $(".active").attr("href");
+             $("a[href='" + navActiveCurrent + "']").removeClass("active");
+             $(".menu-highlight li:last-child a").addClass("active");
+             }
+             }
+             });*/
+
 
         }
 
 
         /*********************************************
-         -	LIGHT BOX	-
+         -    LIGHT BOX    -
          **********************************************/
 
         function standardLightBox() {
@@ -812,7 +886,7 @@
         }
 
         /*********************************************
-         -	MM MENU	-
+         -    MM MENU    -
          **********************************************/
 
         if (typeof(Menu) == 'function') {
@@ -821,7 +895,7 @@
 
 
         /*********************************************
-         -	STORY BG	-
+         -    STORY BG    -
          **********************************************/
 
         function storyBg() {
@@ -841,7 +915,7 @@
         }
 
         /*********************************************
-         -	COLOR BG	-
+         -    COLOR BG    -
          **********************************************/
 
         function colorBg() {
@@ -865,7 +939,7 @@
         }
 
         /*********************************************
-         -	COUNTER	-
+         -    COUNTER    -
          **********************************************/
 
         function counter() {
@@ -880,7 +954,7 @@
 
 
         /*********************************************
-         -	BACK TO TOP	-
+         -    BACK TO TOP    -
          **********************************************/
 
         function backToTop() {
@@ -910,7 +984,7 @@
 
 
         /*********************************************
-         -	ANIMAION LOADER	-
+         -    ANIMAION LOADER    -
          **********************************************/
 
         function animationLoader() {
@@ -929,7 +1003,7 @@
                         //    linkElement           :   '.animsition-link',
                         linkElement: 'a:not([target="_blank"]):not([href^=\\#]):not([href^="ajax"]):not([class*="mag-popup"]):not([class*="ajax"]):not([class*="showhide"]):not([href^="javascript"]):not([class^="bx"]):not([class^="standard-popup"]):not([class*="mag-lightbox"]):not([data-popup]):not([class*="header-video__play-trigger"])',
                         loading: true,
-                        loadingParentElement: 'body', //animsition wrapper element 
+                        loadingParentElement: 'body', //animsition wrapper element
                         loadingClass: 'animsition-loading',
                         unSupportCss: ['animation-duration',
                             '-webkit-animation-duration',
@@ -953,7 +1027,7 @@
 
 
         /*********************************************
-         -	PROGRESS BAR	-
+         -    PROGRESS BAR    -
          **********************************************/
 
         function porgressBar() {
@@ -976,7 +1050,7 @@
 
 
         /*********************************************
-         -	ANIMATED	-
+         -    ANIMATED    -
          **********************************************/
 
         function animated() {
@@ -1012,7 +1086,7 @@
         }
 
         /*********************************************
-         -	FADE OUT OPACITY 	-
+         -    FADE OUT OPACITY    -
          **********************************************/
 
         function fadeOutOpacity() {
@@ -1033,7 +1107,7 @@
         });
 
         /*********************************************
-         -	YOUTUBE PLAYER	-
+         -    YOUTUBE PLAYER    -
          **********************************************/
 
         function ytPlayer() {
@@ -1043,7 +1117,7 @@
         }
 
         /*********************************************
-         -	FULL BLOCK	-
+         -    FULL BLOCK    -
          **********************************************/
 
         function fullBlock() {
@@ -1069,9 +1143,8 @@
         }
 
 
-
         /*********************************************
-         -	MASTER SLIDER MAIN	-
+         -    MASTER SLIDER MAIN    -
          **********************************************/
 
         function masterSliderMain() {
@@ -1191,7 +1264,6 @@
                     }
 
 
-
                     if ($this.data('ms-parallax')) {
                         MSScrollParallax.setup(slider, 50, 80, true);
                     }
@@ -1202,7 +1274,7 @@
         }
 
         /*********************************************
-         -	HEADER VIDEO -
+         -    HEADER VIDEO -
          **********************************************/
 
         function headerVideo() {
@@ -1219,7 +1291,7 @@
         }
 
         /*********************************************
-         -	MEDIA PLAYER	-
+         -    MEDIA PLAYER    -
          **********************************************/
 
         function mediaElements() {
@@ -1228,9 +1300,13 @@
                     $(this).mediaelementplayer();
                 }
             })
-
         }
 
+        function alertClose() {
+            $('#flashBtn').click(function() {
+                $('.flashing-position').remove();
+            });
+        }
 
         function mosaicLayout() {
             var $this = $('#js-grid-mosaic');
@@ -1304,54 +1380,19 @@
             }
         }
 
-        // disable retina on the images that not have retina-img class  
+        var addClassForFrench = function() {
+            var lang = document.getElementsByTagName("html")[0].getAttribute("lang");
+            var element = $('#navbar');
+            if (element.hasClass('carna-menu') && lang === 'Lang(fr)') {
+                element.addClass('french-menu')
+            }
+        };
+
+        // disable retina on the images that not have retina-img class
 
         $('img:not(.retina-img)').attr('data-no-retina', '');
-
-        function alertClose() {
-            $( '#flashBtn').click(function (){
-                $('.alert').remove();
-            });
-        }
-
-        function clickToMail() {
-            $('.emailPop').click(function (){
-                window.location = 'mailto:support@@receiptprocessor.com';
-            });
-        }
-
-        function makeMenuActive() {
-            if(window.location.pathname === '/register') {
-                $('#register-menu').addClass('active')
-            }
-            if(window.location.pathname === '/') {
-                var url = window.location.href;
-                var id = url.substring(url.lastIndexOf('/') + 1);
-                if(id === '#support') {
-                    $('#support-menu').addClass('active')
-                }
-                else if(id === '#faq') {
-                    $('#faq-menu').addClass('active')
-                }
-                else if(id === '#participate') {
-                    $('#participate-menu').addClass('active')
-                }
-                else {
-                    $('#home-menu').addClass('active')
-                }
-            }
-
-            $('.carna-menu li a').click(function (){
-                $('.carna-menu li a').removeClass('active');
-                $(this).addClass('active');
-            });
-        }
-
-
         mosaicLayout();
-        // smoothWide();
-        alertClose();
-        customRedirect();
+        smoothWide();
         smoothMobile();
         hideList();
         showHideMenu();
@@ -1361,6 +1402,7 @@
         revSliderCarousel();
         isTouchSupported();
         regularSlider();
+        navHighLight();
         standardLightBox();
         colorBg();
         counter();
@@ -1375,8 +1417,9 @@
         headerVideo();
         mediaElements();
         revFullScreen();
-        makeMenuActive();
-        clickToMail();
+        alertClose();
+        popupButton();
+        addClassForFrench();
 
         $(window).on('debouncedresize', function() {
             fullBlock();
@@ -1403,7 +1446,6 @@
 })(window.jQuery);
 
 
-
 /*
  * debouncedresize: special jQuery event that happens once after a window resize
  *
@@ -1413,7 +1455,7 @@
  * Copyright 2012 @louis_remi
  * Licensed under the MIT license.
  *
- * This saved you an hour of work? 
+ * This saved you an hour of work?
  * Send me music http://www.amazon.co.uk/wishlist/HNTU0468LQON
  */
 (function($) {

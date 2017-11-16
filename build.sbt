@@ -1,4 +1,4 @@
-name := """zacbrown"""
+name := """hills-brows-cappuccino"""
 organization := "3tierlogic"
 
 version := "1.0-SNAPSHOT"
