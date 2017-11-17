@@ -61,8 +61,7 @@ class UserForm @Inject()(langs: Langs, val messagesApi: MessagesApi) {
   )(User.apply)(User.unapply))
 
   private def emailAddress: Constraint[String] = Constraint[String]("constraint.email") { email =>
-    if (email == null) {
-      // scalastyle:ignore
+    if (email == null) {// scalastyle:ignore
       Invalid(ValidationError(messages("validation.invalid.email")))
     } else if (email.trim.isEmpty) {
       Invalid(ValidationError(messages("validation.invalid.email")))
@@ -74,8 +73,7 @@ class UserForm @Inject()(langs: Langs, val messagesApi: MessagesApi) {
   }
 
   private def confirmEmailAddress: Constraint[String] = Constraint[String]("constraint.email") { email =>
-    if (email == null) {
-      // scalastyle:ignore
+    if (email == null) {// scalastyle:ignore
       Invalid(ValidationError(messages("validation.email.matchError")))
     } else if (email.trim.isEmpty) {
       Invalid(ValidationError(messages("validation.email.matchError")))

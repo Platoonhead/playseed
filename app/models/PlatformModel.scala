@@ -16,7 +16,5 @@ case class P3UserProfile(email: String,
                          phone: Phone,
                          city: String,
                          postal: String,
-                         state: String,
-                         address: String,
                          receiveEmail: Boolean,
                          receiveSms: Boolean)

@@ -141,10 +141,8 @@ class PlatformBridgeService @Inject()(p3userInfoRepo: P3UsersInfoRepository, wsC
         dob.getTime,
         "na",
         Phone("", ""),
-        "na",
-        "na",
-        "na",
-        "na",
+        "",
+        "",
         receiveEmail = false,
         receiveSms = false)).toString
 
