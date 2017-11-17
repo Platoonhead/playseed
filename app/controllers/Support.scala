@@ -27,7 +27,7 @@ class Support @Inject()(controllerComponents: ControllerComponents,
       formWithError => {
 
         Logger.info(s"Bad request in user support form ${formWithError.errors}")
-        Future.successful(BadRequest(views.html.index(message("home.page.title"), formWithError)))
+        Future.successful(BadRequest(views.html.content.support(formWithError)))
       },
       data => {
         val userName = data.name.trim
@@ -42,7 +42,7 @@ class Support @Inject()(controllerComponents: ControllerComponents,
         } {
           response =>
             Logger.info(s"Support email successfully sent for email $userEmail")
-            Future.successful(Redirect(routes.Application.index()))
+            Future.successful(Redirect(routes.Application.support()))
         }
       }
     )

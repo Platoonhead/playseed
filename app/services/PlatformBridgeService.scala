@@ -134,18 +134,17 @@ class PlatformBridgeService @Inject()(p3userInfoRepo: P3UsersInfoRepository, wsC
       val url = "http://%s/user/%s/profile/%s" format(config.load.p3DomainAccount, guid, config.load.p3ClientId)
       val dob = new Timestamp(profile.dateOfBirth.getMillis)
 
-      val homePhoneTreated = if (profile.phoneNumber == "") "0" else profile.phoneNumber
-
-      val userProfileJson: String = Json.toJson(P3UserProfile(profile.email,
+      val userProfileJson: String = Json.toJson(P3UserProfile(
+        profile.email,
         profile.firstName,
         profile.lastName,
         dob.getTime,
         "na",
-        Phone(homePhoneTreated, ""),
-        profile.city.getOrElse(""),
-        profile.postalCode,
-        profile.province,
-        profile.address1,
+        Phone("", ""),
+        "na",
+        "na",
+        "na",
+        "na",
         receiveEmail = false,
         receiveSms = false)).toString
 

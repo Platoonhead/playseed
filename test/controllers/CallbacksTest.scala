@@ -1,10 +1,6 @@
 package controllers
 
-import java.util.UUID
-
-import actors.RewardActor
-import akka.actor.{ActorSystem, Props}
-import models.{RewardRepository, _}
+import models.{Profile, Receipt, ReceiptRepository, UserProfileRepository}
 import org.joda.time.DateTime
 import org.mockito.Mockito._
 import org.specs2.mock.Mockito
@@ -64,7 +60,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     val receiptCallBack = ReceiptCallback(Some("approved"), None, Some("1469444737194"), "4298-90a8-97ee920abaaf",
       Some("SOME RANDOM TEXT"), Data("target", "07/23/2016", 12.329999923706055, 6.0, List(Products("14800002737", 3, Some("test"), 2.0))))
 
-    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", new DateTime(System.currentTimeMillis()), "BK", None, "province", "12345", "1234567891",new DateTime(System.currentTimeMillis()), false)
+    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com",
+      new DateTime(System.currentTimeMillis()), new DateTime(System.currentTimeMillis()), false)
 
     val serializedProductList = """[{"upcCode":"14800002737","quantity":3,"description":"test","productAmount":2}]"""
     val callback = "https://w1.buysub.com/servlet/OrdersGateway?cds_mag_code=PMM&cds_page_id=215226"
@@ -97,9 +94,7 @@ class CallbacksTest extends PlaySpecification with Mockito {
     when(callbackObjects.userProfileRepository.findByEmail("test@example.com")) thenReturn Future.successful(Some(userProfile))
     when(callbackObjects.receiptRepository.shouldSubmit(1)) thenReturn Future(true)
     when(callbackObjects.receiptRepository.update(receiptCallBack, serializedProductList)) thenReturn Future.successful(Some(receipt))
-    when(callbackObjects.rewardRepository.markedCodeUsed("code1", 1, Some(1))) thenReturn Future(true)
-    when(callbackObjects.rewardActor.getToken(1, Some(1))) thenReturn "code1"
-    when(callbackObjects.sendGridService.sendEmailForApproval("test@example.com", "firstname_test", "code1")) thenReturn Some("success")
+    when(callbackObjects.sendGridService.sendEmailForApproval("test@example.com", "firstname_test")) thenReturn Some("success")
 
     val response = callbackObjects.callbackController.receive()(request)
 
@@ -118,7 +113,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     val receiptCallBack = ReceiptCallback(Some("approved"), None, Some("1469444737194"), "4298-90a8-97ee920abaaf",
       Some("SOME RANDOM TEXT"), Data("target", "07/23/2016", 12.329999923706055, 6.0, List(Products("14800002737", 3, Some("test"), 2.0))))
 
-    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", new DateTime(System.currentTimeMillis()), "BK", None, "province", "12345", "1234567891",new DateTime(System.currentTimeMillis()), false)
+    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com",
+      new DateTime(System.currentTimeMillis()), new DateTime(System.currentTimeMillis()), false)
     val serializedProductList = """[{"upcCode":"14800002737","quantity":3,"description":"test","productAmount":2}]"""
 
     val payload =
@@ -149,10 +145,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     when(callbackObjects.userProfileRepository.findByEmail("test@example.com")) thenReturn Future.successful(Some(userProfile))
     when(callbackObjects.receiptRepository.shouldSubmit(1)) thenReturn Future(true)
     when(callbackObjects.receiptRepository.update(receiptCallBack, serializedProductList)) thenReturn Future.successful(Some(receipt))
-    when(callbackObjects.rewardRepository.markedCodeUsed("code1", 1, Some(1))) thenReturn Future(true)
-    when(callbackObjects.rewardActor.getToken(1, Some(1))) thenReturn "code1"
 
-    when(callbackObjects.sendGridService.sendEmailForApproval("test@example.com", "firstname_test", "code1")) thenReturn None
+    when(callbackObjects.sendGridService.sendEmailForApproval("test@example.com", "firstname_test")) thenReturn None
 
     val response = callbackObjects.callbackController.receive()(request)
 
@@ -170,7 +164,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     val receiptCallBack = ReceiptCallback(Some("approved"), None, Some("1469444737194"), "4298-90a8-97ee920abaaf",
       Some("SOME RANDOM TEXT"), Data("target", "07/23/2016", 12.329999923706055, 6.0, List(Products("14800002737", 3, Some("test"), 2.0))))
 
-    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", new DateTime(System.currentTimeMillis()), "BK", None, "province", "12345", "1234567891",new DateTime(System.currentTimeMillis()), false)
+    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com",
+      new DateTime(System.currentTimeMillis()), new DateTime(System.currentTimeMillis()), false)
     val serializedProductList = """[{"upcCode":"14800002737","quantity":3,"description":"test","productAmount":2}]"""
 
     val payload =
@@ -216,7 +211,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     val receipt = Receipt(1, "receiptId", 2, 15, 2, 2017, "test@example.com", None, "userId", "clientId", "image",
       None, Some(2000), Some(1000), dateTime, 123456789, "dateInReceipt", "product", true)
 
-    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", new DateTime(System.currentTimeMillis()), "BK", None, "province", "12345", "1234567891",new DateTime(System.currentTimeMillis()), false)
+    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com",
+      new DateTime(System.currentTimeMillis()), new DateTime(System.currentTimeMillis()), false)
 
     val payload =
       """{
@@ -336,7 +332,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     val receiptCallBack = ReceiptCallback(Some("ambiguous"), None, Some("1469444737194"), "4298-90a8-97ee920abaaf",
       Some("SOME RANDOM TEXT"), Data("target", "07/23/2016", 12.329999923706055, 6.0, List(Products("14800002737", 3, Some("test"), 2.0))))
 
-    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", new DateTime(System.currentTimeMillis()), "BK", None, "province", "12345", "1234567891",new DateTime(System.currentTimeMillis()), false)
+    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com",
+      new DateTime(System.currentTimeMillis()), new DateTime(System.currentTimeMillis()), false)
 
     val payload =
       """{
@@ -384,7 +381,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     val receiptCallBack = ReceiptCallback(Some("rejected"), None, Some("1469444737194"), "4298-90a8-97ee920abaaf",
       Some("SOME RANDOM TEXT"), Data("target", "07/23/2016", 12.329999923706055, 6.0, List(Products("14800002737", 3, Some("test"), 2.0))))
 
-    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", new DateTime(System.currentTimeMillis()), "BK", None, "province", "12345", "1234567891",new DateTime(System.currentTimeMillis()), false)
+    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com",
+      new DateTime(System.currentTimeMillis()), new DateTime(System.currentTimeMillis()), false)
 
     val payload =
       """{
@@ -431,7 +429,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     val receiptCallBack = ReceiptCallback(Some("rejected"), None, Some("1469444737194"), "4298-90a8-97ee920abaaf",
       Some("SOME RANDOM TEXT"), Data("target", "07/23/2016", 12.329999923706055, 6.0, List(Products("14800002737", 3, Some("test"), 2.0))))
 
-    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", new DateTime(System.currentTimeMillis()), "BK", None, "province", "12345", "1234567891",new DateTime(System.currentTimeMillis()), false)
+    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com",
+      new DateTime(System.currentTimeMillis()), new DateTime(System.currentTimeMillis()), false)
 
     val payload =
       """{
@@ -477,7 +476,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     val receiptCallBack = ReceiptCallback(Some("invalid"), None, Some("1469444737194"), "4298-90a8-97ee920abaaf",
       Some("SOME RANDOM TEXT"), Data("target", "07/23/2016", 12.329999923706055, 6.0, List(Products("14800002737", 3, Some("test"), 2.0))))
 
-    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", new DateTime(System.currentTimeMillis()), "BK", None, "province", "12345", "1234567891",new DateTime(System.currentTimeMillis()), false)
+    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com",
+      new DateTime(System.currentTimeMillis()), new DateTime(System.currentTimeMillis()), false)
     val payload =
       """{
         |	"behaviorId.jpg": {
@@ -524,8 +524,8 @@ class CallbacksTest extends PlaySpecification with Mockito {
     val receiptCallBack = ReceiptCallback(Some("duplicate"), None, Some("1469444737194"), "4298-90a8-97ee920abaaf",
       Some("SOME RANDOM TEXT"), Data("target", "07/23/2016", 12.329999923706055, 6.0, List(Products("14800002737", 3, Some("test"), 2.0))))
 
-    val userProfile =  Profile(1, "firstname_test", "lastname_test", "test@example.com", new DateTime(System.currentTimeMillis()), "BK", None, "province", "12345", "1234567891",new DateTime(System.currentTimeMillis()), false)
-
+    val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com",
+      new DateTime(System.currentTimeMillis()), new DateTime(System.currentTimeMillis()), false)
     val payload =
       """{
         |	"behaviorId.jpg": {
@@ -562,34 +562,23 @@ class CallbacksTest extends PlaySpecification with Mockito {
   }
 
   private def testObjects: TestObjects = {
-    val codes = Set("code1", "code2", "code3", "code4")
     val mockedUserProfileRepository = mock[UserProfileRepository]
     val mockedReceiptRepository = mock[ReceiptRepository]
     val mockedWsClient = mock[WSClient]
     val mockedSendGridService = mock[SendGridService]
     val mockedConfig = mock[ConfigLoader]
-    val mockedRewardActor = mock[RewardActor]
-    val mockedRewardRepository = mock[RewardRepository]
-    when(mockedRewardRepository.getUnusedCode).thenReturn(codes)
-
-    val actorSystem = ActorSystem("RewardTestSystem")
-
-    val rewardActor = actorSystem.actorOf(Props(classOf[RewardActor], mockedRewardRepository), s"reward-test-actor-${UUID.randomUUID}")
-
 
     val controller = new Callbacks(stubControllerComponents(), mockedReceiptRepository, mockedUserProfileRepository,
-      mockedConfig, mockedWsClient, mockedSendGridService, rewardActor)
+      mockedConfig, mockedWsClient, mockedSendGridService)
 
-    TestObjects(stubControllerComponents(), mockedReceiptRepository, mockedUserProfileRepository, mockedRewardRepository,
-      mockedRewardActor, mockedConfig, mockedWsClient,
+    TestObjects(stubControllerComponents(), mockedReceiptRepository, mockedUserProfileRepository,
+      mockedConfig, mockedWsClient,
       mockedSendGridService, controller)
   }
 
   case class TestObjects(controllerComponent: ControllerComponents,
                          receiptRepository: ReceiptRepository,
                          userProfileRepository: UserProfileRepository,
-                         rewardRepository: RewardRepository,
-                         rewardActor: RewardActor,
                          config: ConfigLoader,
                          wsClient: WSClient,
                          sendGridService: SendGridService,

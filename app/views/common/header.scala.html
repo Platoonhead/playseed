@@ -34,6 +34,8 @@
         <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/style.css")" media="screen" />
         <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/custom.css")">
         <script src="@routes.Assets.versioned("javascripts/modernizr.js")"></script>
+
+        @moreScripts
     </head>
     <body data-smooth-scroll="true" class="pdbottom">
         <div id="wrap">
@@ -50,17 +52,15 @@
                             <div class="row">
                                 <div class="col-md-12 carna-menu-wrap">
 
-                                    <ul class="carna-menu menu-highlight menu-smooth">
-                                        <li><a class="page-outer" href="http://www.cappthenightsweepstakes.com/">
+                                    <ul id="navbar" class="carna-menu menu-highlight menu-smooth">
+                                        <li><a class="page-outer" id="home" href="http://www.cappthenightsweepstakes.com/">
                                             Home</a></li>
-                                        <li><a class="page-outer" href="@routes.Application.register()">Register</a></li>
-                                        <li><a class="active" href="@routes.Application.login()">login</a></li>
-                                        <li><a class="page-outer" href="support.html">Support</a></li>
+                                        <li><a class="page-outer" id="register" href="@routes.Application.register()">Register</a></li>
+                                        <li><a class="page-outer active" id="login" href="@routes.Application.login()">login</a></li>
+                                        <li><a class="page-outer" id="support" href="@routes.Application.support()">Support</a></li>
                                     </ul>
                                         <!-- end of menu -->
-
                                 </div>
-
                                     <!-- / col-md-9 -->
                             </div>
                             <div class="mt">

@@ -12,11 +12,6 @@ CREATE TABLE `user_profile` (
   `last_name`    VARCHAR(254) NOT NULL,
   `email`        VARCHAR(254) NOT NULL,
   `dob`          DATETIME     NOT NULL,
-  `address1`     VARCHAR(254) NOT NULL,
-  `city`         VARCHAR(254),
-  `province`     VARCHAR(254) NOT NULL,
-  `postal_code`  VARCHAR(254) NOT NULL,
-  `phone_number` VARCHAR(254),
   `created`      DATETIME     NOT NULL,
   `suspended`    BOOLEAN      NOT NULL DEFAULT 0
 );
@@ -74,15 +69,6 @@ CREATE TABLE `user_support` (
   `created_date` TIMESTAMP    NOT NULL
 );
 
-CREATE TABLE `reward_code` (
-  `id`           BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `profile_id`   BIGINT,
-  `receipt_id`   BIGINT,
-  `code`         VARCHAR(254) NOT NULL,
-  `used`         BOOLEAN      NOT NULL,
-  `created_date` DATETIME
-);
-
 CREATE TABLE `associates` (
   `id`          BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `profile_id`  BIGINT       NOT NULL,
@@ -92,8 +78,7 @@ CREATE TABLE `associates` (
   `email_pass`  VARCHAR(254)
 );
 
+
 ALTER TABLE associates ADD CONSTRAINT profile_id_fk FOREIGN KEY (profile_id) REFERENCES user_profile (id);
 
-ALTER TABLE reward_code ADD CONSTRAINT profileId_fk FOREIGN KEY (profile_id) REFERENCES user_profile (id);
-
-ALTER TABLE reward_code ADD CONSTRAINT receipt_id_fk FOREIGN KEY (receipt_id) REFERENCES receipts (id);
+ALTER TABLE user_profile ADD receive_email BOOLEAN DEFAULT FALSE;

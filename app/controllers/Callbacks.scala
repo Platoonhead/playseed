@@ -1,10 +1,7 @@
 package controllers
 
-import javax.inject.{Inject, Named}
+import javax.inject.Inject
 
-import actors.RewardActor._
-import akka.actor.ActorRef
-import akka.pattern.ask
 import models._
 import play.api.Logger
 import play.api.libs.json.{JsValue, Json, Writes}
@@ -15,7 +12,6 @@ import utilities.ConfigLoader
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
-import scala.concurrent.duration._
 
 case class Products(upcCode: String,
                     quantity: Int,
@@ -40,8 +36,7 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
                           userProfileRepository: UserProfileRepository,
                           config: ConfigLoader,
                           wsClient: WSClient,
-                          sendGridService: SendGridService,
-                          @Named("reward-codes-actor") rewardActor: ActorRef) extends AbstractController(controllerComponent) {
+                          sendGridService: SendGridService) extends AbstractController(controllerComponent) {
   implicit val productFormat = Json.format[Products]
   implicit val dataFormat = Json.format[Data]
   implicit val callbackResponseFormat = Json.format[ReceiptCallback]
@@ -120,32 +115,18 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
   }
 
   private def processReceipt(receiptCallback: ReceiptCallback, profile: Profile, serializedProductList: String): Future[Result] = {
-    val futureCodesSize = (rewardActor ? GetSizeOfUnusedCodes) (30.seconds).mapTo[Int]
-    futureCodesSize flatMap { size =>
-      if (size == 0) {
-        Logger.info(s"Callback Controller: No more reward codes available for the promotion for user profile id ${profile.id} " +
-          s"and ocr receipt id ${receiptCallback.UUID}")
-        Future.successful(InternalServerError("No more reward codes available for the promotion"))
-      } else {
-        receiptRepository.shouldSubmit(profile.id).flatMap {
-          case true  =>
-            receiptRepository.update(receiptCallback, serializedProductList) flatMap {
-              case Some(receipt) =>
-                val getFutureCode = (rewardActor ? GetUnusedCode(profile.id, Some(receipt.id))) (30.seconds).mapTo[String]
-
-                getFutureCode flatMap { code =>
-                  Logger.info(s"Reward code $code for user profile id ${profile.id} and receipt id ${receipt.id}")
-                  handleApprovedEmail(profile, receipt.id, code)
-                }
-              case None          =>
-                Logger.error(s"Could not able to update receipt data in receipt table for user profile id ${profile.id} and receipt id ${receiptCallback.UUID}")
-                Future.successful(InternalServerError("Receipt should be updated"))
-            }
-          case false =>
-            Logger.info(s"User has already qualified for the reward for user profile id ${profile.id} and snap3 receipt id ${receiptCallback.UUID}")
-            Future.successful(Ok("already qualified"))
+    receiptRepository.shouldSubmit(profile.id).flatMap {
+      case true  =>
+        receiptRepository.update(receiptCallback, serializedProductList) flatMap {
+          case Some(receipt) =>
+            handleApprovedEmail(profile, receipt.id)
+          case None          =>
+            Logger.error(s"Could not able to update receipt data in receipt table for user profile id ${profile.id} and receipt id ${receiptCallback.UUID}")
+            Future.successful(InternalServerError("Receipt should be updated"))
         }
-      }
+      case false =>
+        Logger.info(s"User has already qualified for the reward for user profile id ${profile.id} and snap3 receipt id ${receiptCallback.UUID}")
+        Future.successful(Ok("already qualified"))
     }
   }
 
@@ -161,14 +142,14 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
         Future.successful(Ok("Email sent"))
     }
 
-  private def handleApprovedEmail(profile: Profile, receiptId: Long, rewardCode: String): Future[Result] = {
-    sendGridService.sendEmailForApproval(profile.email, profile.firstName, rewardCode).fold {
+  private def handleApprovedEmail(profile: Profile, receiptId: Long): Future[Result] = {
+    sendGridService.sendEmailForApproval(profile.email, profile.firstName).fold {
       Logger.error(s"Internal server error while sending approval email for email address ${profile.email}, " +
         s"user profile id ${profile.id} and receipt id $receiptId")
       Future.successful(InternalServerError("Email not sent"))
     } {
       _ =>
-        Logger.info(s"Approval email successfully sent to email ${profile.email} with reward code $rewardCode for user " +
+        Logger.info(s"Approval email successfully sent to email ${profile.email} for user " +
           s"profile id ${profile.id} and receipt id $receiptId")
         Future.successful(Ok("Email sent"))
     }

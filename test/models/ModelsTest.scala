@@ -1,6 +1,5 @@
 package models
 
-import actors.RewardActor
 import com.google.inject.{AbstractModule, Module}
 import com.sendgrid.SendGrid
 import play.api.Application
@@ -19,11 +18,11 @@ class ModelsTest[T: ClassTag] {
 
   def fakeApp: Application = {
     val sendGrid = new SendGrid("test")
-    val stubControllerComponent =  Helpers.stubControllerComponents()
+    val stubControllerComponent = Helpers.stubControllerComponents()
     val stubMessageApi = Helpers.stubMessagesApi()
     val stubLangs = Helpers.stubLangs()
 
-    val testModule = Option(new AbstractModule with AkkaGuiceSupport{
+    val testModule = Option(new AbstractModule with AkkaGuiceSupport {
       override def configure(): Unit = {
         bind(classOf[SendGrid]).toInstance(sendGrid)
         bind(classOf[MessagesApi]).toInstance(stubMessageApi)
@@ -32,7 +31,6 @@ class ModelsTest[T: ClassTag] {
         bind(classOf[JodaWrites]).toInstance(JodaWrites)
         bind(classOf[ControllerComponents])
           .toInstance(stubControllerComponent)
-        bindActor[RewardActor]("reward-codes-actor")
       }
     })
 

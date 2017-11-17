@@ -1,18 +1,25 @@
 @(regForm: Form[forms.User])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
-    @import utilities.Constants
+@import helper._
+@import utilities.Constants
 
     @moreScripts = {
         <script src='https://www.google.com/recaptcha/api.js?explicit&hl=en-CA'></script>
         <script type="text/javascript" src="@routes.Assets.versioned("javascripts/register.js")"></script>
     }
 
-    @main("Z Alexander Brown Uncaged Wines", headerScripts = moreScripts) {
+    @main("Hills-Bros-Cappuccino", headerScripts = moreScripts) {
 
         <div id="wrapper" class="content-wrapper pages mt">
             <div class="container space-y-t-h space-y-b">
                 <div class="row">
                     <div id="home" class="container space-y-t">
                         <div class="row">
+                            @flash.get("error").map { message =>
+                                <div class="alert alert-danger fade in center-text">
+                                    <button id="flashBtn" type="button" class="close btn-danger" data-dismiss="alert">&times;</button>
+                                    <strong>Error! </strong>@message
+                                </div>
+                            }
                             <div class="col-md-12 text-center">
                                 <h1 class="section-header">
                                     Registration Form<span class="underline animated" data-animation="fullWidth"></span></h1>
@@ -25,7 +32,8 @@
 
                     <div class="container padding-y">
                         <div class="quform-outer">
-                            <form class="quform form-overlay" action="quform/process.php" method="post" enctype="multipart/form-data" onclick="">
+                            @helper.form(action = routes.Registration.saveContestant(), args = 'name -> "email-reg-submit-form", 'id -> "my-form", 'class -> "registration-form") {
+                                @CSRF.formField
                                 <div class="quform-elements">
                                     <div class="row instruction">
                                         <div class="col-md-12 col-sm-12 text-justify mb">
@@ -56,7 +64,10 @@
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
                                             <label for="fname">First Name <span class="quform-required">*</span></label>
                                             <div class="quform-input linewidth">
-                                                <input id="fname" type="text" name="fname" />
+                                                <input id="firstName" type="text" name="firstName" value="@regForm("firstName").value"/>
+                                                <span class="help-block align-error">@{
+                                                    regForm("firstName").error.map { error => messages.messages(error.message) }
+                                                }</span>
                                             </div>
                                         </div>
                                             <!-- End Text input element -->
@@ -65,7 +76,10 @@
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
                                             <label for="lname">Last Name <span class="quform-required">*</span></label>
                                             <div class="quform-input linewidth">
-                                                <input id="lname" type="text" name="lname" />
+                                                <input id="lastName" type="text" name="lastName" value="@regForm("lastName").value"/>
+                                                <span class="help-block align-error">@{
+                                                    regForm("lastName").error.map { error => messages.messages(error.message) }
+                                                }</span>
                                             </div>
                                         </div>
                                             <!-- End Text input element -->
@@ -74,7 +88,13 @@
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
                                             <label for="email">Email address <span class="quform-required">*</span></label>
                                             <div class="quform-input linewidth">
-                                                <input id="email" type="text" name="email" />
+                                                <input id="emailGroup_email" type="text" name="emailGroup.email" value="@regForm("emailGroup.email").value"/>
+                                                <span class="help-block align-error">@{
+                                                    regForm("emailGroup.email").error.map { error => messages.messages(error.message) }
+                                                }</span>
+                                                <span class="help-block align-error">@{
+                                                    regForm("emailGroup").error.map { error => messages.messages(error.message) }
+                                                }</span>
                                             </div>
                                         </div>
                                             <!-- End Text input element -->
@@ -84,7 +104,13 @@
                                             <label for="email_confirm">
                                                 Confirm your email address <span class="quform-required">*</span></label>
                                             <div class="quform-input linewidth">
-                                                <input id="email_confirm" type="text" name="email_confirm" />
+                                                <input id="emailGroup_confirmedEmail" type="text" name="emailGroup.confirmedEmail" value="@regForm("emailGroup.confirmedEmail").value"/>
+                                                <span class="help-block align-error">@{
+                                                    regForm("emailGroup.confirmedEmail").error.map { error => messages.messages(error.message) }
+                                                }</span>
+                                                <span class="help-block align-error">@{
+                                                    regForm("emailGroup").error.map { error => messages.messages(error.message) }
+                                                }</span>
                                             </div>
                                         </div>
                                             <!-- End Text input element -->
@@ -101,6 +127,9 @@
                                                             <option value="@day._1">@day._2</option>
                                                         }
                                                     </select>
+                                                    <span class="help-block align-error">@{
+                                                        regForm("dob.birthDay").error.map { error => messages.messages(error.message) }
+                                                    }</span>
                                                 </div>
 
                                             </div>
@@ -114,7 +143,9 @@
                                                             <option value="@month._1">@month._2</option>
                                                         }
                                                     </select>
-                                                    <span class="help-block align-error"></span>
+                                                    <span class="help-block align-error">@{
+                                                        regForm("dob.birthMonth").error.map { error => messages.messages(error.message) }
+                                                    }</span>
                                                 </div>
 
                                             </div>
@@ -130,6 +161,12 @@
                                                                 <option value="@year._1">@year._2</option>
                                                             }
                                                         </select>
+                                                        <span class="help-block align-error">@{
+                                                            regForm("dob.birthYear").error.map { error => messages.messages(error.message) }
+                                                        }</span>
+                                                        <span class="help-block align-error">@{
+                                                            regForm("dob").error.map { error => messages.messages(error.message) }
+                                                        }</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,11 +174,13 @@
                                             <!-- Begin Text input element -->
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-12">
                                             <div class="quform-input">
-                                                <input id="terms" type="checkbox" class="reqtext" name="terms"><span class="quform-required" style="color: #FF0000;">
+                                                <input id="terms" type="checkbox" class="reqtext" name="isAgree" value="true" ><span class="quform-required" style="color: #FF0000;">
                                                 *</span> <span class="info-text">
                                                 I confirm that I have read and agree to the terms and conditions
                                                 set out in this promotional offer.</span>
-
+                                                <span class="help-block align-error">@{
+                                                    regForm("isAgree").error.map { error => messages.messages(error.message) }
+                                                }</span>
                                             </div>
                                         </div>
 
@@ -167,10 +206,11 @@
                                             <!-- End Submit button -->
                                     </div>
                                         <!-- / row -->
-                                </div>
-                                    <!-- / quform-elements -->
+                                    }
+                        </div>
+                                <!-- / quform-elements -->
 
-                            </form>
+
                                 <!-- end quform -->
 
                         </div>
@@ -193,10 +233,14 @@
 
 
     }
-    </script>
-    <
-    script
-    type = "text/javascript" >
+    <script type="text/javascript">
+        var correctCaptcha = function (response) {
+            if (response) {
+                $("#captcha").parent().find('span').remove();
+            }
+        };
+   </script>
+    <script type = "text/javascript" >
             $(document).ready(function () {
                 $(".scrollTo").off('click').removeClass('scrollTo').addClass('redirectBack');
                 $('.redirectBack').on('click', startIt);
@@ -206,10 +250,15 @@
                 }
             });
 
-    var correctCaptcha = function (response) {
-        if (response) {
-            $("#captcha").parent().find('span').remove();
-        }
-    };
+            var correctCaptcha = function (response) {
+                if (response) {
+                    $("#captcha").parent().find('span').remove();
+                }
+            };
 </script>
+<script>
+        $('.page-outer').removeClass('active');
+        $('#register').addClass('active');
+</script>
+
 
