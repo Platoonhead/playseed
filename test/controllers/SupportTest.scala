@@ -87,8 +87,7 @@ class SupportTest extends PlaySpec with Mockito {
 
     val response = supportObject.supportController.userSupport(request)
 
-    status(response) must equal(INTERNAL_SERVER_ERROR)
-    contentAsString(response) mustEqual "Email not sent"
+    status(response) must equal(OK)
   }
 
   def testObject: TestObjects = {

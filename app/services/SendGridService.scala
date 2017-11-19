@@ -53,8 +53,8 @@ object SendGridService {
 
 class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi) {
 
-  private val subject = "Z. Alexander Brown Song Download"
-  private val fromName = "Z. Alexander Brown"
+  private val subject = "Hills Bros Cappuccino 'Capp The Night'"
+  private val fromName = "Hills Bros. Cappuccino"
   private val fromEmail = "Support@receiptprocessor.com"
 
   def sendEmailForUpload(email: String, user: String): Option[String] = {

@@ -15,7 +15,7 @@ class SendGridServiceTest extends PlaySpecification with Mockito {
       val (sendGridObj, mockedSendGrid, mockedMessageApi) = testObject
 
       val emailBody =
-        """{"from":{"name":"Z. Alexander Brown","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
+        """{"from":{"name":"Hills Bros. Cappuccino","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
 
       val mockedResponse = new Response(200, "Email send successfully!", new java.util.HashMap[String, String]())
       when(mockedMessageApi("email.subject")(Lang("en"))) thenReturn "This is for testing purpose"
@@ -32,13 +32,12 @@ class SendGridServiceTest extends PlaySpecification with Mockito {
       request.body must contain(emailBody)
       result must be equalTo Some("200")
     }
-
-
+    
     "send email when receipt is approved" in {
       val (sendGridObj, mockedSendGrid, mockedMessageApi) = testObject
 
       val emailBody =
-        """{"from":{"name":"Z. Alexander Brown","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
+        """{"from":{"name":"Hills Bros. Cappuccino","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
 
       val mockedResponse = new Response(200, "Email send successfully!", new java.util.HashMap[String, String]())
       when(mockedSendGrid.api(any[Request])) thenReturn mockedResponse
@@ -60,7 +59,7 @@ class SendGridServiceTest extends PlaySpecification with Mockito {
       val (sendGridObj, mockedSendGrid, mockedMessageApi) = testObject
 
       val emailBody =
-        """{"from":{"name":"Z. Alexander Brown","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
+        """{"from":{"name":"Hills Bros. Cappuccino","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
 
       val mockedResponse = new Response(200, "Email send successfully!", new java.util.HashMap[String, String]())
       when(mockedMessageApi("email.subject")(Lang("en"))) thenReturn "This is for testing purpose"
@@ -82,7 +81,7 @@ class SendGridServiceTest extends PlaySpecification with Mockito {
       val (sendGridObj, mockedSendGrid, mockedMessageApi) = testObject
 
       val emailBody =
-        """{"from":{"name":"Z. Alexander Brown","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
+        """{"from":{"name":"Hills Bros. Cappuccino","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
 
       val mockedResponse = new Response(200, "Email send successfully!", new java.util.HashMap[String, String]())
       when(mockedMessageApi("email.subject")(Lang("en"))) thenReturn "This is for testing purpose"
@@ -103,7 +102,7 @@ class SendGridServiceTest extends PlaySpecification with Mockito {
       val (sendGridObj, mockedSendGrid, mockedMessageApi) = testObject
 
       val emailBody =
-        """{"from":{"name":"Z. Alexander Brown","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
+        """{"from":{"name":"Hills Bros. Cappuccino","email":"Support@receiptprocessor.com"}""".stripMargin.replaceAll("\n", "")
 
       val mockedResponse = new Response(200, "Email send successfully!", new java.util.HashMap[String, String]())
       when(mockedMessageApi("email.subject")(Lang("en"))) thenReturn "This is for testing purpose"

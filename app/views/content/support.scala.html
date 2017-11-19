@@ -1,9 +1,8 @@
 @(support: Form[forms.SupportForm])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
-
-@moreScript={
+    @import helper._
+@moreScript = {
 
 }
-
 @main("Hills bros cappuccino", footerScripts = moreScript) {
     <div id="wrapper" class="content-wrapper pages mt">
         <div class="container space-y-t-h space-y-b">
@@ -11,7 +10,28 @@
                 <div id="home" class="container space-y-t">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <h1 class="section-header">Support Form<span class="underline animated" data-animation="fullWidth"></span></h1>
+                            <h1 class="section-header">
+                                Support Form<span class="underline animated" data-animation="fullWidth"></span></h1>
+                        </div>
+                        <div class="row">
+                        @if(support.hasGlobalErrors) {
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 alert alert-danger fade in" style="text-align: center !important;">
+                                <button id="flashBtn" type="button" class="close btn-danger" data-dismiss="alert">&times;</button>
+                                <strong>Something Went Wrong! </strong>@support.globalError.map(_.message)
+                            </div>
+                            <div class="col-md-3"></div>
+                        }
+                        </div>
+                        <div class="row">
+                        @if(flash.get("success").nonEmpty) {
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 alert alert-success fade in" style="text-align: center !important;">
+                                <button id="flashBtn" type="button" class="close btn-success" data-dismiss="alert">&times;</button>
+                                <strong>Success! </strong>@flash.get("success").fold("")(message => message)
+                            </div>
+                            <div class="col-md-3"></div>
+                        }
                         </div>
                             <!-- / col-md-12 -->
                     </div>
@@ -22,41 +42,52 @@
                 <div class="container padding-y">
                     <div class="row">
                         <div class="quform-outer">
-                            <form class="quform form-overlay" action="quform/process.php" method="post" enctype="multipart/form-data" onclick="">
-                                <div class="quform-inner">
-                                    <div class="quform-elements">
-                                        <div class="row">
-                                            <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
-                                                <label for="name">Name <span class="quform-required">*</span></label>
-                                                <div class="quform-input linewidth">
-                                                    <input id="name" type="text" name="name" />
-                                                </div>
+                        @helper.form(action = routes.Support.userSupport(), args = 'name -> "email-reg-submit-form", 'id -> "my-form", 'class -> "support-form") {
+                            @CSRF.formField
+                            <div class="quform-inner">
+                                <div class="quform-elements">
+                                    <div class="row">
+                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
+                                            <label for="name">Name <span class="quform-required">*</span></label>
+                                            <div class="quform-input linewidth">
+                                                <input id="name" type="text" name="name" value="@support("name").value"/>
+                                                <span class="help-block align-error">@{
+                                                    support("name").error.map { error => messages.messages(error.message) }
+                                                }</span>
                                             </div>
+                                        </div>
 
-                                            <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
-                                                <label for="email">Email address <span class="quform-required">*</span></label>
-                                                <div class="quform-input linewidth">
-                                                    <input id="email" type="text" name="email" />
-                                                </div>
+                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
+                                            <label for="email">Email address <span class="quform-required">*</span></label>
+                                            <div class="quform-input linewidth">
+                                                <input id="email" type="text" name="email" value="@support("email").value"/>
+                                                <span class="help-block align-error">@{
+                                                    support("email").error.map { error => messages.messages(error.message) }
+                                                }</span>
                                             </div>
+                                        </div>
 
-                                            <div class="quform-overlay quform-element clearfix quform-element-textarea quform-huge col-md-12">
-                                                <label for="message">Message <span class="quform-required">*</span></label>
-                                                <div class="quform-input address-linewidth">
-                                                    <textarea id="message" name="message"></textarea>
-                                                </div>
+                                        <div class="quform-overlay quform-element clearfix quform-element-textarea quform-huge col-md-12">
+                                            <label for="message">Message <span class="quform-required">*</span></label>
+                                            <div class="quform-input address-linewidth">
+                                                <textarea id="message" name="message">@support("message").value</textarea>
+                                                <span class="help-block align-error">@{
+                                                    support("message").error.map { error => messages.messages(error.message) }
+                                                }</span>
                                             </div>
+                                        </div>
 
-                                            <div class="quform-submit-overlay col-md-12 clearfix">
-                                                <div class="quform-submit-inner">
-                                                    <button type="submit" value="Send" class="btn-main redbtn"><span>submit</span></button>
-                                                </div>
-                                                <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
+                                        <div class="quform-submit-overlay col-md-12 clearfix">
+                                            <div class="quform-submit-inner">
+                                                <button type="submit" value="Send" class="btn-main redbtn"><span>
+                                                    submit</span></button>
                                             </div>
+                                            <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                        }
 
                         </div>
                     </div>
@@ -75,6 +106,6 @@
     </div>
 }
 <script>
-$('.page-outer').removeClass('active');
-$('#support').addClass('active');
+        $('.page-outer').removeClass('active');
+        $('#support').addClass('active');
 </script>
