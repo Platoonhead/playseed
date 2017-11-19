@@ -5,6 +5,7 @@ GET         /register                controllers.Application.register
 POST        /savecontestent          controllers.Registration.saveContestant
 
 GET         /login                   controllers.Application.login
+POST        /login                   controllers.Login.login
 
 GET         /upload                  controllers.Application.upload
 

@@ -34,8 +34,7 @@ class Application @Inject()(controllerComponent: ControllerComponents,
     if (sessionStateString.equals("")) {
       Redirect(routes.Application.register())
     } else {
-      val user = Json.parse(sessionStateString).validate[Profile].get
-      Ok(views.html.content.upload(Some(user)))
+      Ok(views.html.content.upload())
     }
   }
 

@@ -1,0 +1,27 @@
+@(loginForm: Form[String])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
+
+@moreScripts = {
+
+}
+
+@login(loginForm)
+
+<script>
+var message  ="It appears that you have not registered for this program yet. You will need to register in order to participate";
+var success = "OOps!";
+if (swal == 'undefined') {
+    alert(message);
+    window.location.replace("/register");
+} else {
+    swal({
+        title: success,
+        text: message,
+        type: "error",
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "OK",
+        allowOutsideClick: false
+    }).then(function() {
+        window.location.replace("/register");
+    });
+}
+</script>

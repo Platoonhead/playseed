@@ -548,8 +548,6 @@ class RegistrationTest extends PlaySpec with Mockito {
   }
 
   def getMockedObject: TestObjects = {
-
-
     val mockedBlockListRepository = mock[BlockListRepository]
     val mockedUserProfileRepository = mock[UserProfileRepository]
     val mockedPlatformBridgeService = mock[PlatformBridgeService]

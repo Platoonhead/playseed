@@ -1,8 +1,7 @@
 package controllers
 
-import javax.inject.{Inject, Named}
+import javax.inject.Inject
 
-import akka.actor.ActorRef
 import forms.{User, UserForm}
 import models._
 import org.joda.time.DateTime
@@ -45,7 +44,7 @@ class Registration @Inject()(controllerComponent: ControllerComponents,
         Future.successful(BadRequest(views.html.content.register(formWithError)))
       },
       data => {
-        val userEmail = data.email.email.trim
+        val userEmail = data.email.email.trim.toLowerCase
         val remoteIp = request.remoteAddress
         val time = getPacificTime
         val messages: Messages = controllerComponent.messagesApi.preferred(request)
