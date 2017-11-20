@@ -8,8 +8,8 @@ import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 import slick.lifted.ProvenShape
 import slick.lifted.ProvenShape.proveShapeOf
-import scala.concurrent.ExecutionContext.Implicits.global
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 case class Profile(id: Long,
@@ -61,10 +61,10 @@ trait UserProfileReadRepositoryImpl extends UserProfileReadRepository {
   import profile.api._
 
   def findByEmail(email: String): Future[Option[Profile]] =
-    db.run(userProfileQuery.filter(_.email.toLowerCase === email.toLowerCase).result.headOption)
+    db.run(userProfileQuery.filter(profile => profile.email.toLowerCase === email.toLowerCase && profile.suspended === false).result.headOption)
 
   def findByProfileId(profileId: Long): Future[Option[Profile]] =
-    db.run(userProfileQuery.filter(_.id === profileId).result.headOption)
+    db.run(userProfileQuery.filter(profile => profile.id === profileId && profile.suspended === false).result.headOption)
 }
 
 trait UserProfileRepositoryTable extends HasDatabaseConfigProvider[JdbcProfile] {

@@ -32,3 +32,6 @@ registration.ineligible = You are ineligible to participate on this program.
 registration.suspicious = Your actions have been deemed suspicious.
 error.event.ingest = Event could not ingest
 error.access.token = Access token not found
+
+validation.login.blocked = Login restricted for the provided email.
+receipt.uploaded.message = You have already submitted a receipt today, please try again tomorrow

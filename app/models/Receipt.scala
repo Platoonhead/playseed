@@ -8,6 +8,7 @@ import org.joda.time.DateTime
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 import slick.lifted.ProvenShape.proveShapeOf
+import utilities.Util._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -130,9 +131,13 @@ trait ReceiptReadRepositoryImpl extends ReceiptReadRepository {
     db.run(receiptQuery.filter(receipt => receipt.email === email).size.result) map (_ > 0)
 
   def shouldSubmit(profileId: Long): Future[Boolean] = {
+    val time = getPacificTime
+
     val futureResult = db.run(receiptQuery.filter(receipt =>
       receipt.profileId === profileId &&
-        receipt.status === "approved").size.result)
+        receipt.day === time.dayOfMonth.get &&
+        receipt.month === time.monthOfYear.get &&
+        receipt.year === time.year.get).size.result)
 
     futureResult map { result =>
       if (result < 1) true else false

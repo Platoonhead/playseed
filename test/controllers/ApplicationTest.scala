@@ -56,7 +56,7 @@ class ApplicationTest extends PlaySpec with Mockito {
 
       when(controller.user.userSupportForm) thenReturn supportForm
 
-      val result = controller.applicationController.login(FakeRequest().withCSRFToken)
+      val result = controller.applicationController.support(FakeRequest().withCSRFToken)
       status(result) must equal(OK)
     }
 
