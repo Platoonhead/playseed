@@ -12,7 +12,7 @@ import play.api.libs.ws.ahc.{AhcWSResponse, StandaloneAhcWSResponse}
 import play.api.libs.ws.{WSClient, WSResponse}
 import play.api.mvc._
 import play.shaded.ahc.org.asynchttpclient.request.body.multipart.{FilePart, StringPart}
-import play.shaded.ahc.org.asynchttpclient.{AsyncCompletionHandler, Request => AHCRequest, RequestBuilder}
+import play.shaded.ahc.org.asynchttpclient.{AsyncCompletionHandler, RequestBuilder, Request => AHCRequest}
 import services.{EventSenderService, SendGridService}
 import utilities.{ConfigLoader, Util}
 
@@ -46,34 +46,42 @@ class Receipts @Inject()(controllerComponent: ControllerComponents,
     val userProfile = securedImplicit.userProfile
 
     val userInfo = securedImplicit.p3UserInfo
-    try {
-      val encodedResponse = request.body.asMultipartFormData.get.file("enc")
-      val file = encodedResponse.map(_.ref.path)
-      val contentType = request.body.asMultipartFormData.get.files.map(_.contentType).toString()
-      getAccessToken.fold {
-        Logger.error(s"Access token not found for receipt uploaded by email address ${userProfile.email}")
-        Future.successful(InternalServerError(message("error.access.token")))
-      } { accessToken =>
-        val (hashedFileName, mimeType): (String, String) = fileGenerate(contentType)
-        val ahcRequest = buildUploadRequest(userProfile, accessToken, domainUrl, userInfo.p3UserId, hashedFileName, mimeType, file.get.toFile)
 
-        executeRequest(ahcRequest) map { wsResponse =>
-          val responseStatus = ocrResponseHandler(wsResponse, userProfile, hashedFileName, userInfo.p3UserId, request.remoteAddress)(request)
-          responseStatus match {
-            case 200 =>
-              Logger.info(s"Receipt uploaded successfully for user ${userInfo.p3UserId} response ${wsResponse.body}")
-              Ok("s").addingToSession("receipt" -> "uploaded")
-            case 401 => Logger.info(s"Duplicate receipt uploaded by user ${userInfo.p3UserId} response ${wsResponse.body}")
-              Ok("d")
-            case _   => Logger.info(s"Got some error for receipt uploaded by user ${userInfo.p3UserId} response ${wsResponse.body}")
-              Ok("f")
+    receiptRepository.shouldSubmit(userProfile.id).flatMap {
+      case true  =>
+        try {
+          val encodedResponse = request.body.asMultipartFormData.get.file("enc")
+          val file = encodedResponse.map(_.ref.path)
+          val contentType = request.body.asMultipartFormData.get.files.map(_.contentType).toString()
+          getAccessToken.fold {
+            Logger.error(s"Access token not found for receipt uploaded by email address ${userProfile.email}")
+            Future.successful(InternalServerError(message("error.access.token")))
+          } { accessToken =>
+            val (hashedFileName, mimeType): (String, String) = fileGenerate(contentType)
+            val ahcRequest = buildUploadRequest(userProfile, accessToken, domainUrl, userInfo.p3UserId, hashedFileName, mimeType, file.get.toFile)
+
+            executeRequest(ahcRequest) map { wsResponse =>
+              val responseStatus = ocrResponseHandler(wsResponse, userProfile, hashedFileName, userInfo.p3UserId, request.remoteAddress)(request)
+              responseStatus match {
+                case 200 =>
+                  Logger.info(s"Receipt uploaded successfully for user ${userInfo.p3UserId} response ${wsResponse.body}")
+                  Ok("s").addingToSession("receipt" -> "uploaded")
+                case 401 => Logger.info(s"Duplicate receipt uploaded by user ${userInfo.p3UserId} response ${wsResponse.body}")
+                  Ok("d")
+                case _   => Logger.info(s"Got some error for receipt uploaded by user ${userInfo.p3UserId} response ${wsResponse.body}")
+                  Ok("f")
+              }
+            }
           }
+        } catch {
+          case ex: Exception =>
+            Logger.error(s"Got an exception while processing receipt for user ${userProfile.email}, ex: $ex")
+            Future.successful(InternalServerError(message("common.error.message")))
         }
-      }
-    } catch {
-      case ex: Exception =>
-        Logger.error(s"Got an exception while processing receipt for user ${userProfile.email}, ex: $ex")
-        Future.successful(InternalServerError(message("common.error.message")))
+      case false =>
+        Logger.info(s"User has already submitted receipt for today with email ${userProfile.email}")
+        Future.successful(Ok("u")
+          .addingToSession("receipt" -> "uploaded"))
     }
   }
 

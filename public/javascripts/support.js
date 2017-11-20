@@ -1,8 +1,7 @@
-function Element(targetId, type, validators, requiredLength, errorMsg) {
+function Element(targetId, type, validators, errorMsg) {
     this.targetId = targetId;
     this.type = type;
     this.validators = validators;
-    this.requiredLength = requiredLength;
     this.errorMsg = errorMsg;
 }
 
@@ -10,9 +9,9 @@ var filled = true;
 
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const nameField = new Element("name", "textBox", ["filledFieldsValidator"], null, "Please enter your name.");
-const emailField = new Element("email", "textBox", ["filledFieldsValidator", "emailValidator"], null, "Please enter a valid email address.");
-const messageField = new Element("message", "textBox", ["filledFieldsValidator"], null, "The message is required.");
+const nameField = new Element("name", "textBox", ["filledFieldsValidator"], "Please enter your name.");
+const emailField = new Element("email", "textBox", ["filledFieldsValidator", "emailValidator"], "Please enter a valid email address.");
+const messageField = new Element("message", "textBox", ["filledFieldsValidator"], "The message is required.");
 
 const allFields = [nameField, emailField, messageField];
 const checkForValidEmail = [emailField];

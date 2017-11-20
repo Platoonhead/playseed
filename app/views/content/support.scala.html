@@ -1,7 +1,7 @@
 @(support: Form[forms.SupportForm])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
     @import helper._
 @moreScript = {
-
+    <script type="text/javascript" src="@routes.Assets.versioned("javascripts/support.js")"></script>
 }
 @main("Hills bros cappuccino", footerScripts = moreScript) {
     <div id="wrapper" class="content-wrapper pages mt">

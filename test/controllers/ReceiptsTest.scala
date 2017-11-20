@@ -76,6 +76,7 @@ class ReceiptsTest extends PlaySpec with Mockito {
     when(receiptObjects.securedImplicit.p3UserInfo()(any[Request[AnyContent]])) thenReturn p3UserInfo
     when(receiptObjects.securedImplicit.userProfile()(any[Request[AnyContent]])) thenReturn profile
     when(receiptObjects.config.load) thenReturn platformConfig
+    when(receiptObjects.receiptRepository.shouldSubmit(profile.id)) thenReturn Future(true)
     when(receiptObjects.wsClient.url(any[String])) thenReturn mockedWSRequest
     when(mockedWSRequest.get) thenReturn Future.successful(mockedResponse)
     when(receiptObjects.messagesApi("error.access.token")) thenReturn "Access token not found"
@@ -83,6 +84,31 @@ class ReceiptsTest extends PlaySpec with Mockito {
     val res = receiptObjects.receiptController.receiveReceipt()(request)
 
     status(res) must equal(INTERNAL_SERVER_ERROR)
+  }
+
+  "should not able to upload if submitted for today" in {
+    val receiptObjects = testObjects
+
+    val parameters = Map[String, Seq[String]]("" -> Seq(""), "" -> Seq(""))
+    val tempFile = Files.SingletonTemporaryFileCreator.create("multipartBody", "TemporaryFile")
+    val files = Seq[FilePart[TemporaryFile]](FilePart("enc", "enc", Some("multipart/form-data"), tempFile))
+    val multipartBody = MultipartFormData(parameters, files, Seq[BadPart]())
+
+    val mockedResponse = mock[WSResponse]
+    val mockedWSRequest = mock[WSRequest]
+
+    val request = FakeRequest().withMultipartFormDataBody(multipartBody)
+
+    when(receiptObjects.securedImplicit.p3UserInfo()(any[Request[AnyContent]])) thenReturn p3UserInfo
+    when(receiptObjects.securedImplicit.userProfile()(any[Request[AnyContent]])) thenReturn profile
+    when(receiptObjects.config.load) thenReturn platformConfig
+    when(receiptObjects.receiptRepository.shouldSubmit(profile.id)) thenReturn Future(false)
+    when(receiptObjects.wsClient.url(any[String])) thenReturn mockedWSRequest
+    when(mockedWSRequest.get) thenReturn Future.successful(mockedResponse)
+
+    val res = receiptObjects.receiptController.receiveReceipt()(request)
+
+    status(res) must equal(OK)
   }
 
   "should be able to upload a new receipt" in {
@@ -118,6 +144,7 @@ class ReceiptsTest extends PlaySpec with Mockito {
     when(receiptObjects.p3UserInfoRepository.fetchByEmail(profile.email)) thenReturn Future(Some(P3UserInfo(1L, "p3_userId", profile.email, date)))
     when(receiptObjects.eventSender.insertUploadEvent("p3_userId", "test")) thenReturn true
     when(receiptObjects.sendGridService.sendEmailForUpload("text@example.com", "test")) thenReturn Some("200")
+    when(receiptObjects.receiptRepository.shouldSubmit(profile.id)) thenReturn Future(true)
     val response = receiptObjects.receiptController.receiveReceipt()(request)
 
     status(response) must equal(OK)
