@@ -21,7 +21,7 @@ class SessionHelper {
     }
   }
 
-  def hasReceiptUploaded(implicit request: RequestHeader): Option[String] = {
+  def isReceiptUploaded(implicit request: RequestHeader): Option[String] = {
     val sessionStateString = request.session.get("receipt").getOrElse("")
 
     if (sessionStateString.equals("")) {
