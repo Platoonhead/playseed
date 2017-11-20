@@ -8,8 +8,7 @@ class UserProfileRepositoryTest extends Specification {
 
   val dob = "%s-%s-%s" format(1991, 9, 8)
 
-  private val userProfile = Profile(2, "firstName", "lastName", "test@example.com", DateTime.parse(dob), "address1",
-    None, "province",  "V1V1 V1", "1245678903", new DateTime(), suspended = false)
+  private val userProfile = Profile(2, "firstName", "lastName", "test@example.com", DateTime.parse(dob), new DateTime(), suspended = false)
 
   "UserProfile Repository" should {
 

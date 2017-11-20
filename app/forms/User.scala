@@ -7,7 +7,6 @@ import play.api.data.Forms._
 import play.api.data.validation.{Constraint, Invalid, Valid, ValidationError}
 import play.api.data.{Form, Mapping}
 import play.api.i18n._
-import utilities.Constants._
 
 case class SupportForm(name: String, email: String, message: String)
 
@@ -15,8 +14,12 @@ case class Email(email: String, confirmedEmail: String)
 
 case class DateOfBirth(birthDay: String, birthMonth: String, birthYear: String)
 
-case class User(email: Email, firstName: String, lastName: String, dob: DateOfBirth, address1: String, city: Option[String],
-                province: String, postalCode: String, phoneNumber: String, reCaptcha: String, isAgree: Boolean)
+case class User(email: Email,
+                firstName: String,
+                lastName: String,
+                dob: DateOfBirth,
+                reCaptcha: String,
+                isAgree: Boolean)
 
 class UserForm @Inject()(langs: Langs, val messagesApi: MessagesApi) {
   val lang: Lang = langs.availables.head
@@ -53,11 +56,6 @@ class UserForm @Inject()(langs: Langs, val messagesApi: MessagesApi) {
       "birthYear" -> text.verifying(messages("validation.birthYear.empty"), !_.isEmpty)
     )(DateOfBirth.apply)(DateOfBirth.unapply)
       .verifying(messages("validation.dateOfBirth.invalid"), dob => isValidDate(dob.birthDay.toInt, dob.birthMonth.toInt, dob.birthYear.toInt)),
-    "address1" -> text.verifying(messages("validation.address1.empty"), !_.isEmpty),
-    "city" -> optional(text),
-    "province" -> text.verifying(state),
-    "postalCode" -> text.verifying(messages("validation.invalid.postal"), zip => zip.trim.nonEmpty && zip.length == 5 && (zip forall Character.isDigit)),
-    "phoneNumber" -> text.verifying(messages("validation.home.empty"), homePhone => homePhone.length == 10),
     "g-recaptcha-response" -> text.verifying(messages("validation.captcha.error"), !_.isEmpty),
     "isAgree" -> boolean.verifying(messages("validation.isAgree.empty"), isAgree => isAgree.equals(true))
   )(User.apply)(User.unapply))
@@ -84,17 +82,6 @@ class UserForm @Inject()(langs: Langs, val messagesApi: MessagesApi) {
         .map(_ => Valid)
         .getOrElse(Invalid(ValidationError(messages("validation.email.matchError"))))
     }
-  }
-
-  private def state: Constraint[String] = Constraint[String]("constraint.province") {
-    case state: String if state.isEmpty                                                                                       =>
-      Invalid(ValidationError(messages("validation.state.empty")))
-    case state: String if STATES_NOT_PERMITTED.contains(state)                                                                =>
-      Invalid(ValidationError(messages("validation.state.notPermitted")))
-    case state: String if !STATES_REGISTER_WITH_PURCHASE.contains(state) && !STATES_REGISTER_WITHOUT_PURCHASE.contains(state) =>
-      Invalid(ValidationError(messages("validation.state.invalid")))
-    case _                                                                                                                    =>
-      Valid
   }
 
   private def isValidDate(date: Int, month: Int, year: Int): Boolean = {

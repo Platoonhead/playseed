@@ -17,11 +17,6 @@ case class Profile(id: Long,
                    lastName: String,
                    email: String,
                    dateOfBirth: DateTime,
-                   address1: String,
-                   city: Option[String],
-                   province: String,
-                   postalCode: String,
-                   phoneNumber: String,
                    created: DateTime,
                    suspended: Boolean)
 
@@ -89,22 +84,12 @@ trait UserProfileRepositoryTable extends HasDatabaseConfigProvider[JdbcProfile] 
 
     def dateOfBirth: Rep[DateTime] = column[DateTime]("dob")
 
-    def address1: Rep[String] = column[String]("address1")
-
-    def city: Rep[Option[String]] = column[Option[String]]("city")
-
-    def province: Rep[String] = column[String]("province")
-
-    def postalCode: Rep[String] = column[String]("postal_code")
-
-    def phoneNumber: Rep[String] = column[String]("phone_number")
-
     def created: Rep[DateTime] = column[DateTime]("created")
 
     def suspended: Rep[Boolean] = column[Boolean]("suspended")
 
-    def * : ProvenShape[Profile] = (id, firstName, lastName, email, dateOfBirth, address1, city, province, // scalastyle:ignore
-      postalCode, phoneNumber, created, suspended) <> (Profile.tupled, Profile.unapply)
+    def * : ProvenShape[Profile] = (id, firstName, lastName, email, dateOfBirth, // scalastyle:ignore
+      created, suspended) <> (Profile.tupled, Profile.unapply)
   }
 
 }

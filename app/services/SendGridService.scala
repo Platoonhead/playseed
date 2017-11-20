@@ -84,8 +84,8 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
     }
   }
 
-  def sendEmailForApproval(email: String, user: String, rewardCode: String): Option[String] = {
-    val body = SendGridService.approvalBody(user, rewardCode)
+  def sendEmailForApproval(email: String, user: String): Option[String] = {
+    val body = SendGridService.approvalBody(user)
 
     val from = new Email(fromEmail)
     from.setName(fromName)

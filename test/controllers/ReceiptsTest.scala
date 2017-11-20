@@ -38,13 +38,11 @@ class ReceiptsTest extends PlaySpec with Mockito {
   val date = Util.getPacificTime
 
   private val p3UserInfo = P3UserInfo(1, "p3UserId", "test@example.com", new DateTime(0L))
-  val user = User(Email("test@example.com", "test@example.com"), "test", "last", DateOfBirth("8", "9", "1991"),
-    "address1", Some("address2"), "V1V 1V1", "1234567891", "province",  "recaptcha", isAgree = true)
+  val user = User(Email("test@example.com", "test@example.com"), "test", "last", DateOfBirth("8", "9", "1991"), "recaptcha", isAgree = true)
   val dateInString = "%s-%s-%s" format(user.dob.birthYear, user.dob.birthMonth, user.dob.birthDay)
   val dob = DateTime.parse(dateInString)
 
-  private val profile = Profile(1, user.firstName, user.lastName, user.email.email, dob, "address1", None, "province",  "V1V1 V1",
-    "1245678903", date, suspended = false)
+  private val profile = Profile(1, user.firstName, user.lastName, user.email.email, dob, date, suspended = false)
   val jsonStringProfile = Json.toJson(profile).toString()
 
   private val platformConfig =

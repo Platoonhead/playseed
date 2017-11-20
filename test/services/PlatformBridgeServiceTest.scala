@@ -37,8 +37,7 @@ class PlatformBridgeServiceTest extends PlaySpecification with Mockito {
   private val dob = "%s-%s-%s" format(1991, 9, 8)
   private val date = Util.getPacificTime
 
-  private val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", DateTime.parse(dob),
-    "address1", None, "province",  "V1V1 V1", "1245678903", date, suspended = false)
+  private val userProfile = Profile(1, "firstname_test", "lastname_test", "test@example.com", DateTime.parse(dob), date, suspended = false)
   private val p3UserInfo = P3UserInfo(0, "6424c63afe85e23875bf2a749cc6e6cd", "test@examaple.com", new DateTime(1470633591))
 
   "Platform Bridge Service" should {
