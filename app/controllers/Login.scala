@@ -54,10 +54,10 @@ class Login @Inject()(controllerComponent: ControllerComponents,
 
                     receiptRepository.shouldSubmit(userProfile.id).flatMap {
                       case true  =>
-                        Future.successful(Ok(views.html.content.upload()).withSession("userInfo" -> jsonStringProfile))
+                        Future.successful(Redirect(routes.Application.upload()).withSession("userInfo" -> jsonStringProfile))
                       case false =>
                         Logger.info(s"User has already submitted receipt for today with email ${userProfile.email}")
-                        Future.successful(Ok(views.html.content.upload())
+                        Future.successful(Redirect(routes.Application.upload())
                           .withSession("userInfo" -> jsonStringProfile, "receipt" -> "uploaded"))
                     }
                   case None           =>
