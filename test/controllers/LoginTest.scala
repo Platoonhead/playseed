@@ -130,7 +130,7 @@ class LoginTest extends PlaySpec with Mockito {
 
     val result = controller.loginController.login(request)
 
-    status(result) must equal(OK)
+    status(result) must equal(SEE_OTHER)
   }
 
   "should login user" in {
@@ -155,7 +155,7 @@ class LoginTest extends PlaySpec with Mockito {
 
     val result = controller.loginController.login(request)
 
-    status(result) must equal(OK)
+    status(result) must equal(SEE_OTHER)
   }
 
   def getMockedObject: TestObjects = {
