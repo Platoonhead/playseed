@@ -40,7 +40,7 @@
                                             <div id="warn-msg" class="alert alert-warning fade in center-text">
                                                 <button id="flashBtn" type="button" class="close btn-warning" data-dismiss="alert">&times;</button>
                                                 <strong>Warning! </strong>
-                                                You have already submitted a receipt today, please try again tomorrow
+                                                You have already submitted a receipt today, please try again tomorrow.
                                             </div>
                                         }
                                         case None => {}
@@ -58,9 +58,6 @@
                                         </div>
                                     }
                                 </div>
-
-
-
 
                                 <div class="row">
                                     <div class="col-md-12 text-center">
@@ -83,7 +80,7 @@
                                             <div class="row">
                                                 @SessionHelper.isReceiptUploaded match {
                                                     case Some(receipt) => {
-                                                        <a href="javascript:void(0);" class="btn-redbtn small make-pointer" value="Upload" id="receipt-upload">UPLOAD</a>
+                                                        <a href="javascript:void(0);" class="btn-main redbtn make-pointer" value="Upload" id="receipt-upload">UPLOAD</a>
                                                     }
                                                     case None => {
                                                         <a href="javascript:void(0);" class="btn-main redbtn make-pointer" value="Upload" id="save-canvas-test">UPLOAD</a>
