@@ -10,9 +10,9 @@ object SendGridService {
     s"""<p><span style="font-family: Cambria;"><span style="font-size: 12px;">Hi $username,</span></span></p>
        |<p><span style="font-family: Cambria;"><span style="font-size: 12px;">Thank you for submitting your receipt.
        |Great news - it has been successfully uploaded and submitted. Please allow 24-48 hours for us to validate your
-       |submission. To continue your participation, visit us at: </span></span><a href="http://www.zabwine.com">
-       |<span style="font-size: 12px; font-family: Cambria;">www.</span><span style="font-family: Calibri, serif;">
-       |<span style="font-size: 12px;">zabwine.com</span></span></a>.</p>
+       |submission. To continue your participation, visit us at: </span></span><a href="">
+       |<span style="font-size: 12px; font-family: Cambria;"></span><span style="font-family: Calibri, serif;">
+       |<span style="font-size: 12px;"></span></span></a>.</p>
        |<p><span style="font-size: 12px; font-family: Cambria;">Cheers!</span></p>
      """
       .stripMargin
@@ -21,9 +21,9 @@ object SendGridService {
     s"""<p><span style="font-family: Cambria;"><span style="font-size: 12px;">Hi $username,</span></span></p>
        |<p><span style="font-family: Cambria;"><span style="font-size: 12px;">Thank you for submitting your receipt to
        |for the Z.Alexander Brown Song Download. Unfortunately, an error has occurred and we are unable to process your
-       |receipt at this time. Please re-submit at </span></span><a href="http://www.zabwine.com">
-       |<span style="font-size: 12px; font-family: Cambria;">www.</span><span style="font-family: Calibri, serif;">
-       |<span style="font-size: 12px;">zabwine.com</span></span></a>.</p>
+       |receipt at this time. Please re-submit at </span></span><a href="">
+       |<span style="font-size: 12px; font-family: Cambria;"></span><span style="font-family: Calibri, serif;">
+       |<span style="font-size: 12px;"></span></span></a>.</p>
        |<span style="font-size: 12px; font-family: Cambria;">We are sorry for the inconvenience this has caused. If you
        |have any questions, please let us know.</span>
      """
@@ -35,8 +35,8 @@ object SendGridService {
        |for a </span></span> <span style="color: #000000;"><span style="font-family: Cambria;">
        |<span style="font-size: 12px;"> <strong>Zac Brown Band song download.</strong></span></span></span>
        |<span style="font-family: Calibri, serif;"><span style="font-size: 12px;"> Visit us at </span></span>
-       |<a href="http://www.zabwine.com"><span style="font-size: 12px; font-family: Cambria;">
-       |  www.</span><span style="font-family: Calibri,serif;"><span style="font-size: 12px;">zabwine.com</span></span></a>
+       |<a href=""><span style="font-size: 12px; font-family: Cambria;">
+       | </span><span style="font-family: Calibri,serif;"><span style="font-size: 12px;"></span></span></a>
        |<span style="font-family: Cambria;"><span style="font-size: 12px;">for next steps.</span></span>&nbsp;</p>
        |<p><span style="font-size: 12px; font-family: Cambria;">Cheers!</span></p>
      """.stripMargin

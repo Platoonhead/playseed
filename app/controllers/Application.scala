@@ -8,7 +8,6 @@ import play.api.i18n.{I18nSupport, Messages, MessagesImpl}
 import play.api.libs.json._
 import play.api.mvc._
 
-
 class Application @Inject()(controllerComponent: ControllerComponents,
                             userForm: UserForm)
   extends AbstractController(controllerComponent) with I18nSupport {

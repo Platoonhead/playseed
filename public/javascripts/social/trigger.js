@@ -95,6 +95,7 @@ $(document).ready(function () {
                 },
                 error: function (data) {
                     setTimeout($.unblockUI, 0);
+                    $('#warn-msg').remove();
                     $(".upload-msg").empty();
                     $(".upload-msg").append('<div class="row flashing-position"> <div class="alert alert-danger fade in">' +
                         '<button id="flashBtn" type="button" class="close btn-warning" data-dismiss="alert">&times;</button>' +

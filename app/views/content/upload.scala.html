@@ -1,99 +1,108 @@
 @()(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
+    @import utilities.SessionHelper
+    @moreScript = {
+        <script src="@routes.Assets.versioned("javascripts/libs/dropzone.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/dnd/dndUpload.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/social/trigger.js")" type="text/javascript"></script>
+    }
 
-@moreScript={
-    <script src="@routes.Assets.versioned("javascripts/libs/dropzone.js")" type="text/javascript"></script>
-    <script src="@routes.Assets.versioned("javascripts/dnd/dndUpload.js")" type="text/javascript"></script>
-    <script src="@routes.Assets.versioned("javascripts/social/trigger.js")" type="text/javascript"></script>
-    <script type="text/javascript">
-            var myDropzone = new Dropzone("div#dropzone-area", { url: "foo.html"})
-    </script>
-}
-
-@main("Hills bros cappuccino", footerScripts = moreScript) {
-    <div id="wrapper" class="content-wrapper pages">
-
-        <div class="container space-y-t space-y-b">
-            <div class="row space-y-t-s">
-                <div class = "col-md-3"></div>
-                <div class = "col-md-6 text-center upload-msg"></div>
-            </div>
-            <div class="row">
-                @flash.get("warning").map { message =>
-                    <div class="alert alert-warning fade in center-text">
-                        <button id="flashBtn" type="button" class="close btn-warning" data-dismiss="alert">&times;</button>
-                        <strong>Warning! </strong>@message
+    @main("Capp the Night Sweepstakes – Celebrate the awards season in style.", footerScripts = moreScript) {
+        <div id="wrapper" class="content-wrapper pages mt">
+            <div class="container space-y-t-h">
+                <div class="row">
+                    <div id="home" class="container space-y-t">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h1 class="section-header">
+                                    Upload Receipt Form<span class="underline animated" data-animation="fullWidth"></span></h1>
+                            </div>
+                                <!-- / col-md-12 -->
+                        </div>
+                            <!-- / row -->
                     </div>
-                }
-            @flash.get("error").map { message =>
-                <div class="alert alert-danger fade in center-text">
-                    <button id="flashBtn" type="button" class="close btn-danger" data-dismiss="alert">&times;</button>
-                    <strong>Error! </strong>@message
-                </div>
-            }
-                @flash.get("success").map { message =>
-                    <div class="alert alert-success fade in center-text">
-                        <button id="flashBtn" type="button" class="close btn-success" data-dismiss="alert">&times;</button>
-                        <strong>Success! </strong>@message
-                    </div>
-                }
-                <div class="col-md-12 text-center">
-                    <h1 class="section-header">
-                        Submit your receipt<span class="underline animated" data-animation="fullWidth"></span></h1>
-                </div>
-                    <!-- / col-md-12 -->
-            </div>
-                <!-- / row -->
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <p align="center">
-                        Take a clear photo of your entire receipt. Receipt must include store name and date of purchase in the picture prior to submitting.</p>
-                </div>
-                    <!-- / col-md-12 -->
-            </div>
-                <!-- / row -->
+                        <!-- / container -->
 
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="uplaod-area">
-                        <span id="image-data-holder1" style="display: none ;"></span>
-                        <span id="user-info-json" style="display: none ;"> </span>
-                        <span id="check-can-pull" style="display: none ;">no</span>
-                        <form id="" class="file-preview upload clickable-area-upload" action="/receiveReceipt">
-                            <div class="main-area ">
-                                <div class="receipt-upload-area main-bg-upload-area shadow-upload-form auto-margin-area">
-                                    <div class="box_upld_pc upload-content upload" id="dropzone-area" >
-                                        <span class="txtMsg">Click on the box to select the image of your receipt</span>
-                                    </div>
+                    <div class="container padding-y">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <p class="info-text">
+                                    Take a clear photo of your entire receipt. Receipt must include store name and date of purchase in the picture prior to submitting.</p>
+                                <div class="row">
+                                    <div class = "col-md-3"></div>
+                                    <div class = "col-md-6 text-center upload-msg"></div>
+                                    <div class = "col-md-3"></div>
+                                    @SessionHelper.isReceiptUploaded match {
+                                        case Some(receipt) => {
+                                            <div id="warn-msg" class="alert alert-warning fade in center-text">
+                                                <button id="flashBtn" type="button" class="close btn-warning" data-dismiss="alert">&times;</button>
+                                                <strong>Warning! </strong>
+                                                You have already submitted a receipt today, please try again tomorrow
+                                            </div>
+                                        }
+                                        case None => {}
+                                    }
+                                    @flash.get("error").map { message =>
+                                        <div class="alert alert-danger fade in center-text">
+                                            <button id="flashBtn" type="button" class="close btn-danger" data-dismiss="alert">&times;</button>
+                                            <strong>Error! </strong>@message
+                                        </div>
+                                    }
+                                    @flash.get("success").map { message =>
+                                        <div class="alert alert-success fade in center-text">
+                                            <button id="flashBtn" type="button" class="close btn-success" data-dismiss="alert">&times;</button>
+                                            <strong>Success! </strong>@message
+                                        </div>
+                                    }
+                                </div>
+                                <div class="uplaod-area">
+                                    <form id="" class="file-preview upload clickable-area-upload" action="/receiveReceipt">
+                                        <div class="main-area ">
+                                            <div class="receipt-upload-area main-bg-upload-area shadow-upload-form auto-margin-area">
+                                                <div class="box_upld_pc upload-content upload" id="dropzone-area">
+                                                    <span class="txtMsg">
+                                                        Click on the box to select the image of your receipt</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row action-trigger text-center">
+
+                                            <div class="row">
+                                                @SessionHelper.isReceiptUploaded match {
+                                                    case Some(receipt) => {
+                                                        <a class="btn-redbtn small make-pointer" value="Upload" id="receipt-upload">UPLOAD</a>
+                                                    }
+                                                    case None => {
+                                                        <a class="btn-main redbtn make-pointer" value="Upload" id="save-canvas-test">UPLOAD</a>
+                                                    }
+                                                }
+                                                <a href="@routes.Application.upload()" class="btn-main redbtn redirectTo" data-size="large">
+                                                    Reset </a>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="action-trigger">
-                        <div class="row">
-                            <a href="javascript:void(0);" class="btn-main small make-pointer" value="Upload" id="save-canvas-test">Upload</a>
-                            <a href="@routes.Application.upload()" class="btn-main small redirectTo" data-size="large">
-                                Reset </a>
                         </div>
+
                     </div>
+                        <!-- end container -->
                 </div>
-                    <!-- / col-md-12 -->
+                    <!-- end parallax-base -->
             </div>
-                <!-- / row -->
+                <!-- end row -->
 
-                <!-- / row -->
         </div>
-    </div>
+    }
+    <script type="text/javascript">
 
-}
-<script type="text/javascript">
-
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $('.scrollTo').off('click');
             $(".scrollTo").removeClass('scrollTo').addClass('redirectBack');
             $('.redirectBack').on('click', startIt);
 
             function startIt(e) {
-                window.location = "/"+ $(this).attr("href")
+                window.location = "/" + $(this).attr("href")
             }
 
         });

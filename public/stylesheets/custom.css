@@ -150,6 +150,7 @@ h2 {
 
 #terms,
 #isAgreeArea,
+#isAgree,
 #noTerms {
     float: left;
     width: 18px;
@@ -766,4 +767,8 @@ body {
 .footer {
     position: relative;
     clear: both;
+}
+
+.align-error{
+    color:red;
 }
