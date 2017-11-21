@@ -1,6 +1,9 @@
 @(loginForm: Form[String])(implicit request: RequestHeader, flash: play.api.mvc.Flash, messages: MessagesProvider)
     @import helper._
-    @main("Capp the Night Sweepstakes – Celebrate the awards season in style.") {
+    @moreScript = {
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/login.js")"></script>
+    }
+    @main("Capp the Night Sweepstakes – Celebrate the awards season in style.", footerScripts = moreScript) {
 
         <div id="wrapper" class="content-wrapper pages mt">
             <div class="container space-y-t-h">
