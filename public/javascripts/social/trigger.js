@@ -10,7 +10,7 @@ $(document).ready(function () {
     var success = "";
 
     success = "Congratulations";
-    receiptMessage = "You have reached the limit for the promotion.";
+    receiptMessage = "You have already submitted a receipt today, please try again tomorrow.";
     imageSizeAlert = "Please select your image by clicking on the box below.";
     errorMessage = "Something went wrong, please try again.";
     duplicateReceipt = "It appears that this receipt has been submitted before. Please submit a new receipt.";
