@@ -7,48 +7,37 @@ import play.api.i18n.MessagesApi
 
 object SendGridService {
   def receiptUploadBody(username: String): String =
-    s"""<p><span style="font-family: Cambria;"><span style="font-size: 12px;">Hi $username,</span></span></p>
-       |<p><span style="font-family: Cambria;"><span style="font-size: 12px;">Thank you for submitting your receipt.
-       |Great news - it has been successfully uploaded and submitted. Please allow 24-48 hours for us to validate your
-       |submission. To continue your participation, visit us at: </span></span><a href="">
-       |<span style="font-size: 12px; font-family: Cambria;"></span><span style="font-family: Calibri, serif;">
-       |<span style="font-size: 12px;"></span></span></a>.</p>
-       |<p><span style="font-size: 12px; font-family: Cambria;">Cheers!</span></p>
-     """
+    s"""<p class="western">Hi $username,</p>
+        |<p class="western"><strong>AWESOME, YOUR RECEIPT HAS BEEN RECEIVED </strong></p>
+        |<p class="western">Thank you for participating in the Hills Bros. #CappTheNight Promotion.
+        |Your receipt has been successfully uploaded and submitted. Please allow 24-48 hours for us to validate your submission.
+        |Upload more receipts at <a href="cappthenightsweepstakes.com/login">cappthenightsweepstakes.com/login</a>
+        |to increase your chances of winning!</p>"""
       .stripMargin
 
   def receiptRejectionBody(username: String): String =
-    s"""<p><span style="font-family: Cambria;"><span style="font-size: 12px;">Hi $username,</span></span></p>
-       |<p><span style="font-family: Cambria;"><span style="font-size: 12px;">Thank you for submitting your receipt to
-       |for the Z.Alexander Brown Song Download. Unfortunately, an error has occurred and we are unable to process your
-       |receipt at this time. Please re-submit at </span></span><a href="">
-       |<span style="font-size: 12px; font-family: Cambria;"></span><span style="font-family: Calibri, serif;">
-       |<span style="font-size: 12px;"></span></span></a>.</p>
-       |<span style="font-size: 12px; font-family: Cambria;">We are sorry for the inconvenience this has caused. If you
-       |have any questions, please let us know.</span>
-     """
+    s"""<p class="western">Hi $username,</p>
+        |<p class="western"><strong>OH NO! HOUSTON, WE HAVE A PROBLEM </strong></p>
+        |<p class="western">Thank you for submitting your receipt to the Hills Bros. #CappTheNight Promotion,
+        |but unfortunately, an error has occurred and we are unable to process your receipt at this time. Please re-submit at
+        |<a href="cappthenightsweepstakes.com/login">cappthenightsweepstakes.com/login</a>. We are sorry for the inconvenience
+        |this has caused. If you have any questions, please contact us at <a href="support@receiptprocessor.com">support@receiptprocessor.com</a>.</p>"""
       .stripMargin
 
   def registrationBody(username: String): String =
-    s"""<p><span style="font-family: Cambria;"><span style="font-size: 12px;">Hi $username,</span></span></p>
-       |<p class="western"><span style="font-family: Cambria;"><span style="font-size: 12px;">Thank you for registering
-       |for a </span></span> <span style="color: #000000;"><span style="font-family: Cambria;">
-       |<span style="font-size: 12px;"> <strong>Zac Brown Band song download.</strong></span></span></span>
-       |<span style="font-family: Calibri, serif;"><span style="font-size: 12px;"> Visit us at </span></span>
-       |<a href=""><span style="font-size: 12px; font-family: Cambria;">
-       | </span><span style="font-family: Calibri,serif;"><span style="font-size: 12px;"></span></span></a>
-       |<span style="font-family: Cambria;"><span style="font-size: 12px;">for next steps.</span></span>&nbsp;</p>
-       |<p><span style="font-size: 12px; font-family: Cambria;">Cheers!</span></p>
-     """.stripMargin
+    s"""<p class="western">Hi $username,</p>
+        |<p class="western"><strong>BRAVO, YOU ARE REGISTERED</strong></p>
+        |<p class="western">Thank you for registering for the Hills Bros. #CappTheNight Promotion.
+        |If you want to enter our sweepstakes, please either buy one of our products and upload your receipt to
+        |<a href="cappthenightsweepstakes.com/login">cappthenightsweepstakes.com/login</a> or X (how do they enter without
+        |purhcase). Upload more receipts to increase your chances of winning!</p>""".stripMargin
 
   def approvalBody(username: String, link: String = ""): String =
-    s"""<p>Hi $username,</p>
-       |<p>Thank you for participating in our Z. Alexander Brown song download. Your submission has been validated;
-       |please use the below link to access your song.</p>
-       |<p><a href="$link">$link</a></p>
-       |<p>Tip: If using an iOS device &ndash; please download directly to your PC.</p>
-       |<p>Cheers!</p>
-     """.stripMargin
+    s"""<p class="western">Hi $username,</p>
+        |<p class="western"><strong>HURRAY! YOU HAVE ENTERED THE SWEEPSTAKES </strong></p>
+        |<p class="western">Your receipt has been validated and you are one step closer to winning your awesome  $$2,500
+        |shopping spree! Thank you for your participation! To increase your chances of winning, upload more receipts at
+        |<a href="cappthenightsweepstakes.com/login">cappthenightsweepstakes.com/login</a>.</p>""".stripMargin
 }
 
 class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi) {
