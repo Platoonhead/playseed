@@ -6,38 +6,54 @@ import play.api.Logger
 import play.api.i18n.MessagesApi
 
 object SendGridService {
-  def receiptUploadBody(username: String): String =
-    s"""<p class="western">Hi $username,</p>
-        |<p class="western"><strong>AWESOME, YOUR RECEIPT HAS BEEN RECEIVED </strong></p>
-        |<p class="western">Thank you for participating in the Hills Bros. #CappTheNight Promotion.
-        |Your receipt has been successfully uploaded and submitted. Please allow 24-48 hours for us to validate your submission.
-        |Upload more receipts at <a href="cappthenightsweepstakes.com/login">cappthenightsweepstakes.com/login</a>
-        |to increase your chances of winning!</p>"""
+  def receiptUploadBody: String =
+    """<p><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">We Got It!</span></span></span></p>
+      |<p><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">Your receipt has successfully uploaded and
+      |you&rsquo;ve gained 10 entries to our #CappTheNight Sweepstakes. We need 24-48 hours to validate your receipt, so keep an eye on your inbox and we will
+      |let you know when it's been cleared. Keep uploading receipts at&nbsp;</span></span></span><a href="http://cappthenight.3kudos.com/login"><span style="color: #1155cc;">
+      |<span style="font-family: Calibri, serif;"><span style="font-size: small;"><u>CappTheNight.3kudos.com/login</u></span></span></span></a><span style="color: #000000;">
+      |<span style="font-family: Calibri, serif;"><span style="font-size: small;">&nbsp;</span></span></span><span style="color: #222222;"><span style="font-family: Calibri, serif;">
+      |<span style="font-size: small;">to earn even more entries.</span></span></span></p>""".stripMargin
+
+  def receiptRejectionBody: String =
+    """<p><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">Oh No, Something Went Wrong!</span></span></span></p>
+      |<p><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">Thank you for trying,
+      |but we were unable to process your receipt. Please take a new picture and upload it again at&nbsp;</span></span></span>
+      |<a href="http://cappthenight.3kudos.com/login"><span style="color: #1155cc;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">
+      |<u>CappTheNight.3kudos.com/login</u></span></span></span></a><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">
+      |.</span></span></span></p>
+      |<p><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">We are here to help,
+      |so if you have any problems or questions, email us at&nbsp;</span></span></span><a href="mailto:support@receiptprocessor.com"><span style="color: #1155cc;">
+      |<span style="font-family: Calibri, serif;"><span style="font-size: small;"><u>support@receiptprocessor.com</u></span></span></span></a><span style="color: #222222;">
+      |<span style="font-family: Calibri, serif;"><span style="font-size: small;">.</span></span></span></p>"""
       .stripMargin
 
-  def receiptRejectionBody(username: String): String =
-    s"""<p class="western">Hi $username,</p>
-        |<p class="western"><strong>OH NO! HOUSTON, WE HAVE A PROBLEM </strong></p>
-        |<p class="western">Thank you for submitting your receipt to the Hills Bros. #CappTheNight Promotion,
-        |but unfortunately, an error has occurred and we are unable to process your receipt at this time. Please re-submit at
-        |<a href="cappthenightsweepstakes.com/login">cappthenightsweepstakes.com/login</a>. We are sorry for the inconvenience
-        |this has caused. If you have any questions, please contact us at <a href="support@receiptprocessor.com">support@receiptprocessor.com</a>.</p>"""
-      .stripMargin
+  def registrationBody: String =
+    """<p><span style="font-family: 'Times New Roman', serif;"><span style="color: #222222;"><span style="font-family: Calibri, serif;">
+      |<span style="font-size: small;">You&rsquo;re Good To Go!<br /></span></span></span></span></p>
+      |<p><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">You are all set to upload a
+      |receipt and enter our #CappTheNight Sweepstakes! To enter, purchase one of our qualifying Hills Bros. Cappuccino products and upload your
+      |receipt to&nbsp;</span></span></span><a href="http://cappthenight.3kudos.com/login"><span style="color: #1155cc;"><span style="font-family: Calibri, serif;">
+      |<span style="font-size: small;"><u>CappTheNight.3kudos.com/login</u></span></span></span></a><span style="color: #000000;"><span style="font-family: 'Times New Roman', serif;">
+      |<span style="font-size: small;">. You can also</span></span></span><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">
+      |&nbsp;visit&nbsp;</span></span></span><a href="http://www.cappthenightsweepstakes.com/"><span style="color: #1155cc;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">
+      |<u>http://www.cappthenightsweepstakes.com/</u></span></span></span></a><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">
+      |&nbsp;daily for additional ways to earn sweepstake entries. For each receipt you upload, you will earn 10 entries to win a $$2,500 shopping spree and Hills Bros. Cappuccino prize pack. 1
+      |receipt upload per day. </span></span></span></p>""".stripMargin
 
-  def registrationBody(username: String): String =
-    s"""<p class="western">Hi $username,</p>
-        |<p class="western"><strong>BRAVO, YOU ARE REGISTERED</strong></p>
-        |<p class="western">Thank you for registering for the Hills Bros. #CappTheNight Promotion.
-        |If you want to enter our sweepstakes, please either buy one of our products and upload your receipt to
-        |<a href="cappthenightsweepstakes.com/login">cappthenightsweepstakes.com/login</a> or X (how do they enter without
-        |purhcase). Upload more receipts to increase your chances of winning!</p>""".stripMargin
-
-  def approvalBody(username: String, link: String = ""): String =
-    s"""<p class="western">Hi $username,</p>
-        |<p class="western"><strong>HURRAY! YOU HAVE ENTERED THE SWEEPSTAKES </strong></p>
-        |<p class="western">Your receipt has been validated and you are one step closer to winning your awesome  $$2,500
-        |shopping spree! Thank you for your participation! To increase your chances of winning, upload more receipts at
-        |<a href="cappthenightsweepstakes.com/login">cappthenightsweepstakes.com/login</a>.</p>""".stripMargin
+  def approvalBody: String =
+    """<p><span style="color: #222222;"><span style="font-family: Calibri, serif;">
+      |<span style="font-size: small;">Congratulations! You&rsquo;ve Earned 10 Entries!</span></span></span></p>
+      |<p><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">
+      |Your receipt has been approved!&nbsp; To earn additional entries, upload
+      |more receipts at&nbsp;</span></span></span><a href="http://cappthenight.3kudos.com/login"><span style="color: #1155cc;">
+      |<span style="font-family: Calibri, serif;"><span style="font-size: small;">
+      |<u>CappTheNight.3kudos.com/login</u></span></span></span></a><span style="color: #000000;"><span style="font-family: Calibri, serif;">
+      |<span style="font-size: small;">&nbsp;or visit&nbsp;</span>
+      |</span></span><a href="http://www.cappthenightsweepstakes.com/"><span style="color: #1155cc;"><span style="font-family: Calibri, serif;">
+      |<span style="font-size: small;"><u>http://www.cappthenightsweepstakes.com/</u>
+      |</span></span></span></a><span style="color: #222222;"><span style="font-family: Calibri, serif;"><span style="font-size: small;">.
+      |</span></span></span></p>""".stripMargin
 }
 
 class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi) {
@@ -47,7 +63,8 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
   private val fromEmail = "Support@receiptprocessor.com"
 
   def sendEmailForUpload(email: String, user: String): Option[String] = {
-    val body = SendGridService.receiptUploadBody(user)
+    val subject = "You’ve uploaded your Hills Bros. Cappuccino receipt."
+    val body = views.html.content.email(user, SendGridService.receiptUploadBody).toString()
     val from = new Email(fromEmail)
     from.setName(fromName)
 
@@ -74,7 +91,8 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
   }
 
   def sendEmailForApproval(email: String, user: String): Option[String] = {
-    val body = SendGridService.approvalBody(user)
+    val subject = "You are entered for our #CappTheNight Sweepstakes!"
+    val body = views.html.content.email(user, SendGridService.approvalBody).toString()
 
     val from = new Email(fromEmail)
     from.setName(fromName)
@@ -102,7 +120,8 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
   }
 
   def sendEmailForRejection(email: String, user: String): Option[String] = {
-    val body = SendGridService.receiptRejectionBody(user)
+    val subject = "We’re having some technical difficulties, please try again"
+    val body = views.html.content.email(user, SendGridService.receiptRejectionBody).toString()
 
     val from = new Email(fromEmail)
     from.setName(fromName)
@@ -130,13 +149,14 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
   }
 
   def sendEmailForRegistration(email: String, user: String): Option[String] = {
-    val body = SendGridService.registrationBody(user)
+    val subject = "Thank you for registering!"
+    val emailTemplate = views.html.content.email(user, SendGridService.registrationBody).toString()
 
     val from = new Email(fromEmail)
     from.setName(fromName)
     val to = new Email(email)
 
-    val content = new Content("text/html", body)
+    val content = new Content("text/html", emailTemplate)
     val mail = new Mail(from, subject, to, content)
 
     val request = new Request
