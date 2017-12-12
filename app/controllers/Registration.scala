@@ -93,7 +93,15 @@ class Registration @Inject()(controllerComponent: ControllerComponents,
         eventRepository.store(Event(0, userProfile.id, "signin", Some(remoteIp), time)).flatMap {
           case true  =>
             eventSender.insertLoginEvent(userInfo.p3UserId, userProfile.firstName + " " + userProfile.lastName)
-            Future.successful(Redirect(routes.Application.upload()).withSession("userInfo" -> jsonStringProfile))
+
+            receiptRepository.shouldSubmit(userProfile.id).flatMap {
+              case true  =>
+                Future.successful(Redirect(routes.Application.upload()).withSession("userInfo" -> jsonStringProfile))
+              case false =>
+                Logger.info(s"User has already submitted receipt for today with email ${userProfile.email}")
+                Future.successful(Redirect(routes.Application.upload())
+                  .withSession("userInfo" -> jsonStringProfile, "receipt" -> "uploaded"))
+            }
           case false =>
             Logger.error(s"Could not store sign in event in events table for user profile id ${userProfile.id}")
             Future.successful(Redirect(routes.Application.register()).flashing("error" -> messages("common.error.message")))

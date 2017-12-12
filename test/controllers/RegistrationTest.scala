@@ -58,6 +58,7 @@ class RegistrationTest extends PlaySpec with Mockito {
       Future(Some(P3UserInfo(123456L, "p3User_Id", profile.email, DateTime.now)))
     when(controller.eventSender.insertLoginEvent("p3User_Id", profile.firstName + " " + profile.lastName)) thenReturn true
     when(controller.eventRepository.store(any[Event])) thenReturn Future(true)
+    when(controller.receiptRepository.shouldSubmit(0)) thenReturn Future(true)
 
     val result = controller.registrationController.saveContestant(request)
     status(result) must equal(SEE_OTHER)
@@ -94,6 +95,7 @@ class RegistrationTest extends PlaySpec with Mockito {
     when(controller.eventRepository.store(any[Event])) thenReturn Future(true)
     when(controller.messagesApi("receipt.uploaded.message")) thenReturn "You have already submitted a receipt today, please try again tomorrow"
     when(controller.eventRepository.store(any[Event])) thenReturn Future(true)
+    when(controller.receiptRepository.shouldSubmit(0)) thenReturn Future(true)
 
     val result = controller.registrationController.saveContestant(request)
 
