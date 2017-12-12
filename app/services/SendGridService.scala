@@ -30,20 +30,18 @@ object SendGridService {
       |</span></span></span></p>""".stripMargin
 
   def registrationBody: String =
-    """<p style="text-align: left;"><span style="font-family: 'Times New Roman', serif;"><span style="color: #222222;">
-      |<span style="font-family: open sans,sans-serif;"> <span style="font-size: small;">You&rsquo;re Good To Go!</span></span></span></span></p>
+    """<p style="text-align: left;"><span style="font-family: 'Times New Roman', serif;"><span style="color: #222222;"> <span style="font-family: open sans,sans-serif;">
+      |<span style="font-size: small;">You&rsquo;re Good To Go!</span></span></span></span></p>
       |<p style="text-align: left;"><span style="color: #222222;"><span style="font-family: open sans,sans-serif;"><span style="font-size: small;">
-      |You are all set to upload a receipt and enter our #CappTheNight Sweepstakes! To enter, purchase one of our qualifying Hills Bros. Cappuccino products
-      |and upload your receipt to&nbsp;</span></span></span><a href="http://cappthenight.3kudos.com/login"><span style="color: #1155cc;">
-      |<span style="font-family: open sans,sans-serif;"><span style="font-size: small;"><u>CappTheNight.3kudos.com/login</u></span></span>
-      |</span></a><span style="color: #000000;"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: small;">.
-      |</span></span></span><span style="color: #000000;"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: small;">
-      |You can also</span></span></span><span style="color: #222222;"><span style="font-family: open sans,sans-serif;"><span style="font-size: small;">
-      |&nbsp;visit&nbsp;</span></span></span><a href="http://www.cappthenightsweepstakes.com/"><span style="color: #1155cc;">
-      |<span style="font-family: open sans,sans-serif;"><span style="font-size: small;"><u>http://www.cappthenightsweepstakes.com/</u></span>
-      |</span></span></a><span style="color: #222222;"><span style="font-family: open sans,sans-serif;"><span style="font-size: small;">
-      |&nbsp;daily for additional ways to earn sweepstake entries. For each receipt you upload, you will earn 10 entries to win a $2,500
-      |shopping spree and Hills Bros. Cappuccino prize pack. 1 receipt upload per day. </span></span></span></p>""".stripMargin
+      |You are all set to upload a receipt and enter our #CappTheNight Sweepstakes! To enter, purchase one of our qualifying Hills Bros. Cappuccino products and upload your receipt to&nbsp;
+      |</span></span></span><a href="http://cappthenight.3kudos.com/login"><span style="color: #1155cc;"> <span style="font-family: open sans,sans-serif;"><span style="font-size: small;">
+      |<u>CappTheNight.3kudos.com/login</u></span></span></span></a><span style="color: #000000;"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: small;">. </span>
+      |</span></span><span style="color: #000000;"><span style="font-family: 'Times New Roman', serif;"><span style="font-size: small;"> You can also</span></span></span><span style="color: #222222;">
+      |<span style="font-family: open sans,sans-serif;"><span style="font-size: small;"> &nbsp;visit&nbsp;</span></span></span><a href="http://www.cappthenightsweepstakes.com/">
+      |<span style="color: #1155cc;"> <span style="font-family: open sans,sans-serif;"><span style="font-size: small;"><u>http://www.cappthenightsweepstakes.com/</u></span> </span>
+      |</span></a><span style="color: #222222;"><span style="font-family: open sans,sans-serif;">
+      |<span style="font-size: small;"> &nbsp;daily for additional ways to earn sweepstake entries. For each receipt you upload, you will earn 10 entries to win a $2,500 shopping spree and Hills Bros
+      |. Cappuccino prize pack. 1 receipt upload per day. </span></span></span></p>""".stripMargin
 
   def approvalBody: String =
     """<p><span style="color: #222222;"><span style="font-family: open sans,sans-serif;"> <span style="font-size: small;">
