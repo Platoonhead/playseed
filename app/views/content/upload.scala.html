@@ -37,25 +37,31 @@
                                     <div class = "col-md-3"></div>
                                     @SessionHelper.isReceiptUploaded match {
                                         case Some(receipt) => {
-                                            <div id="warn-msg" class="alert alert-warning fade in center-text">
+                                            <div class = "col-md-3"></div>
+                                            <div id="warn-msg" class="col-md-6 alert alert-warning fade in center-text txt-center">
                                                 <button id="flashBtn" type="button" class="close btn-warning" data-dismiss="alert">&times;</button>
                                                 <strong>Warning! </strong>
                                                 You have already submitted a receipt today, please try again tomorrow.
                                             </div>
+                                            <div class = "col-md-3"></div>
                                         }
                                         case None => {}
                                     }
                                     @flash.get("error").map { message =>
-                                        <div class="alert alert-danger fade in center-text">
+                                        <div class = "col-md-3"></div>
+                                        <div class="col-md-6 alert alert-danger fade in center-text txt-center">
                                             <button id="flashBtn" type="button" class="close btn-danger" data-dismiss="alert">&times;</button>
                                             <strong>Error! </strong>@message
                                         </div>
+                                        <div class = "col-md-3"></div>
                                     }
                                     @flash.get("success").map { message =>
-                                        <div class="alert alert-success fade in center-text">
+                                        <div class = "col-md-3"></div>
+                                        <div class="col-md-6 alert alert-success fade in center-text txt-center">
                                             <button id="flashBtn" type="button" class="close btn-success" data-dismiss="alert">&times;</button>
                                             <strong>Success! </strong>@message
                                         </div>
+                                        <div class = "col-md-3"></div>
                                     }
                                 </div>
 
