@@ -115,18 +115,12 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
   }
 
   private def processReceipt(receiptCallback: ReceiptCallback, profile: Profile, serializedProductList: String): Future[Result] = {
-    receiptRepository.shouldSubmit(profile.id).flatMap {
-      case true  =>
-        receiptRepository.update(receiptCallback, serializedProductList) flatMap {
-          case Some(receipt) =>
-            handleApprovedEmail(profile, receipt.id)
-          case None          =>
-            Logger.error(s"Could not able to update receipt data in receipt table for user profile id ${profile.id} and receipt id ${receiptCallback.UUID}")
-            Future.successful(InternalServerError("Receipt should be updated"))
-        }
-      case false =>
-        Logger.info(s"User has already qualified for the reward for user profile id ${profile.id} and snap3 receipt id ${receiptCallback.UUID}")
-        Future.successful(Ok("already qualified"))
+    receiptRepository.update(receiptCallback, serializedProductList) flatMap {
+      case Some(receipt) =>
+        handleApprovedEmail(profile, receipt.id)
+      case None          =>
+        Logger.error(s"Could not able to update receipt data in receipt table for user profile id ${profile.id} and receipt id ${receiptCallback.UUID}")
+        Future.successful(InternalServerError("Receipt should be updated"))
     }
   }
 
