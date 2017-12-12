@@ -16,16 +16,16 @@ object SendGridService {
       |</span></p>""".stripMargin
 
   def receiptRejectionBody: String =
-    """<p><span style="color: #222222;"><span style="font-family: open sans,sans-serif;"><span style="font-size: small;"> Oh No, Something Went Wrong!</span> </span>
-      |</span></p>
+    """<p><span style="color: #222222;"><span style="font-family: open sans,sans-serif;"><span style="font-size: small;
+      |"> Oh No, Something Went Wrong!</span> </span> </span></p>
       |<p><span style="color: #222222;"><span style="font-family: open sans,sans-serif;"><span style="font-size: small;
-      |"> Thank you for trying, but we were unable to process your receipt. Please take a new picture and upload it again at&nbsp;</span> </span> </span> <a href=
-      |"http://cappthenight.3kudos.com/login"><span style="color: #1155cc;"> <span style="font-family: open sans,sans-serif;"> <span style="font-size: small;"> <u>
-      |CappTheNight.3kudos.com/login</u></span></span></span></a>.</p>
+      |"> Thank you for trying, but we were unable to process your receipt. Please take a new picture and upload it again at&nbsp;
+      |</span> </span> </span> <a href="http://cappthenight.3kudos.com/login"><span style="color: #1155cc;"> <span style="font-family: open sans,
+      |sans-serif;"> <span style="font-size: small;"> <u> CappTheNight.3kudos.com/login</u></span></span></span></a>.</p>
       |<p><span style="color: #222222;"><span style="font-family: open sans,sans-serif;"> <span style="font-size: small;
       |"> We are here to help, so if you have any problems or questions, email us at&nbsp;</span></span> </span><a href="mailto:support@receiptprocessor.com">
-      |<span style="color: #1155cc;"><span style="font-family: open sans,sans-serif;"> <span style="font-size: small;"><u>support@receiptprocessor.com</u></span>
-      |</span></span></a>.</p>""".stripMargin
+      | <span style="color: #1155cc;"><span style="font-family: open sans,sans-serif;"> <span style="font-size: small;"><u>support@receiptprocessor.com</u></span>
+      | </span></span></a>.</p>""".stripMargin
 
   def registrationBody: String =
     """<p style="text-align: left;"><span style="font-family: 'Times New Roman', serif;"> <span style=
