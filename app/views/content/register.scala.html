@@ -9,10 +9,44 @@
 
     @main("Hills-Bros-Cappuccino", headerScripts = moreScripts) {
 
-        <div id="wrapper" class="content-wrapper pages mt">
-            <div class="container space-y-t-h space-y-b">
+        <div id="wrapper" class="content-wrapper pages space-y-b">
+
+            <div id="hero" class="container space-y-t-h space-y-b">
+
+            <div id="rev_slider_38_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="cappuccino" data-source="gallery" style="margin:0px auto;background:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+            <!-- START REVOLUTION SLIDER 5.4.3.1 fullwidth mode -->
+            <div id="rev_slider_38_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.3.1">
+            <ul>
+            <!-- SLIDE  -->
+            <li data-index="rs-89" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-rotate="0" data-saveperformance="off" data-title="Slide"
+        data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+            <!-- MAIN IMAGE -->
+            <img src="@routes.Assets.versioned("images/background.jpg")" alt="" data-bgposition="center center" data-bgfit="110% 200%" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+        <!-- LAYERS -->
+
+        <!-- LAYER NR. 1 -->
+        <div class="tp-caption   tp-resizeme" id="slide-89-layer-1" data-x="center" data-hoffset="-45" data-y="center" data-voffset="" data-width="['none','none','none','none']" data-height="['none','none','none','none']" data-type="image" data-responsive_offset="on"
+        data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]' data-textAlign="['inherit','inherit','inherit','inherit']"
+        data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5;"><img src="@routes.Assets.versioned("images/cap-logo.png")" alt="" data-ww="877px" data-hh="154px" data-no-retina> </div>
+
+        <!-- LAYER NR. 2 -->
+        <div class="tp-caption   tp-resizeme" id="slide-89-layer-2" data-x="1390" data-y="-3" data-width="['none','none','none','none']" data-height="['none','none','none','none']" data-type="image" data-responsive_offset="on" data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+        data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6;"><img src="@routes.Assets.versioned("images/products.png")" alt="" data-ww="auto" data-hh="auto" data-no-retina> </div>
+
+        <!-- LAYER NR. 5 -->
+        <div class="tp-caption   tp-resizeme" id="slide-89-layer-5" data-x="122" data-y="46" data-width="['none','none','none','none']" data-height="['none','none','none','none']" data-type="image" data-responsive_offset="on" data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+        data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 9;"><img src="@routes.Assets.versioned("images/logo.png")" alt="" data-ww="400px" data-hh="229px" data-no-retina> </div>
+        </li>
+        </ul>
+        <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+            </div>
+            </div>
+            <!-- END REVOLUTION SLIDER -->
+            </div>
+
+            <div class="container">
                 <div class="row">
-                    <div id="home" class="container space-y-t">
+                    <div id="home" class="container">
                         <div class="row">
                             @flash.get("error").map { message =>
                                 <div class="alert alert-danger fade in center-text">
@@ -21,8 +55,7 @@
                                 </div>
                             }
                             <div class="col-md-12 text-center">
-                                <h1 class="section-header">
-                                    Registration Form<span class="underline animated" data-animation="fullWidth"></span></h1>
+                                <h1 class="section-header">Registration Form<span class="underline animated" data-animation="fullWidth"></span></h1>
                             </div>
                                 <!-- / col-md-12 -->
                         </div>
@@ -32,28 +65,30 @@
 
                     <div class="container padding-y">
                         <div class="quform-outer">
-                            @helper.form(action = routes.Registration.saveContestant(), args = 'name -> "email-reg-submit-form", 'id -> "my-form", 'class -> "registration-form") {
+                            @helper.form(action = routes.Registration.saveContestant(), args = 'name -> "email-reg-submit-form", 'id -> "my-form", 'class -> "quform form-overlay") {
                                 @CSRF.formField
-                                <div class="quform-elements">
+                                <div class="quform-elements">-
                                     <div class="row instruction">
-                                        <div class="col-md-12 col-sm-12 text-justify mb">
+                                        <div class="col-md-12 col-sm-12 text-center mb">
                                             <h4 class="info-header">SHOP</h4>
                                             <p class="info-text">
-                                                Purchase any Hills Bros. Cappuccino product. (Please see the <a class="support-link" href="">
-                                                Terms and Conditions</a> for more information)
+                                                Purchase any Hills Bros. Cappuccino product. (Please see the Terms and Conditions for details)
                                             </p>
 
                                             <h4 class="info-header">TAKE A PICTURE</h4>
                                             <p class="info-text">
-                                                Take a clear photo of your entire receipt with your mobile phone. Receipt must show the store name and date of purchase and qualifying purchase.</p>
+                                                Take a clear photo of your entire receipt. It must show the store name, date of purchase and qualifying purchase.
+                                            </p>
+                                            </p>
 
                                             <h4 class="info-header">REGISTER</h4>
                                             <p class="info-text">
-                                                Complete the registration form and upload a unique receipt. Your upload will be validated and a confirmation email will be sent to the email address provided within 24-48 hours. * </p>
+                                                Complete the registration form including name, email and birthdate.
+                                            </p>
 
                                             <h4 class="info-header">UPLOAD</h4>
                                             <p class="info-text">
-                                                To upload a photo of your receipt, you must first complete the registration form. Once you click “submit form” at the bottom of the registration form, you will then be prompted to upload a photo of your receipt.
+                                                Upload a unique receipt image. We will validate and send you a confirmation email within 24-48 hours. *
                                             </p>
                                         </div>
                                     </div>
@@ -63,7 +98,7 @@
                                             <!-- Begin Text input element -->
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
                                             <label for="fname">First Name <span class="quform-required">*</span></label>
-                                            <div class="quform-input linewidth">
+                                            <div class="quform-input r-linewidth">
                                                 <input id="firstName" type="text" name="firstName" value="@regForm("firstName").value"/>
                                                 <span class="help-block align-error">@{
                                                     regForm("firstName").error.map { error => messages.messages(error.message) }
@@ -75,7 +110,7 @@
                                             <!-- Begin Text input element -->
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
                                             <label for="lname">Last Name <span class="quform-required">*</span></label>
-                                            <div class="quform-input linewidth">
+                                            <div class="quform-input r-linewidth">
                                                 <input id="lastName" type="text" name="lastName" value="@regForm("lastName").value"/>
                                                 <span class="help-block align-error">@{
                                                     regForm("lastName").error.map { error => messages.messages(error.message) }
@@ -87,7 +122,7 @@
                                             <!-- Begin Text input element -->
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
                                             <label for="email">Email address <span class="quform-required">*</span></label>
-                                            <div class="quform-input linewidth">
+                                            <div class="quform-input r-linewidth">
                                                 <input id="emailGroup_email" type="text" name="emailGroup.email" value="@regForm("emailGroup.email").value"/>
                                                 <span class="help-block align-error">@{
                                                     regForm("emailGroup.email").error.map { error => messages.messages(error.message) }
@@ -103,7 +138,7 @@
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
                                             <label for="email_confirm">
                                                 Confirm your email address <span class="quform-required">*</span></label>
-                                            <div class="quform-input linewidth">
+                                            <div class="quform-input r-linewidth">
                                                 <input id="emailGroup_confirmedEmail" type="text" name="emailGroup.confirmedEmail" value="@regForm("emailGroup.confirmedEmail").value"/>
                                                 <span class="help-block align-error">@{
                                                     regForm("emailGroup.confirmedEmail").error.map { error => messages.messages(error.message) }
@@ -116,13 +151,13 @@
                                             <!-- End Text input element -->
                                         <div class="register">
 
-                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-4">
+                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-3">
                                                 <label for="dob_birthDay">
-                                                    Select your birth date <span class="quform-required">*</span></label>
+                                                    birth date <span class="quform-required">*</span></label>
 
                                                 <div class="quform-select mtselect">
                                                     <select id="dob_birthDay" name="dob.birthDay" class="dob-select">
-                                                        <option value="">Select your birth date</option>
+                                                        <option value="">select</option>
                                                         @for(day <- Constants.GEN_DATE) {
                                                             <option value="@day._1">@day._2</option>
                                                         }
@@ -133,12 +168,12 @@
                                                 </div>
 
                                             </div>
-                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-4">
+                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-3">
                                                 <label for="dob_birthMonth">
-                                                    Select your birth month <span class="quform-required">*</span></label>
+                                                    birth month <span class="quform-required">*</span></label>
                                                 <div class="quform-select mtselect">
                                                     <select id="dob_birthMonth" name="dob.birthMonth" class="dob-select">
-                                                        <option value="">Select your birth month</option>
+                                                        <option value="">select</option>
                                                         @for(month <- Constants.genMonth(messages.messages.lang)) {
                                                             <option value="@month._1">@month._2</option>
                                                         }
@@ -150,13 +185,13 @@
 
                                             </div>
 
-                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-4">
+                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-3">
                                                 <label for="dob_birthYear">
-                                                    Select your birth year <span class="quform-required">*</span></label>
+                                                    birth year <span class="quform-required">*</span></label>
                                                 <div class="quform-select mtselect">
                                                     <div class="form-group">
                                                         <select id="dob_birthYear" name="dob.birthYear" class="dob-select">
-                                                            <option value="">Select your birth year</option>
+                                                            <option value="">select</option>
                                                             @for(year <- Constants.GEN_YEAR) {
                                                                 <option value="@year._1">@year._2</option>
                                                             }
@@ -195,8 +230,8 @@
                                             <!-- End Text input element -->
 
                                             <!-- Begin Submit button -->
-                                        <div class="quform-submit-overlay col-md-12 clearfix">
-                                            <div class="quform-submit-inner">
+                                        <div class="col-md-12">
+                                            <div class="text-center">
                                                 <button type="submit" value="Send" class="btn-main redbtn">
                                                     <span>submit </span>
                                                 </button>
@@ -218,9 +253,6 @@
                     </div>
                         <!-- end container -->
                 </div>
-                <p class="condition">
-                    * If you do not see an email confirmation or offer code after 48 hours and you have checked your inbox, spam or junk folders, please email <a class="support-link" href="mailto:support@@receiptprocessor.com">
-                    support@@receiptprocessor.com</a>.</p>
 
                     <!-- end parallax-base -->
             </div>
@@ -262,3 +294,40 @@
 </script>
 
 
+<script>
+    $('.page-outer').removeClass('active');
+    $('#login').addClass('active');
+    var revapi38,
+        tpj = jQuery;
+    tpj(document).ready(function() {
+        if (tpj("#rev_slider_38_1 ").revolution == undefined) {
+            revslider_showDoubleJqueryError("#rev_slider_38_1 ");
+        } else {
+            revapi38 = tpj("#rev_slider_38_1 ").show().revolution({
+                sliderType: "hero ",
+                jsFileLocation: "//products.3tierlogic.com/slidereditor/revslider/public/assets/js/ ",
+                sliderLayout: "fullwidth ",
+                dottedOverlay: "none ",
+                delay: 9000,
+                navigation: {},
+                visibilityLevels: [1240, 1024, 778, 480],
+                gridwidth: 1980,
+                gridheight: 300,
+                lazyType: "none ",
+                shadow: 0,
+                spinner: "spinner0 ",
+                autoHeight: "off ",
+                disableProgressBar: "on ",
+                hideThumbsOnMobile: "off ",
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                debugMode: false,
+                fallbacks: {
+                    simplifyAll: "off ",
+                    disableFocusListener: false,
+                }
+            });
+        }
+    });
+</script>

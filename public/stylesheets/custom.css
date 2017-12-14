@@ -832,3 +832,11 @@ label {
 #birthdate>span:hover {
     cursor: pointer;
 }
+/*Dev css*/
+#isAgree {
+    width: auto;
+}
+
+.condition>a :hover {
+    text-decoration: underline !important;
+}

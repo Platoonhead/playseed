@@ -3,6 +3,11 @@ var clickMethod = {};
 (function($) {
 
     jQuery(document).ready(function() {
+        if(window.location.pathname == '/register') {
+            $('#footer-line').css("display", "block")
+        } else {
+            $('#footer-line').css("display", "none")
+        }
 
         /*********************************************
          -    DEVICES DETECTING    -
