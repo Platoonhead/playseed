@@ -3,8 +3,6 @@ var clickMethod = {};
 (function($) {
 
     jQuery(document).ready(function() {
-        $('nav li a').removeClass("active");
-
         if(window.location.pathname == '/register') {
             $('#footer-line').css("display", "block")
         } else {
