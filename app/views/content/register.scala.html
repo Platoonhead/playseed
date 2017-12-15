@@ -55,7 +55,7 @@
                                 </div>
                             }
                             <div class="col-md-12 text-center">
-                                <h1 class="section-header">Registration Form<span class="underline animated" data-animation="fullWidth"></span></h1>
+                                <h1 class="section-header register-header">Registration Form<span class="underline animated" data-animation="fullWidth"></span></h1>
                             </div>
                                 <!-- / col-md-12 -->
                         </div>
@@ -93,7 +93,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row register-form">
 
                                             <!-- Begin Text input element -->
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-6">
@@ -155,9 +155,9 @@
                                                 <label for="dob_birthDay">
                                                     birth date <span class="quform-required">*</span></label>
 
-                                                <div class="quform-select mtselect">
+                                                <div class="quform-select">
                                                     <select id="dob_birthDay" name="dob.birthDay" class="dob-select">
-                                                        <option value="">select</option>
+                                                        <option value="">Select</option>
                                                         @for(day <- Constants.GEN_DATE) {
                                                             <option value="@day._1">@day._2</option>
                                                         }
@@ -168,12 +168,12 @@
                                                 </div>
 
                                             </div>
-                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-3">
+                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-3 select-ml">
                                                 <label for="dob_birthMonth">
                                                     birth month <span class="quform-required">*</span></label>
-                                                <div class="quform-select mtselect">
+                                                <div class="quform-select">
                                                     <select id="dob_birthMonth" name="dob.birthMonth" class="dob-select">
-                                                        <option value="">select</option>
+                                                        <option value="">Select</option>
                                                         @for(month <- Constants.genMonth(messages.messages.lang)) {
                                                             <option value="@month._1">@month._2</option>
                                                         }
@@ -185,13 +185,13 @@
 
                                             </div>
 
-                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-3">
+                                            <div class="quform-overlay quform-element clearfix quform-element-text dob col-md-3 select-ml">
                                                 <label for="dob_birthYear">
                                                     birth year <span class="quform-required">*</span></label>
-                                                <div class="quform-select mtselect">
+                                                <div class="quform-select">
                                                     <div class="form-group">
                                                         <select id="dob_birthYear" name="dob.birthYear" class="dob-select">
-                                                            <option value="">select</option>
+                                                            <option value="">Select</option>
                                                             @for(year <- Constants.GEN_YEAR) {
                                                                 <option value="@year._1">@year._2</option>
                                                             }

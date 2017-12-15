@@ -840,3 +840,11 @@ label {
 .condition>a :hover {
     text-decoration: underline !important;
 }
+
+.register-header {
+    margin-bottom: 20px !important;
+}
+
+.register-form .quform-element {
+    margin-bottom: 1.2em;
+}
