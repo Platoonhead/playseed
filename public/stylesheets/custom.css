@@ -839,8 +839,11 @@ label {
 
 .underline-h :hover {
     text-decoration: underline !important;
+    color: black !important;
 }
-
+.underline-h {
+    color: black !important;
+}
 .register-header {
     margin-bottom: 20px !important;
 }
