@@ -59,13 +59,6 @@
 			// Display the message
 			var $message = $('<div class="quform-error-message"/>');
 
-			if (showTitle !== false) {
-			    $message.append($('<div class="quform-error-title"/>').html(options.errorTitle));
-			}
-
-	        $message.append(html)
-	                .hide();
-
 	        if (options.errorPosition == 'below') {
 	            $message.insertAfter(self.$container);
 	        } else {

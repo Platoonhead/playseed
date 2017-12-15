@@ -72,7 +72,7 @@
                                         <div class="col-md-12 col-sm-12 text-center mb">
                                             <h4 class="info-header">SHOP</h4>
                                             <p class="info-text">
-                                                Purchase any Hills Bros. Cappuccino product. (Please see the Terms and Conditions for details)
+                                                Purchase any Hills Bros. Cappuccino product. (Please see the <a class="underline-h" href="">Terms and Conditions</a> for details)
                                             </p>
 
                                             <h4 class="info-header">TAKE A PICTURE</h4>
@@ -211,7 +211,7 @@
                                             <div class="quform-input">
                                                 <input id="isAgree" type="checkbox" name="isAgree" value="true" ><span class="quform-required" style="color: #FF0000;">
                                                 *</span> <span class="info-text" id="checkbox-error">
-                                                I confirm that I have read and agree to the terms and conditions
+                                                I confirm that I have read and agree to the <a class="underline-h" href="">terms and conditions</a>
                                                 set out in this promotional offer.</span>
                                                 <span class="help-block align-error">@{
                                                     regForm("isAgree").error.map { error => messages.messages(error.message) }
@@ -295,8 +295,6 @@
 
 
 <script>
-    $('.page-outer').removeClass('active');
-    $('#login').addClass('active');
     var revapi38,
         tpj = jQuery;
     tpj(document).ready(function() {
