@@ -69,6 +69,7 @@ $(document).ready(function () {
         $("#" + element.targetId).on('blur', function () {
             var validators = element.validators;
             $("#error-" + element.targetId).remove();
+            $("#error-" + element.targetId).remove();
             validators.forEach(function (validator) {
                 window[validator]([element]);
             });
