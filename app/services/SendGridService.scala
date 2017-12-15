@@ -176,7 +176,7 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
 
   def sendEmailForSupport(user: String, email: String, message: String): Option[String] = {
     val from = new Email(email)
-    from.setName(fromName)
+    from.setName(user)
     val to = new Email(fromEmail)
 
     val content = new Content("text/html", message)
