@@ -847,3 +847,10 @@ label {
 .register-header {
     margin-bottom: 20px !important;
 }
+footer .underline-h :hover {
+    text-decoration: underline !important;
+    color: white !important;
+}
+footer .underline-h {
+    color: white !important;
+}
