@@ -88,7 +88,7 @@ class SendGridServiceTest extends PlaySpecification with Mockito {
       when(mockedMessageApi("email.name")(Lang("en"))) thenReturn "This is for testing purpose"
       when(mockedSendGrid.api(any[Request])) thenReturn mockedResponse
 
-      val result = sendGridObj.sendEmailForSupport("test", "Support@receiptprocessor.com", "message")
+      val result = sendGridObj.sendEmailForSupport("Hills Bros. Cappuccino", "Support@receiptprocessor.com", "message")
 
       val requestCaptor = ArgumentCaptor.forClass(classOf[Request])
       verify(mockedSendGrid).api(requestCaptor.capture)
