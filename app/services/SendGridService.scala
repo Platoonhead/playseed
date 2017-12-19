@@ -14,7 +14,7 @@ object SendGridService {
   def receiptRejectionBody: String =
     "Thank you for trying, but we were unable to process your receipt. Please take a new picture and upload it again" +
       " at CappTheNight.3kudos.com/login. We are here to help, so if you have any problems or questions, email" +
-      " us at support@receiptprocessor.com ."
+      " us at support@receiptprocessor.com."
 
 
   def registrationBody: String =
@@ -26,7 +26,7 @@ object SendGridService {
 
   def approvalBody: String =
     "Your receipt has been approved! To earn additional entries, upload more receipts at " +
-      "CappTheNight.3kudos.com/login or visit http://www.cappthenightsweepstakes.com ."
+      "CappTheNight.3kudos.com/login or visit http://www.cappthenightsweepstakes.com."
 }
 
 class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi) {
