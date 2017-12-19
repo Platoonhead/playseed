@@ -7,15 +7,26 @@ import play.api.i18n.MessagesApi
 
 object SendGridService {
   def receiptUploadBody: String =
-    """Your receipt has successfully uploaded and you’ve gained 10 entries to our #CappTheNight Sweepstakes. We need 24-48 hours to validate your receipt, so keep an eye on your inbox and we will let you know when it's been cleared. Keep uploading receipts at CappTheNight.3kudos.com/login to earn even more entries."""
+    "Your receipt has successfully uploaded and you’ve gained 10 entries to our #CappTheNight Sweepstakes." +
+      " We need 24-48 hours to validate your receipt, so keep an eye on your inbox and we will let you know when " +
+      "it's been cleared. Keep uploading receipts at CappTheNight.3kudos.com/login to earn even more entries."
 
   def receiptRejectionBody: String =
-    """Thank you for trying, but we were unable to process your receipt. Please take a new picture and upload it again at CappTheNight.3kudos.com/login. We are here to help, so if you have any problems or questions, email us at support@receiptprocessor.com ."""
+    "Thank you for trying, but we were unable to process your receipt. Please take a new picture and upload it again" +
+      " at CappTheNight.3kudos.com/login. We are here to help, so if you have any problems or questions, email" +
+      " us at support@receiptprocessor.com ."
 
-  def registrationBody: String = """You are all set to upload a receipt and enter our #CappTheNight Sweepstakes! To enter, purchase one of our qualifying Hills Bros. Cappuccino products and upload your receipt to CappTheNight.3kudos.com/login. You can also visit http://www.cappthenightsweepstakes.com/ daily for additional ways to earn sweepstake entries. For each receipt you upload, you will earn 10 entries to win a $2,500 shopping spree and Hills Bros. Cappuccino prize pack. 1 receipt upload per day."""
+
+  def registrationBody: String =
+    "You are all set to upload a receipt and enter our #CappTheNight Sweepstakes! To enter, purchase one of our" +
+      " qualifying Hills Bros. Cappuccino products and upload your receipt to CappTheNight.3kudos.com/login. You" +
+      " can also visit http://www.cappthenightsweepstakes.com/ daily for additional ways to earn sweepstake entries. " +
+      "For each receipt you upload, you will earn 10 entries to win a $2,500 shopping spree and Hills Bros. Cappuccino " +
+      "prize pack. 1 receipt upload per day."
 
   def approvalBody: String =
-    """Your receipt has been approved!  To earn additional entries, upload more receipts at CappTheNight.3kudos.com/login or visit http://www.cappthenightsweepstakes.com ."""
+    "Your receipt has been approved! To earn additional entries, upload more receipts at " +
+      "CappTheNight.3kudos.com/login or visit http://www.cappthenightsweepstakes.com ."
 }
 
 class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi) {
