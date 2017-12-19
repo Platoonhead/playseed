@@ -26,7 +26,7 @@ class UserForm @Inject()(langs: Langs, val messagesApi: MessagesApi) {
   implicit val messages: Messages = MessagesImpl(lang, messagesApi)
 
   private val emailRegex =
-    """([a-zA-Z0-9._-]+)(@)([a-zA-Z0-9]+)([.])([a-zA-Z.]{2,})"""
+    """([a-zA-Z0-9._-]+)(@)([a-zA-Z0-9-]+)([.])([a-zA-Z.]{2,})"""
   val validEmail: Mapping[String] = email.verifying(messages("validation.invalid.email"), email => email.matches(emailRegex))
 
   val userSupportForm = Form(
