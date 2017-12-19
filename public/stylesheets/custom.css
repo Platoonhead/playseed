@@ -334,11 +334,14 @@ h4 {
 
 .support-link {
     color: black;
+    text-decoration: underline;
 }
 
 .support-link:hover {
     color: black;
+    text-decoration: underline;
 }
+
 
 .footer-link:hover {
     color: white;
