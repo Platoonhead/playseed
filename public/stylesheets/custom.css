@@ -893,3 +893,10 @@ footer .underline-h {
 .align-error {
     color: red !important;
 }
+
+/* ||| dev addons ||||||||||||||||||||||||||||||||||| */
+
+.custom-padding{
+    padding-right: 15px;
+    padding-left: 15px;
+}
