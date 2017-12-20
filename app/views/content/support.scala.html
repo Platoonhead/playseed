@@ -77,8 +77,8 @@
                         @helper.form(action = routes.Support.userSupport(), args = 'name -> "email-reg-submit-form", 'id -> "my-form", 'class -> "support-form") {
                             @CSRF.formField
                                 <div class="quform-elements">
-                                    <div class="row">
-                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-12">
+                                    <div class="row custom-padding">
+                                        <div class="quform-overlay quform-element clearfix quform-element-text col-md-12 custom-padding">
                                             <label for="name" class="support-fields">Name <span class="quform-required">*</span></label>
                                             <div class="quform-input linewidth">
                                                 <input id="name" type="text" name="name" value="@support("name").value"/>
