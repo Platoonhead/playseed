@@ -46,7 +46,7 @@
                                 <h1 class="section-header">
                                     Login Form<span class="underline animated" data-animation="fullWidth"></span></h1>
                             </div>
-                            <p class="info-text custom-text-alignment">
+                            <p class="info-text">
                                 If you have already registered, enter your email address below to log in and submit your receipt.</p>
                                 <!-- / col-md-12 -->
                         </div>
@@ -72,7 +72,7 @@
                                             <!-- Begin Text input element -->
                                         <div class="quform-overlay quform-element clearfix quform-element-text col-md-12">
                                             <label for="name" class="support-fields">Email address <span class="quform-required">*</span></label>
-                                            <div class="quform-input email-line linewidth">
+                                            <div class="quform-input email-line linewidth custom-padding">
                                                 <input id="email" type="text" name="email" value="@loginForm("email").value" />
                                                 <span class="help-block align-error">@{
                                                     loginForm("email").error.map { error => messages.messages(error.message) }
