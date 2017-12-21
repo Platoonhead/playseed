@@ -901,11 +901,7 @@ footer .underline-h {
     padding-left: 15px;
 }
 
-.custom-text-alignment{
-    text-align: center;
-}
-
 .custom-width{
-    width:100%;
+    width:95%;
     margin-left: 2px!important;
 }
