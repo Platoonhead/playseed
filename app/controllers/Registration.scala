@@ -166,7 +166,7 @@ class Registration @Inject()(controllerComponent: ControllerComponents,
                 p3UserInfoRepository.fetchByEmail(profile.email).flatMap {
                   case Some(userInfo) =>
                     eventSender.insertSignUpEvent(userInfo.p3UserId, profile.firstName + " " + profile.lastName)
-                    val unsubscribeLink = s"${request.host}/user/${userInfo.p3UserId}/unsubscribe/email"
+                    val unsubscribeLink = s"http://${request.host}/user/${userInfo.p3UserId}/unsubscribe/email"
                     val emailSent = sendGridService.sendEmailForRegistration(profile.email, profile.firstName, unsubscribeLink)
                     Logger.info(s"Email sent for user registration for email ${userInfo.email} and p3 user id ${userInfo.p3UserId}, $emailSent " +
                       s"for register with purchase")
