@@ -71,7 +71,8 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
                 case Some(receipt) =>
                   userProfileRepository.findByEmail(receipt.email).flatMap {
                     case Some(profile) =>
-                      rewardUser(receiptCallback, profile, receipt.pointSent)
+                      val unsubscribeLink = s"${request.host}/user/${receipt.p3userId}/unsubscribe/email"
+                      rewardUser(receiptCallback, profile, receipt.pointSent, unsubscribeLink)
                     case None          =>
                       Logger.error(s"User profile not found for email: ${receipt.email}")
                       Future.successful(NotFound(Json.obj("message" -> "User profile not found")) as "application/json")
@@ -86,7 +87,7 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
           })
   }
 
-  private def rewardUser(receiptCallback: ReceiptCallback, profile: Profile, pointSent: Boolean): Future[Result] = {
+  private def rewardUser(receiptCallback: ReceiptCallback, profile: Profile, pointSent: Boolean, unsubscribeLink: String): Future[Result] = {
     val serializedProductList = Json.toJson(receiptCallback.data.products).toString()
     (receiptCallback.status.getOrElse(""), pointSent) match {
       case ("ambiguous", _)     =>
@@ -96,17 +97,17 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
       case ("rejected", false)  =>
         Logger.info(s"Rejected receipt could not be processed for user profile id ${profile.id} and snap3 receipt id ${receiptCallback.UUID}")
         receiptRepository.updateRejectedEmail(receiptCallback, serializedProductList)
-        handleRejectedEmail(profile, "rejected", receiptCallback.UUID)
+        handleRejectedEmail(profile, "rejected", receiptCallback.UUID, unsubscribeLink)
       case ("invalid", false)   =>
         Logger.info(s"Invalid receipt could not be processed for user profile id ${profile.id} and snap3 receipt id ${receiptCallback.UUID}")
         receiptRepository.updateRejectedEmail(receiptCallback, serializedProductList)
-        handleRejectedEmail(profile, "invalid", receiptCallback.UUID)
+        handleRejectedEmail(profile, "invalid", receiptCallback.UUID, unsubscribeLink)
       case ("duplicate", false) =>
         Logger.info(s"Duplicate receipt could not be processed for user profile id ${profile.id} and snap3 receipt id ${receiptCallback.UUID}")
         receiptRepository.updateRejectedEmail(receiptCallback, serializedProductList)
-        handleRejectedEmail(profile, "duplicate", receiptCallback.UUID)
+        handleRejectedEmail(profile, "duplicate", receiptCallback.UUID, unsubscribeLink)
       case ("approved", false)  =>
-        processReceipt(receiptCallback, profile, serializedProductList)
+        processReceipt(receiptCallback, profile, serializedProductList, unsubscribeLink)
       case (status, point)      =>
         Logger.error(s"No valid data found for receipt status $status and redeem point $point for user ${profile.email}" +
           s" and snap3 receipt id ${receiptCallback.UUID}")
@@ -114,18 +115,18 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
     }
   }
 
-  private def processReceipt(receiptCallback: ReceiptCallback, profile: Profile, serializedProductList: String): Future[Result] = {
+  private def processReceipt(receiptCallback: ReceiptCallback, profile: Profile, serializedProductList: String, unsubscribeLink: String): Future[Result] = {
     receiptRepository.update(receiptCallback, serializedProductList) flatMap {
       case Some(receipt) =>
-        handleApprovedEmail(profile, receipt.id)
+        handleApprovedEmail(profile, receipt.id, unsubscribeLink)
       case None          =>
         Logger.error(s"Could not able to update receipt data in receipt table for user profile id ${profile.id} and receipt id ${receiptCallback.UUID}")
         Future.successful(InternalServerError("Receipt should be updated"))
     }
   }
 
-  private def handleRejectedEmail(profile: Profile, status: String, snap3ReceiptId: String): Future[Result] =
-    sendGridService.sendEmailForRejection(profile.email, profile.firstName).fold {
+  private def handleRejectedEmail(profile: Profile, status: String, snap3ReceiptId: String, unsubscribeLink: String): Future[Result] =
+    sendGridService.sendEmailForRejection(profile.email, profile.firstName, unsubscribeLink).fold {
       Logger.error(s"Internal server error while sending email for email address ${profile.email}, status $status, " +
         s"user profile id ${profile.id} and snap3 receipt id $snap3ReceiptId")
       Future.successful(InternalServerError("Email not sent"))
@@ -136,8 +137,8 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
         Future.successful(Ok("Email sent"))
     }
 
-  private def handleApprovedEmail(profile: Profile, receiptId: Long): Future[Result] = {
-    sendGridService.sendEmailForApproval(profile.email, profile.firstName).fold {
+  private def handleApprovedEmail(profile: Profile, receiptId: Long, unsubscribeLink: String): Future[Result] = {
+    sendGridService.sendEmailForApproval(profile.email, profile.firstName, unsubscribeLink).fold {
       Logger.error(s"Internal server error while sending approval email for email address ${profile.email}, " +
         s"user profile id ${profile.id} and receipt id $receiptId")
       Future.successful(InternalServerError("Email not sent"))

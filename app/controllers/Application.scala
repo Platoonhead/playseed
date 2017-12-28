@@ -24,7 +24,7 @@ class Application @Inject()(controllerComponent: ControllerComponents,
   }
 
   def login: Action[AnyContent] = Action { implicit request =>
-    Ok(views.html.content.login(userForm.loginForm)).withNewSession
+    Ok(views.html.content.unsubscribefromemail()).withNewSession
   }
 
   def upload: Action[AnyContent] = Action { implicit request =>

@@ -27,6 +27,24 @@ class RegistrationTest extends PlaySpec with Mockito {
   val date = Util.getPacificTime
   val time = new Timestamp(System.currentTimeMillis)
 
+  "should un subscribe from email by p3 user id" in {
+    val controller = getMockedObject
+
+    when(controller.platformBridgeService.unsubscribeFromEmails("p3UserId")) thenReturn Some("p3UerId")
+
+    val result = controller.registrationController.unsubscribeFromEmails("p3UserId")(FakeRequest(GET, "/user"))
+    status(result) must equal(OK)
+  }
+
+  "should not un subscribe from email by p3 user id" in {
+    val controller = getMockedObject
+
+    when(controller.platformBridgeService.unsubscribeFromEmails("p3UserId")) thenReturn None
+
+    val result = controller.registrationController.unsubscribeFromEmails("p3UserId")(FakeRequest(GET, "/user"))
+    status(result) must equal(SEE_OTHER)
+  }
+
   "should login the user when user already registered and submitted the receipt today" in {
     val controller = getMockedObject
 

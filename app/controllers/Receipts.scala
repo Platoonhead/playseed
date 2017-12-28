@@ -143,7 +143,8 @@ class Receipts @Inject()(controllerComponent: ControllerComponents,
                 p3UserInfoRepository.fetchByEmail(userProfile.email) map {
                   case Some(userInfo) =>
                     eventSender.insertUploadEvent(userInfo.p3UserId, userProfile.firstName)
-                    sendGridService.sendEmailForUpload(userProfile.email, userProfile.firstName)
+                    val unsubscribeLink = s"${request.host}/user/${userInfo.p3UserId}/unsubscribe/email"
+                    sendGridService.sendEmailForUpload(userProfile.email, userProfile.firstName, unsubscribeLink)
                   case None           =>
                     Logger.info(s"Could not get p3 user info by email ${userProfile.email} while processing receipt")
                     Future.successful(InternalServerError(message("common.error.message")))

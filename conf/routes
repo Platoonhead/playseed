@@ -1,21 +1,23 @@
 # Routes
-GET         /                        controllers.Application.login
+GET         /                                      controllers.Application.login
 
-GET         /register                controllers.Application.register
-POST        /savecontestent          controllers.Registration.saveContestant
+GET         /register                              controllers.Application.register
+POST        /savecontestent                        controllers.Registration.saveContestant
 
-GET         /login                   controllers.Application.login
-POST        /login                   controllers.Login.login
+GET         /login                                 controllers.Application.login
+POST        /login                                 controllers.Login.login
 
-GET         /upload                  controllers.Application.upload
+GET         /upload                                controllers.Application.upload
 
-POST        /receiveReceipt          controllers.Receipts.receiveReceipt
-POST        /callback/receive        controllers.Callbacks.receive
+POST        /receiveReceipt                        controllers.Receipts.receiveReceipt
+POST        /callback/receive                      controllers.Callbacks.receive
 
-GET         /support                 controllers.Application.support
-POST        /customersupport         controllers.Support.userSupport
+GET         /support                               controllers.Application.support
+POST        /customersupport                       controllers.Support.userSupport
 
-GET         /jsRoutes                controllers.JavascriptRoutes.jsRoutes
+GET         /user/:userid/unsubscribe/email        controllers.Registration.unsubscribeFromEmails(userid: String)
+
+GET         /jsRoutes                              controllers.JavascriptRoutes.jsRoutes
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file            controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file                          controllers.Assets.versioned(path="/public", file: Asset)
