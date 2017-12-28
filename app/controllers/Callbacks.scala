@@ -71,7 +71,7 @@ class Callbacks @Inject()(controllerComponent: ControllerComponents,
                 case Some(receipt) =>
                   userProfileRepository.findByEmail(receipt.email).flatMap {
                     case Some(profile) =>
-                      val unsubscribeLink = s"${request.host}/user/${receipt.p3userId}/unsubscribe/email"
+                      val unsubscribeLink = s"http://${request.host}/user/${receipt.p3userId}/unsubscribe/email"
                       rewardUser(receiptCallback, profile, receipt.pointSent, unsubscribeLink)
                     case None          =>
                       Logger.error(s"User profile not found for email: ${receipt.email}")
