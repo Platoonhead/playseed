@@ -94,7 +94,7 @@ class CallbacksTest extends PlaySpecification with Mockito {
     when(callbackObjects.userProfileRepository.findByEmail("test@example.com")) thenReturn Future.successful(Some(userProfile))
     when(callbackObjects.receiptRepository.shouldSubmit(1)) thenReturn Future(true)
     when(callbackObjects.receiptRepository.update(receiptCallBack, serializedProductList)) thenReturn Future.successful(Some(receipt))
-    when(callbackObjects.sendGridService.sendEmailForApproval("test@example.com", "firstname_test", "localhost/user/userId/unsubscribe/email")) thenReturn Some("success")
+    when(callbackObjects.sendGridService.sendEmailForApproval("test@example.com", "firstname_test", "http://localhost/user/userId/unsubscribe/email")) thenReturn Some("success")
 
     val response = callbackObjects.callbackController.receive()(request)
 
@@ -146,7 +146,7 @@ class CallbacksTest extends PlaySpecification with Mockito {
     when(callbackObjects.receiptRepository.shouldSubmit(1)) thenReturn Future(true)
     when(callbackObjects.receiptRepository.update(receiptCallBack, serializedProductList)) thenReturn Future.successful(Some(receipt))
 
-    when(callbackObjects.sendGridService.sendEmailForApproval("test@example.com", "firstname_test", "localhost/user/userId/unsubscribe/email")) thenReturn None
+    when(callbackObjects.sendGridService.sendEmailForApproval("test@example.com", "firstname_test", "http://localhost/user/userId/unsubscribe/email")) thenReturn None
 
     val response = callbackObjects.callbackController.receive()(request)
 
@@ -411,7 +411,7 @@ class CallbacksTest extends PlaySpecification with Mockito {
     when(callbackObjects.receiptRepository.fetchByReceiptId("4298-90a8-97ee920abaaf")) thenReturn Future.successful(Some(receipt))
     when(callbackObjects.userProfileRepository.findByEmail("test@example.com")) thenReturn Future.successful(Some(userProfile))
     when(callbackObjects.receiptRepository.updateRejectedEmail(receiptCallBack, "serializedProductList")) thenReturn Future.successful(true)
-    when(callbackObjects.sendGridService.sendEmailForRejection("test@example.com", "firstname_test", "localhost/user/userId/unsubscribe/email")) thenReturn Some("success")
+    when(callbackObjects.sendGridService.sendEmailForRejection("test@example.com", "firstname_test", "http://localhost/user/userId/unsubscribe/email")) thenReturn Some("success")
 
     val response = callbackObjects.callbackController.receive()(request)
     status(response) must be equalTo OK
@@ -459,7 +459,7 @@ class CallbacksTest extends PlaySpecification with Mockito {
     when(callbackObjects.receiptRepository.fetchByReceiptId("4298-90a8-97ee920abaaf")) thenReturn Future.successful(Some(receipt))
     when(callbackObjects.userProfileRepository.findByEmail("test@example.com")) thenReturn Future.successful(Some(userProfile))
     when(callbackObjects.receiptRepository.updateRejectedEmail(receiptCallBack, "serializedProductList")) thenReturn Future.successful(true)
-    when(callbackObjects.sendGridService.sendEmailForRejection("test@example.com", "firstname_test", "localhost/user/userId/unsubscribe/email")) thenReturn None
+    when(callbackObjects.sendGridService.sendEmailForRejection("test@example.com", "firstname_test", "http://localhost/user/userId/unsubscribe/email")) thenReturn None
 
     val response = callbackObjects.callbackController.receive()(request)
     status(response) must be equalTo INTERNAL_SERVER_ERROR
@@ -505,7 +505,7 @@ class CallbacksTest extends PlaySpecification with Mockito {
     when(callbackObjects.receiptRepository.fetchByReceiptId("4298-90a8-97ee920abaaf")) thenReturn Future.successful(Some(receipt))
     when(callbackObjects.userProfileRepository.findByEmail("test@example.com")) thenReturn Future.successful(Some(userProfile))
     when(callbackObjects.receiptRepository.updateRejectedEmail(receiptCallBack, "serializedProductList")) thenReturn Future.successful(true)
-    when(callbackObjects.sendGridService.sendEmailForRejection("test@example.com", "firstname_test", "localhost/user/userId/unsubscribe/email")) thenReturn Some("success")
+    when(callbackObjects.sendGridService.sendEmailForRejection("test@example.com", "firstname_test", "http://localhost/user/userId/unsubscribe/email")) thenReturn Some("success")
 
     val response = callbackObjects.callbackController.receive()(request)
 
@@ -553,7 +553,7 @@ class CallbacksTest extends PlaySpecification with Mockito {
     when(callbackObjects.receiptRepository.fetchByReceiptId("4298-90a8-97ee920abaaf")) thenReturn Future.successful(Some(receipt))
     when(callbackObjects.userProfileRepository.findByEmail("test@example.com")) thenReturn Future.successful(Some(userProfile))
     when(callbackObjects.receiptRepository.updateRejectedEmail(receiptCallBack, "serializedProductList")) thenReturn Future.successful(true)
-    when(callbackObjects.sendGridService.sendEmailForRejection("test@example.com", "firstname_test", "localhost/user/userId/unsubscribe/email")) thenReturn Some("success")
+    when(callbackObjects.sendGridService.sendEmailForRejection("test@example.com", "firstname_test", "http://localhost/user/userId/unsubscribe/email")) thenReturn Some("success")
 
     val response = callbackObjects.callbackController.receive()(request)
 
