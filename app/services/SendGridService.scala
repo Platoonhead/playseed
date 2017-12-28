@@ -35,11 +35,11 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
   private val fromName = "Hills Bros. Cappuccino"
   private val fromEmail = "Support@receiptprocessor.com"
 
-  def sendEmailForUpload(email: String, user: String): Option[String] = {
+  def sendEmailForUpload(email: String, user: String, unsubscribeLink: String): Option[String] = {
 
     val subject = "You’ve uploaded your Hills Bros. Cappuccino receipt."
     val greeting = "We Got It!"
-    val body = views.html.content.email(user, greeting, SendGridService.receiptUploadBody).toString()
+    val body = views.html.content.email(user, greeting, SendGridService.receiptUploadBody, unsubscribeLink).toString()
     val from = new Email(fromEmail)
     from.setName(fromName)
 
@@ -65,10 +65,10 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
     }
   }
 
-  def sendEmailForApproval(email: String, user: String): Option[String] = {
+  def sendEmailForApproval(email: String, user: String, unsubscribeLink: String): Option[String] = {
     val subject = "You are entered for our #CappTheNight Sweepstakes!"
     val greeting = "Congratulations! You’ve Earned 10 Entries!"
-    val body = views.html.content.email(user, greeting, SendGridService.approvalBody).toString()
+    val body = views.html.content.email(user, greeting, SendGridService.approvalBody, unsubscribeLink).toString()
 
     val from = new Email(fromEmail)
     from.setName(fromName)
@@ -95,11 +95,11 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
     }
   }
 
-  def sendEmailForRejection(email: String, user: String): Option[String] = {
+  def sendEmailForRejection(email: String, user: String, unsubscribeLink: String): Option[String] = {
     val subject = "We’re having some technical difficulties, please try again"
     val greeting = "Oh No, Something Went Wrong!"
 
-    val body = views.html.content.email(user, greeting, SendGridService.receiptRejectionBody).toString()
+    val body = views.html.content.email(user, greeting, SendGridService.receiptRejectionBody, unsubscribeLink).toString()
 
     val from = new Email(fromEmail)
     from.setName(fromName)
@@ -126,10 +126,10 @@ class SendGridService @Inject()(sendGridUser: SendGrid, messageApi: MessagesApi)
     }
   }
 
-  def sendEmailForRegistration(email: String, user: String): Option[String] = {
+  def sendEmailForRegistration(email: String, user: String, unsubscribeLink: String): Option[String] = {
     val subject = "Thank you for registering!"
     val greeting = "You’re Good To Go!"
-    val emailTemplate = views.html.content.email(user, greeting, SendGridService.registrationBody).toString()
+    val emailTemplate = views.html.content.email(user, greeting, SendGridService.registrationBody, unsubscribeLink).toString()
 
     val from = new Email(fromEmail)
     from.setName(fromName)

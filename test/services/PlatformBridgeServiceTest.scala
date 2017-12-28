@@ -232,5 +232,22 @@ class PlatformBridgeServiceTest extends PlaySpecification with Mockito {
 
       result must be equalTo None
     }
+
+    "un subscribe from email by p3 user id" in {
+      val platformService = getMockedObject
+
+      val json =
+        """{"unsubscrbed":"true"}""".stripMargin.replaceAll("\n", "")
+
+      when(mockedConfig.load) thenReturn platformConfig
+      when(mockedResponse.body) thenReturn json
+      when(mockedResponse.status) thenReturn 200
+      when(mockedWSClient.url(any[String])) thenReturn mockedWSRequest
+      when(mockedWSRequest.get) thenReturn Future.successful(mockedResponse)
+
+      val result = platformService.unsubscribeFromEmails("user12345")
+
+      result must be equalTo Some("user12345")
+    }
   }
 }

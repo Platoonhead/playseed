@@ -143,7 +143,7 @@ class ReceiptsTest extends PlaySpec with Mockito {
     when(receiptObjects.eventRepository.store(any[Event])) thenReturn Future(true)
     when(receiptObjects.p3UserInfoRepository.fetchByEmail(profile.email)) thenReturn Future(Some(P3UserInfo(1L, "p3_userId", profile.email, date)))
     when(receiptObjects.eventSender.insertUploadEvent("p3_userId", "test")) thenReturn true
-    when(receiptObjects.sendGridService.sendEmailForUpload("text@example.com", "test")) thenReturn Some("200")
+    when(receiptObjects.sendGridService.sendEmailForUpload("text@example.com", "test", "link")) thenReturn Some("200")
     when(receiptObjects.receiptRepository.shouldSubmit(profile.id)) thenReturn Future(true)
     val response = receiptObjects.receiptController.receiveReceipt()(request)
 

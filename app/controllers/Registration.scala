@@ -36,6 +36,16 @@ class Registration @Inject()(controllerComponent: ControllerComponents,
   val lang: Lang = controllerComponent.langs.availables.head
   implicit val message: Messages = MessagesImpl(lang, messagesApi)
 
+  def unsubscribeFromEmails(p3UserId: String): Action[AnyContent] = Action { implicit request =>
+    platformBridgeService.unsubscribeFromEmails(p3UserId) match {
+      case None           =>
+        Logger.error(s"Could not unsubscribe from email for p3 user id $p3UserId")
+        Redirect(routes.Application.login()).flashing("error" -> "Something went wrong, Please try again!")
+      case Some(response) =>
+        Ok(views.html.content.unsubscribefromemail())
+    }
+  }
+
   def saveContestant: Action[AnyContent] = Action.async { implicit request =>
 
     userForm.signUpForm.bindFromRequest.fold(
@@ -156,7 +166,8 @@ class Registration @Inject()(controllerComponent: ControllerComponents,
                 p3UserInfoRepository.fetchByEmail(profile.email).flatMap {
                   case Some(userInfo) =>
                     eventSender.insertSignUpEvent(userInfo.p3UserId, profile.firstName + " " + profile.lastName)
-                    val emailSent = sendGridService.sendEmailForRegistration(profile.email, profile.firstName)
+                    val unsubscribeLink = s"${request.host}/user/${userInfo.p3UserId}/unsubscribe/email"
+                    val emailSent = sendGridService.sendEmailForRegistration(profile.email, profile.firstName, unsubscribeLink)
                     Logger.info(s"Email sent for user registration for email ${userInfo.email} and p3 user id ${userInfo.p3UserId}, $emailSent " +
                       s"for register with purchase")
                     Future.successful(Redirect(routes.Application.upload()).withSession("userInfo" -> jsonStringProfile)

@@ -5,7 +5,6 @@ import javax.inject.Inject
 
 import models._
 import org.joda.time.DateTime
-import org.mindrot.jbcrypt.BCrypt
 import play.api.Logger
 import play.api.libs.json.Json
 import play.api.libs.ws.WSClient
@@ -143,7 +142,7 @@ class PlatformBridgeService @Inject()(p3userInfoRepo: P3UsersInfoRepository, wsC
         Phone("", ""),
         "",
         "",
-        receiveEmail = false,
+        receiveEmail = true,
         receiveSms = false)).toString
 
       val responseFuture = wsClient.url(url).post(userProfileJson)
@@ -163,6 +162,28 @@ class PlatformBridgeService @Inject()(p3userInfoRepo: P3UsersInfoRepository, wsC
     } catch {
       case ex: Exception =>
         Logger.error(s"[Bridge - Create Profile] Internal Error, guid: $guid")
+        None
+    }
+  }
+
+  def unsubscribeFromEmails(guid: String): Option[String] = {
+    try {
+      val url = "http://%s/client/%s/user/%s/unsubscribe/email" format(config.load.p3DomainAccount, config.load.p3ClientId, guid)
+
+      val responseFuture = wsClient.url(url).get
+      val response = Await.result(responseFuture, 20 seconds)
+
+      response.status match {
+        case 200 =>
+          Logger.info(s"[Bridge - Unsubscribe] Unsubscribe from email, guid: $guid")
+          Some(guid)
+        case _   =>
+          Logger.info(s"[Bridge - Unsubscribe] Could not unsubscribe from email, guid: $guid")
+          None
+      }
+    } catch {
+      case ex: Exception =>
+        Logger.error(s"[Bridge - Unsubscribe] Internal Error, guid: $guid")
         None
     }
   }
