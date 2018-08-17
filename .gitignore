@@ -1,33 +1,8 @@
-# SBT
-boot/
-lib_managed/
-src_managed/
-test-output/
-target/
-.history
-
-# Scala
-.worksheet
-.sc
-
-# Eclipse
-.cache
-.classpath
-.project
-.scala_dependencies
-.settings
-.target/
-.history
-.bin
-
-# IntelliJ
-.idea
-admin-ocr.iml
-.idea_modules/
-
-# Misc
-.log
-/bin/
-logs/
-*~
-data/
+logs
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
